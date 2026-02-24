@@ -1,5 +1,14 @@
 /* HEADER */
 
+nav {
+  background-image: url(/assets/arquivos_gerais_semanas/bg_inicio_encerramento.jpg);
+}
+
+nav .logo img {
+  background-color: #DD3A76 !important;
+  color: #fff;
+}
+
 /* Botão Pular para Conteúdo Principal */
 nav .logo .pularNavegacao {}
 
@@ -10,28 +19,35 @@ nav .nav-link  {
 } */
 
 /* Botão de compartilhamento */
-nav .nav-link {}
+nav .nav-link {
+  background-color: #DD3A76 !important;
+  color: #fff;
+}
 nav .nav-link:focus,
 nav .nav-link:hover,
-nav .nav-link[aria-expanded="true"] {}
+nav .nav-link[aria-expanded="true"] {
+  background-color: #DD3A76 !important;
+  color: #fff;
+}
 
 /* FOOTER */
 /* Cores de fonte + contornos */
-/* footer, footer .sharing i {
-  color: red;
+ footer, footer .sharing i {
+  background-color: #DD3A76;
+  color: #FFF;
 }
 footer .cred-rea>div:not(:first-child) {
-  border-left-color: red;
+  border-left-color: #FFF;
 }
 footer .aval-rea .btn-secondary {
-  border-color: red;
+  border-color: #FFF;
 }
 @media (max-width: 1199.98px) {
   footer .sharing i {
-    background-color: red;
+    background-color: transparent;
     color:  white;
   }
-} */
+} 
 footer .aval-rea .btn-secondary:hover,
 footer .aval-rea .btn-secondary:focus {}
 
@@ -41,14 +57,4 @@ footer .aval-rea .btn-secondary:focus {}
     color:  red;
   } */
 
-/* MAIN */
-main {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-@media only screen and (max-width: 992px) {
-  main {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-}
+
