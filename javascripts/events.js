@@ -18,5 +18,14 @@ $(document).ready(function(){
   //////////////////////////////////////////////////////////////////
 
   // Seu código abaixo
+  const botaoIntroducao = document.querySelector('#buttonIntroducao');
+  const sectionBemVindo = document.querySelector('#introducao-bemVindo');
+
+  botaoIntroducao.addEventListener('click', () => {
+    sectionBemVindo.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
 
 })
