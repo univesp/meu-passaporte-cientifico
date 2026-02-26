@@ -39,8 +39,7 @@
   <link rel="stylesheet" href="https://apps.univesp.br/common/rea-geral-2.1.css">
   <!-- <link rel="stylesheet" href="../common/rea-geral-2.1.css">   -->
   <link rel="stylesheet" href="stylesheets/nav_footer.css">
-  <link rel="stylesheet" href="stylesheets/main.css">
-
+  <link rel="stylesheet" href="stylesheets/jornadas.css">
 </head>
 
 <body class="d-flex flex-column">
@@ -55,14 +54,14 @@
   - class="header-dinamico" => header possui posição fixa e é mostrado apenas quando a página está no topo (necessário ajustar padding ou margin superior e inferior do main).
   //////////////////////////////////////////////////////////////////-->
   <!-- <nav class="header-dinamico"> -->
-  <nav id="navHeaderPaginaInicial">
+  <nav>
     <div class="container">
       <!-- Logo -->
       <div class="logo">
         <a class="pularNavegacao" href="#conteudoPrincipal">Pular para Conteúdo Principal</a>
         <a href="https://univesp.br/" target="_blank">
           <img src="https://apps.univesp.br/common/traco-negativa.svg" alt="Link para site institucional. Logotipo da universidade formado pela palavra Univesp, sendo a letra V estilizada.">
-          <!-- outras opções de img src: colorida-negativa.svg, traco-positiva.svg, traco-negativa.svg -->
+          <!-- outras opções de img src: colorida-positiva.svg, colorida-negativa.svg, traco-positiva.svg -->
         </a>
       </div>
       <!-- Compartilhamento -->
@@ -81,62 +80,29 @@
 
   <!-- Conteúdo -->
   <main id="conteudoPrincipal">
-    <!-- Seu conteúdo -->
 
-    <section id="introducao-inicio">
-      <div class="container introducao-inicio__content">
-        <img src="/assets/introducao/titulo.png" alt="Logo Meu Passaporte Científico">
+    <div class="container">
+      <!-- Seu conteúdo -->
 
-        <div class="botoes-inicio">
-          <div class="botao-login-box">
-            <button id="buttonFazerLogin">
-              <img src="/assets/introducao/icone_login.png" alt="ícone de login">
-              <span>Entrar com conta UNIVESP</span>
-            </button>
-          </div>
-          <button id="buttonIntroducao">Introdução</button>
-          <button id="buttonJornadas">Ir Para as Jornadas</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="introducao-bemVindo">
-      <div class="container box-info">
-        <h2>Bem-vindo ao Meu Passaporte Científico!</h2>
-
-        <div class="box-explicativo">
-          <img class="lumi-ilustra" src="/assets/introducao/lumi_intro.png" alt="ilustração da Lumi">
-          <p class="texto-lumi-intro"><b>Oi! Eu sou a Lumi</b> — uma pequena centelha de curiosidade que vai te acompanhar nesta jornada. Sempre que você avançar em uma trilha, fizer uma descoberta ou precisar de uma dica para transformar ciência em prática pedagógica, eu apareço por aqui para iluminar o caminho. 
-          <br>
-          <b>Vamos juntos?</b></p>
-        </div>
-
-        <p style="margin-top: 80px;">Você já parou para pensar em quantos mundos de conhecimento estão ao nosso alcance? E como cada um deles pode nos ajudar a compreender melhor o que vemos, sentimos e vivenciamos no cotidiano, especialmente quando pensamos no trabalho com crianças pequenas?</p>
-
-        <p style="margin-top: 20px;">Este <span style="color: #2A5555; font-weight: bold;">Recurso Educacional Aberto</span> (REA) foi criado para te convidar a embarcar em uma expedição científica cheia de descobertas. Aqui, a teoria das Ciências da Natureza se encontra com experiências reais em museus, planetários, praças, jardins, feiras, exposições, reservas naturais e outros espaços que despertam a curiosidade. A ideia é simples: explorar diferentes lugares, observar como o conhecimento é apresentado e, a partir disso, pensar em práticas possíveis para a Educação Infantil e o Ensino Fundamental I.</p>
-
-        <p style="margin-top: 20px; text-align: center; width: 50%;">Ao longo das trilhas, quero te acompanhar enquanto você reflete sobre algumas <span style="background-color: #DD3A76; color: #FFF; font-weight: bold; padding: 2px;">perguntas importantes:</span></p>
-
-        <div class="box-explicativo" style="background-color: #2A5555; height: 291px; margin-top: 20px; gap: 0;">
-          <ul class="lista-bemVindo">
-            <li>O que esse espaço ensina sobre ciência?</li>
-            <li>Como as crianças pequenas poderiam vivenciar algo parecido?</li>
-            <li>Que habilidades da BNCC aparecem aqui — ou poderiam aparecer?</li>
-            <li>Como transformar observações em propostas didáticas reais e sensíveis ao território?</li>
-          </ul>
-          <img class="ilustra-pensante" src="/assets/introducao/pensante _intro.png" alt="">
-        </div>
-      </div>
-    </section>
-
+    </div>
   </main>
 
   <!-- RODAPÉ -->
-  
+  <!--//////////////////////////////////////////////////////
+  Classes prontas p/ footer (podem ser combinadas):
+  padrão => texto e contornos em cinza
+  class = "black" => texto e contornos em preto
+  class = "negativo" => texto e contornos em branco, sobre fundo escuro
+  class = "transparente" => fundo transparente (necessário ajustar cor dos ícones de compartilhamento nos círculos, para bater com a cor de fundo)
+  /////////////////////////////////////////////////////////-->
+  <!-- <footer class="black"> -->
+  <!-- <footer class="negativo"> -->
+  <!-- <footer class="transparente"> -->
+  <!-- <footer class="transparente black"> -->
+  <!-- <footer class="transparente negativo"> -->
   <footer id="footer">
     <!-- components/footer.js -->
   </footer>
-
   <!-- Fim do rodapé -->
 
   <!-- Fim da div .esconder-tela-pequena
@@ -166,7 +132,7 @@
   </div> -->
 
   <!-- CRÉDITOS -->
-  <div class="modal fade creditos" id="creditos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="creditos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <!-- components/creditos.js -->
   </div>
 
@@ -206,14 +172,18 @@
     });
   </script>
 
-  <!-- Componentes -->
-  <script type="text/javascript" src="components/creditos.js"></script>
-  <script type="text/javascript" src="components/footer.js"></script>
-
-   <!-- Custom JS -->
-   <script type="text/javascript" src="javascripts/index.js"></script>
-   <script type="text/javascript" src="javascripts/events-components.js"></script>
+   <!-- Componentes -->
+   <script type="text/javascript" src="components/creditos.js"></script>
+   <script type="text/javascript" src="components/footer.js"></script>
  
+    <!-- Custom JS -->
+    <script type="text/javascript" src="javascripts/events-components.js"></script>
+
+  <!-- MathJax. Descomente se for utilizar. Caso contrário, remova. -->
+  <!-- <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+  
+
 </body>
 
 </html>

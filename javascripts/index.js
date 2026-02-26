@@ -18,6 +18,8 @@ $(document).ready(function(){
   //////////////////////////////////////////////////////////////////
 
   // Seu código abaixo
+
+  // Navegação para a Introdução
   const botaoIntroducao = document.querySelector('#buttonIntroducao');
   const sectionBemVindo = document.querySelector('#introducao-bemVindo');
 
@@ -27,5 +29,12 @@ $(document).ready(function(){
       block: 'start'
     });
   });
+
+  // Navega para a tela de Jornadas
+  const botaoJornadas = document.querySelector('#buttonJornadas');
+
+  botaoJornadas.addEventListener('click', () => {
+    window.location.href = '/jornadas.html';
+  })
 
 })

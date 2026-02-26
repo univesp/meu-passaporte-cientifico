@@ -1,11 +1,7 @@
-body {
-  background-color: #DFE6E8;
-}
-
 #introducao-inicio {
   background-image: url(/assets/arquivos_gerais_semanas/bg_inicio_encerramento.jpg);
   width: 100%;
-  height: 800px;
+  height: 850px;
 }
 
 .introducao-inicio__content {
@@ -24,8 +20,8 @@ body {
 .botoes-inicio {
   display: flex;
   flex-direction: column;
-  gap: 70px 0;
-  margin-top: 50px;
+  gap: 50px 0;
+  margin-top: 30px;
 }
 
 .botoes-inicio > button {
@@ -33,7 +29,7 @@ body {
   font-size: 24px;
   width: 346px;
   height: 74px;
-  border-radius: 28px;
+  border-radius: 50px;
   background-color: #DD3A76;
   color: #FFF;
   text-transform: uppercase;
@@ -51,6 +47,47 @@ body {
 }
 
 .botoes-inicio > button:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #942C52;
+}
+
+#buttonFazerLogin {
+  display: flex;
+  align-items: center;
+}
+
+#buttonFazerLogin > img {
+  width: 22%;
+  position: relative;
+  left: -10px;
+}
+
+.botao-login-box { 
+  margin-left: -5%;
+}
+
+.botao-login-box > button {
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  width: 380px;
+  height: 74px;
+  border-radius: 50px;
+  background-color: #FFF;
+  color: #DD3A76;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 0 #942C52;
+  border: none;
+  outline: none;
+}
+
+.botao-login-box > button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #942C52;
+}
+
+.botao-login-box > button:active {
   transform: translateY(4px);
   box-shadow: 0 0 0 #942C52;
 }
