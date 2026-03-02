@@ -1,3 +1,11 @@
+p, li, ul, button {
+  font-family: "Nunito", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+}
+
 #introducao-inicio {
   background-image: url(/assets/arquivos_gerais_semanas/bg_inicio_encerramento.jpg);
   width: 100%;
@@ -95,7 +103,7 @@
 #introducao-bemVindo {
   background-image: url(/assets/introducao/bg1_intro.jpg);
   width: 100%;
-  height: 1370px;
+  height: 1400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,7 +112,7 @@
 
 .box-info {
   width: 100%;
-  height: 1350px;
+  height: 1400px;
   background-color: #FFFFF2;
   border-radius: 35px;
   padding: 100px;
@@ -114,7 +122,6 @@
 }
 
 .box-info > h2 {
-  font-family: 'Oswald', sans-serif;
   font-size: 44px;
   color: #2A5555;
   font-weight: 600;
@@ -139,7 +146,6 @@
 }
 
 .box-explicativo > .texto-lumi-intro {
-  font-family: "Nunito", sans-serif;
   font-size: 20px;
   width: 350px;
   height: 269.93px;
@@ -148,7 +154,6 @@
 }
 
 .box-info > p{
-  font-family: "Nunito", sans-serif;
   font-size: 18px;
   color: #000000;
   width: 89%;
@@ -169,4 +174,332 @@
   height: 270px;
   position: relative;
   left: 30px;
+}
+
+#introducao-oQueVoceVaiProduzir {
+  background-color: #2A5555;
+  width: 100%;
+  height: auto;
+  padding: 80px 0 115px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-content > h2 {
+  font-size: 44px;
+  color: #FFF;
+  margin: 0 !important;
+}
+
+.section-content > p {
+  color: #FFF;
+  margin-top: 25px;
+  font-size: 20px;
+}
+
+.section-content > .box-explicativo > ul {
+  width: 80%;
+}
+
+.section-content > .box-explicativo > ul > li {
+  font-size: 20px;
+}
+
+.section-content > .box-explicativo > ul > li:not(:last-child) {
+  margin-bottom: 25px;
+}
+
+.icone-lampada {
+  width: 12%;
+}
+
+#box-1 {
+  background-color: #FFFFF3; 
+  width: 760px; 
+  height: 400px; 
+  margin-top: 25px; 
+  gap: 0; 
+  margin-left: 7%;
+}
+
+#box-2 {
+  background-color: #FFFFF3; 
+  width: 760px; 
+  height: 150px; 
+  margin-top: 50px; 
+  gap: 0 20px; 
+  margin-left: 7%; 
+  display: flex;
+}
+
+#box-2 > p {
+  font-size: 20px;
+  width: 75%;
+  margin-top: 20px;
+}
+
+#introducao-criterios {
+  background-color: #FFFFF3;
+  width: 100%;
+  height: auto;
+  padding: 80px 0 120px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icone-box{
+  text-align: right;
+  position: relative;
+  left: 10%;
+  bottom: 222px;
+}
+
+.icone-olho {
+  width: 20%;
+}
+
+.criterios {
+  margin-left: 10%;
+}
+
+.criterios > h2 {
+  font-weight: 400;
+  font-size: 35px;
+}
+
+.criterios > p{
+  font-size: 18px;
+  width: 65%;
+  margin-top: 30px;
+}
+
+.criterios-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: -115px auto 0 auto;
+}
+
+.criterios-cards-item {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 15px);
+  max-width: 445px;
+  height: 315px;
+  padding: 80px 50px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.criterios-cards-item:nth-child(1), .criterios-cards-item:nth-child(4) {
+  background-color: #2A5555;
+  box-shadow: -13px 13px 0 0 #DD3A76;
+}
+.criterios-cards-item:nth-child(2), .criterios-cards-item:nth-child(3) {
+  background-color: #DD3A76;
+  box-shadow: -13px 13px 0 0 #2A5555;
+}
+
+.criterios-cards-item > h3 {
+  color: #FFF;
+  font-size: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.criterios-cards-item > p {
+  color: #FFF;
+  font-size: 18px;
+}
+
+#introducao-suaMissao {
+  width: 100%;
+  height: 1600px;
+  position: relative;
+  background-color: #2A5555;
+  padding: 100px 0 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#introducao-suaMissao::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(42, 85, 85, 1) 600px, 
+    rgba(42, 85, 85, 0.8) 650px,
+    rgba(42, 85, 85, 0.4) 700px,
+    rgba(42, 85, 85, 0) 750px  
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+#introducao-suaMissao::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(/assets/introducao/bg2_intro.jpg);
+  background-size: cover;
+  transform: scaleY(-1);
+  z-index: 0;
+}
+
+.sua-missao-header {
+  position: relative;
+  z-index: 2;
+  color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.sua-missao-header-column1 {
+  width: 60%;
+  text-align: center;
+}
+
+.sua-missao-header-column1 > h2 {
+  font-size: 44px;
+  font-weight: 400;
+}
+
+.sua-missao-header-column1 > p {
+  font-size: 20px;
+  margin-top: 30px;
+  font-weight: 700;
+}
+
+.sua-missao-header-column2 {
+  width: 40%;
+}
+
+.sua-missao-header-column2 > img {
+  width: 70%;
+  margin-top: -50px;
+}
+
+.sua-missao-cards-container {
+  display: flex;
+  gap: 0 50px;
+  z-index: 2;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.sua-missao-cards-item {
+  background-color: #DD3A76;
+  color: #FFF;
+  width: 275px;
+  height: 295px;
+}
+
+.sua-missao-cards-item > h3 {
+  font-size: 6em;
+  padding: 0 40px;
+  margin-top: -60px;
+}
+
+.sua-missao-cards-item > p {
+  font-size: 18px;
+  padding: 0 50px;
+}
+
+
+.introducao-buraco {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: #FFFFF3;
+  border-radius: 0 0 100% 100% / 0 0 150px 150px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.sua-missao-content-final-container {
+  z-index: 2;
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  gap: 0 10%;
+  margin-top: 100px;
+  align-items: center;
+}
+
+.sua-missao-content-final-container > p {
+  font-size: 20px;
+  width: 25%;
+}
+
+.sua-missao-content-final-container > img {
+  width: 25%;
+}
+
+.botao-final-container {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 0 50px;
+  margin-top: 180px;
+}
+
+.botao-final-container > img {
+  width: 18%;
+}
+
+.botao-final-container > img:last-child {
+  transform: scaleX(-1);
+}
+
+.botao-final-container > button {
+  outline: none;
+  border: 0;
+  background-color: #DD3A76;
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 28px;
+  padding: 20px;
+  border-radius: 35px;
+  cursor: pointer;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 0 #942C52;
+}
+
+.botao-final-container > button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #942C52;
+}
+
+.botao-final-container > button:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #942C52;
+}
+
+
+/* MEDIA QUERYS */
+@media (max-width: 1199px) {
+  .box-info {
+    height: 1450px;
+  }
+
+  #introducao-bemVindo {
+    height: 1440px;
+  }
 }

@@ -31,10 +31,13 @@ $(document).ready(function(){
   });
 
   // Navega para a tela de Jornadas
-  const botaoJornadas = document.querySelector('#buttonJornadas');
-
-  botaoJornadas.addEventListener('click', () => {
+  function vaiParaTelaJornadas() {
     window.location.href = '/jornadas.html';
-  })
+  }
+  const botaoJornadas = document.querySelector('#buttonJornadas');
+  const botaoFinalIntroducao = document.querySelector('#botaoFinalIntroducao');
+
+  botaoJornadas.addEventListener('click', vaiParaTelaJornadas);
+  botaoFinalIntroducao.addEventListener('click', vaiParaTelaJornadas);
 
 })
