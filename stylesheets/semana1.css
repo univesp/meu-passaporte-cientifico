@@ -2,8 +2,13 @@
 
 body {
   background-image: url(../assets/Semana1/biblioteca.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* fixa o fundo ao rolar 
+  background-attachment: fixed; 
+  */
 }
-
 nav .logo img {
   background-color: #A33E40 !important;
   color: #fff;

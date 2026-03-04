@@ -137,6 +137,136 @@
   font-weight: bold;
 }
 
+/* CASA 2 */
+.titulo-casa2 {
+  display: flex;
+  align-items: center;
+  gap: 0 20px;
+  margin: -15px 0 0 -15px;
+}
+
+.titulo-casa2 > img {
+  width: 15%;
+  transform: rotate(-7deg);
+}
+
+.titulo-casa2 > span {
+  margin-top: 15px;
+}
+
+.casa2-form-secao1, .casa2-form-secao2 {
+  text-align: left;
+  width: 100%;
+  max-width: 654px;
+  margin-top: 20px;
+  padding-left: 0;
+}
+
+.formulario > h3 {
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.formulario input[type='text'] {
+  width: 100%;
+  border: 0;
+  background-color: #EAE3E3;
+  height: 35px;
+  border-radius: 9px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.input-local {
+  margin-top: 20px;
+}
+
+.casa2-form-secao2 {
+  display: flex;
+  gap: 0 50px;
+}
+
+.checkIn-foto {
+  display: flex;
+  flex-direction: column;
+  gap: 15px 0;
+}
+
+.checkIn-foto > h3 > span {
+  color: #000;
+  font-size: 22px;
+  margin: 5px 0 0 10px;
+  font-weight: 300;
+  text-decoration: underline;
+}
+
+.foto-local {
+  width: 342px;
+  height: 342px;
+  background-color: #EAE3E3;
+  border-radius: 35px;
+  border: 3px dashed #CECECE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.foto-local > span {
+  font-family: 'Oswald', sans-serif;
+  color: #414141;
+  font-weight: 500;
+  font-size: 25px;
+  text-transform: uppercase;
+}
+
+.descricao-local > textarea {
+  width: 332px;
+  height: 342px;
+  margin-top: 15px;
+  border: 0;
+  outline: none;
+  background-color: #EAE3E3;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+
+
+.botao-salvar-infos {
+  margin-top: 30px;
+}
+
+.botao-salvar-infos > button {
+  border: 0;
+  outline: none;
+  color: #FFF;
+  font-weight: bold;
+  padding: 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.botao-salvar-infos > button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.botao-salvar-infos > button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito focus (para acessibilidade por teclado) */
+.botao-salvar-infos > button:focus {
+  outline: 2px solid;
+  outline-offset: 2px;
+}
+
+/* ARROWS */
 .arrows-container {
   background-color: #212121;
   width: 16%;
@@ -151,4 +281,29 @@
 
 .arrows-container > img {
   cursor: pointer;
+}
+
+/* Paddings diferentes para cada casa */
+.semana-content-box.casa1-padding {
+  padding: 60px 0 40px 0;
+}
+
+.semana-content-box.casa2-padding {
+  padding: 0 0 40px 0;
+}
+
+.semana-content-box.casa3-padding {
+  padding: 30px 0 40px 0;
+}
+
+.semana-content-box.casa4-padding {
+  padding: 40px 0 40px 0;
+}
+
+.semana-content-box.casa5-padding {
+  padding: 50px 0 40px 0;
+}
+
+.semana-content-box.casa6-padding {
+  padding: 20px 0 40px 0;
 }
