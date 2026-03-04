@@ -1,0 +1,154 @@
+.titulo-semana-container {
+  width: 100%;
+  background-color: #212121;
+  height: 70px;
+  margin-top: 38px;
+  display: flex;
+  gap: 0 160px;
+  align-items: center;
+}
+
+.semana-titulo-container {
+  display: flex;
+}
+
+.semana-id {
+  height: 70px;
+  width: 135px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.semana-id > span {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  color: #000;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.semana-titulo {
+  display: flex;
+  align-items: center;
+  margin-left: 2%;
+  width: 100%;
+}
+.semana-titulo > span {
+  font-family: "Nunito", sans-serif;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.bullets {
+  display: flex;
+  gap: 0 10px;
+}
+
+.bullet-item {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.bullet-ativo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.semana-content-box {
+  width: 952px;
+  height: auto;
+  background-color: #FFF;
+  border-radius: 25px;
+  margin: 50px auto 10px auto;
+}
+
+.casa-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo-casa {
+  font-family: 'KG-Happy', sans-serif;
+  font-size: 36px;
+}
+
+.subtitulo-casa {
+  font-size: 26px;
+  width: 53%;
+  text-align: center;
+}
+
+.subtitulo-mark {
+  color: #fff;
+  padding: 0 2px;
+}
+
+.casa-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  width: 654px;
+  padding: 20px 30px;
+  color: #FFF;
+  border-radius: 21px;
+  gap: 0 20px;
+}
+
+.casa-box > ul {
+  list-style: square;
+  margin-top: 15px;
+}
+
+.casa-box > ul > li {
+  font-size: 20px;
+}
+
+.alternativas-virtuais-container {
+  text-align: left;
+  width: 100%;
+  max-width: 654px;
+  margin-top: 40px;
+  padding-left: 0;
+}
+
+.alternativas-virtuais-container > h3 {
+  font-size: 28px;
+  font-weight: 300;
+}
+
+.lista-alternativas-virtuais {
+  margin-top: -5px;
+  color: #000;
+}
+
+.lista-alternativas-virtuais > li {
+  font-size: 20px;
+}
+
+.lista-alternativas-virtuais > li > a {
+  font-family: "Passion One", sans-serif;
+  font-weight: bold;
+}
+
+.arrows-container {
+  background-color: #212121;
+  width: 16%;
+  display: flex;
+  justify-content: center;
+  gap: 0 20px;
+  padding: 20px;
+  float: right;
+  border-radius: 25px;
+  margin: 0 40px 40px 0;
+}
+
+.arrows-container > img {
+  cursor: pointer;
+}

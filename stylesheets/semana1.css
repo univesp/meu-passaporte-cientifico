@@ -1,0 +1,53 @@
+@import url('global.css');
+
+body {
+  background-image: url(../assets/Semana1/biblioteca.jpg);
+}
+
+nav .logo img {
+  background-color: #A33E40 !important;
+  color: #fff;
+}
+
+nav .nav-link {
+  background-color: #A33E40 !important;
+  color: #fff;
+}
+nav .nav-link:focus,
+nav .nav-link:hover,
+nav .nav-link[aria-expanded="true"] {
+  background-color: #A33E40 !important;
+  color: #fff;
+}
+
+footer, footer .sharing i {
+  background-color: #A33E40;
+  color: #FFF;
+}
+footer .cred-rea>div:not(:first-child) {
+  border-left-color: #FFF;
+}
+footer .aval-rea .btn-secondary {
+  border-color: #FFF;
+}
+
+.bullet-item {
+  background-color: #FFAB42;
+}
+
+.bullet-ativo {
+  background-color: #FFF7EE;
+}
+
+.lista-casa1-semana1 > li::marker {
+  color: #FFAB42;
+  font-size: 24px;
+}
+
+
+@media (max-width: 1199.98px) {
+  footer .sharing i {
+    background-color: transparent;
+    color:  white;
+  }
+} 
