@@ -1,58 +1,103 @@
 @import url('global.css');
 
+/* ===== VARIÁVEIS DE CORES ===== */
+:root {
+  /* Cores principais */
+  --cor-primaria: #A33E40;      /* Vermelho/terracota principal */
+  --cor-secundaria: #FFAB42;    /* Amarelo/Laranja */
+  --cor-clara: #FFF7EE;          /* Bege claro */
+  --cor-neutra: #EAE3E3;         /* Cinza claro */
+  --cor-texto-claro: #9A7777;    /* Marrom claro para texto */
+  --cor-branca: #FFF;
+}
+
+
 body {
   background-image: url(../assets/Semana1/biblioteca.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* fixa o fundo ao rolar 
-  background-attachment: fixed; 
-  */
-}
-nav .logo img {
-  background-color: #A33E40 !important;
-  color: #fff;
 }
 
-nav .nav-link {
-  background-color: #A33E40 !important;
-  color: #fff;
-}
-nav .nav-link:focus,
-nav .nav-link:hover,
-nav .nav-link[aria-expanded="true"] {
-  background-color: #A33E40 !important;
-  color: #fff;
+nav .logo img, 
+nav .nav-link, 
+nav .nav-link:focus, 
+nav .nav-link:hover, 
+nav .nav-link[aria-expanded="true"],
+footer, 
+footer .sharing i {
+  background-color: var(--cor-primaria) !important;
+  color: var(--cor-branca);
 }
 
-footer, footer .sharing i {
-  background-color: #A33E40;
-  color: #FFF;
-}
 footer .cred-rea>div:not(:first-child) {
-  border-left-color: #FFF;
+  border-left-color: var(--cor-branca);
 }
+
 footer .aval-rea .btn-secondary {
-  border-color: #FFF;
+  border-color: var(--cor-branca);
+}
+
+.subtitulo-mark, 
+.casa-box, 
+.casa3-box-tarefa > div, 
+.casa-info-box,
+.botao-conclusao-trilha {
+  background-color: var(--cor-primaria);
+}
+
+.alternativas-virtuais-container > h3, 
+.lista-alternativas-virtuais > li > a,
+.formulario > h3, 
+.casa3-content-titulo > h3,
+.titulo-conclusao {
+  color: var(--cor-primaria);
+}
+
+.formulario input[type='text'], 
+.foto-local, 
+.descricao-local > textarea {
+  background-color: var(--cor-neutra);
 }
 
 .bullet-item {
-  background-color: #FFAB42;
+  background-color: var(--cor-secundaria);
 }
 
 .bullet-ativo {
-  background-color: #FFF7EE;
+  background-color: var(--cor-clara);
 }
 
 .lista-casa1-semana1 > li::marker {
-  color: #FFAB42;
+  color: var(--cor-secundaria);
   font-size: 24px;
 }
 
+.casa3-content-titulo::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background-color: var(--cor-primaria);
+  margin-top: 5px;
+}
+
+.casas-text-area {
+  background-color: var(--cor-neutra);
+  color: var(--cor-texto-claro);
+}
+
+.casas-text-area::placeholder {
+  color: var(--cor-texto-claro);
+}
+
+.casa4-titulo-text > .titulo-casa {
+  color: var(--cor-primaria);
+  text-transform: uppercase;
+}
 
 @media (max-width: 1199.98px) {
   footer .sharing i {
     background-color: transparent;
-    color:  white;
+    color: var(--cor-branca);
   }
-} 
+}

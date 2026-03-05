@@ -76,6 +76,7 @@
 .titulo-casa {
   font-family: 'KG-Happy', sans-serif;
   font-size: 36px;
+  color: #000;
 }
 
 .subtitulo-casa {
@@ -137,6 +138,62 @@
   font-weight: bold;
 }
 
+.casa-info-box {
+  display: flex;
+  flex-direction: column;
+  width: 770px;
+  padding: 15px;
+  margin-top: 35px;
+  border-radius: 30px 30px 30px 0;
+}
+
+.icone-balao-container {
+  text-align: right;
+  margin-top: -25px;
+  margin-right: -25px;
+}
+
+.icone-balao {
+  width: 8%;
+}
+
+.casa-info-content {
+  display: flex;
+  align-items: center;
+  color: #FFF;
+  justify-content: center;
+  gap: 0 40px;
+}
+
+.casa-info-content > p {
+  font-size: 20px;
+  width: 70%;
+}
+
+.left-alignment {
+  text-align: left;
+  width: 100%;
+  max-width: 770px;
+  padding-left: 0;
+}
+
+.left-alignment > p {
+  font-size: 20px; 
+  color: #000; 
+  font-weight: 400;
+}
+
+.paragrafo-solto {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.paragrafo-solto > p {
+  margin: 0;
+}
+
 /* CASA 2 */
 .titulo-casa2 {
   display: flex;
@@ -170,7 +227,6 @@
 .formulario input[type='text'] {
   width: 100%;
   border: 0;
-  background-color: #EAE3E3;
   height: 35px;
   border-radius: 9px;
   outline: none;
@@ -203,7 +259,6 @@
 .foto-local {
   width: 342px;
   height: 342px;
-  background-color: #EAE3E3;
   border-radius: 35px;
   border: 3px dashed #CECECE;
   display: flex;
@@ -227,43 +282,272 @@
   margin-top: 15px;
   border: 0;
   outline: none;
-  background-color: #EAE3E3;
   border-radius: 10px;
   padding: 15px;
 }
 
 
-
-.botao-salvar-infos {
-  margin-top: 30px;
+/* CASA 3 */
+.titulo-casa3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.botao-salvar-infos > button {
+.titulo-casa3 > img {
+  width: 7%;
+}
+
+.casa3-content-titulo {
+  text-align: left;
+  width: 100%;
+  max-width: 770px;
+  margin-top: 50px;
+  padding-left: 0;
+  display: flex;
+  align-items: center; 
+  gap: 0 12px; 
+  margin-bottom: 20px;
+}
+
+.casa3-content-titulo > h3 {
+  font-size: 25px;
+  font-weight: 400;
+  margin: 0; 
+  white-space: nowrap; 
+}
+
+.row-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 80px;
+}
+
+.row-content > img {
+  width: 25%;
+  transform: rotate(2deg);
+}
+
+.row-content > ul > li {
+  font-size: 20px;
+}
+
+.casa3-box-tarefa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 770px;
+  width: 100%;
+  gap: 0 30px;
+  margin-top: 10px;
+}
+
+.casa3-box-tarefa > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2px;
+  min-width: 205px;
+  min-height: 135px;
+  border-radius: 20px;
+}
+
+.casa3-box-tarefa > div > p {
+  color: #FFF;
+  font-size: 20px;
+  width: 80%;
+  margin-top: 8px;
+}
+
+.casas-text-area {
+  width: 770px;
+  height: 263px;
+  border-radius: 9px;
   border: 0;
   outline: none;
-  color: #FFF;
-  font-weight: bold;
   padding: 20px;
   font-size: 20px;
-  border-radius: 10px;
+}
+
+.divisao {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.divisao > img {
+  width: 15%;
+}
+
+.reflexao-casa3-box {
+  background-color: #242424;
+  width: 770px;
+  height: 158px;
+  display: flex;
+  align-items: center;
+  gap: 0 50px;
+}
+
+.reflexao-casa3-content {
+  color: #FFF;
+}
+
+.reflexao-casa3-content > h4 {
+  font-weight: 400;
+  font-size: 26px;
+  margin-top: 10px;
+}
+
+.reflexao-casa3-content > p {
+  font-size: 20px;
+  font-style: italic;
+  margin-top: 20px;
+  width: 88%;
+}
+
+/* CASA 4 */
+.titulo-casa4-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0 10px;
+}
+
+.titulo-casa4-container > img {
+  width: 10%;
+}
+
+.subtitulo-casa4 {
+  font-family: 'KG-Happy', sans-serif;
+  font-size: 22px;
+  color: #000;
+}
+
+.casa4-titulo-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.casa4-text-area {
+  margin: 30px 0;
+}
+
+.casa-info-content > .info-content-casa4-5 {
+  width: 65%;
+}
+
+
+/* CASA 6 */
+.texto-conclusao-trilha {
+  font-size: 20px;
+  text-align: center;
+  width: 63%;
+  margin: 12px 0 20px 0;
+}
+
+.botao-conclusao-trilha {
+  border: 0;
+  outline: none !important;
+  /* Remover qualquer outline que apareça no focus/active */
+  -webkit-tap-highlight-color: transparent; /* Remove destaque em dispositivos móveis */
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 20px;
+  border-radius: 28px;
+  font-weight: bold;
+  width: 280px;
+  padding: 15px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.botao-salvar-infos > button:hover {
+.botao-conclusao-trilha:hover {
   transform: scale(1.02);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.botao-salvar-infos > button:active {
-  transform: scale(0.98);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.botao-conclusao-trilha:active {
+  transform: scale(0.98); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 0;
+  outline: none;
 }
 
-/* Efeito focus (para acessibilidade por teclado) */
-.botao-salvar-infos > button:focus {
-  outline: 2px solid;
-  outline-offset: 2px;
+.botao-conclusao-inativo {
+  background-color: #818181;
+}
+
+
+/* PASSAPORTE */
+.passaporte-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.passaporte-container > img:first-child {
+  width: 60%;
+  display: block;
+}
+
+/* Carimbos posicionados individualmente */
+.carimbo {
+  position: absolute;
+  display: none;
+}
+
+/* LADO ESQUERDO - 4 CARIMBOS */
+.carimbo:nth-of-type(1) { /* Semana 1 */
+  left: 28%;
+  top: 8%;
+  rotate: -1deg;
+  width: 16%;
+}
+
+.carimbo:nth-of-type(2) { /* Semana 2 */
+  left: 28%;
+  top: 28%;
+  rotate: -2deg;
+  width: 20%;
+}
+
+.carimbo:nth-of-type(3) { /* Semana 3 */
+  left: 24%;
+  top: 54.5%;
+  rotate: -1deg;
+  width: 15%;
+}
+
+.carimbo:nth-of-type(4) { /* Semana 4 */
+  left: 39%;
+  top: 65%;
+  rotate: 5deg;
+  width: 10%;
+}
+
+/* LADO DIREITO - 3 CARIMBOS */
+.carimbos-direita > .carimbo:nth-of-type(1) { /* Semana 5 */
+  left: 50%;
+  top: 12%;
+  width: 25%;
+}
+
+.carimbos-direita > .carimbo:nth-of-type(2) { /* Semana 6 */
+  left: 59%;
+  top: 43%;
+  width: 14%;
+}
+
+.carimbos-direita > .carimbo:nth-of-type(3) { /* Semana 7 */
+  left: 52%;
+  top: 66%;
+  width: 20%;
 }
 
 /* ARROWS */
@@ -276,7 +560,7 @@
   padding: 20px;
   float: right;
   border-radius: 25px;
-  margin: 0 40px 40px 0;
+  margin: 20px 90px 40px 0;
 }
 
 .arrows-container > img {
@@ -293,17 +577,17 @@
 }
 
 .semana-content-box.casa3-padding {
-  padding: 30px 0 40px 0;
+  padding: 50px 0 50px 0;
 }
 
 .semana-content-box.casa4-padding {
-  padding: 40px 0 40px 0;
+  padding: 40px 0 70px 0;
 }
 
 .semana-content-box.casa5-padding {
-  padding: 50px 0 40px 0;
+  padding: 50px 0 70px 0;
 }
 
 .semana-content-box.casa6-padding {
-  padding: 20px 0 40px 0;
+  padding: 30px 0 30px 0;
 }

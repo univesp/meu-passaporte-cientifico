@@ -6,8 +6,47 @@ document.addEventListener('DOMContentLoaded', function() {
   const setaEsquerda = document.querySelector('.arrows-container img:first-child');
   const setaDireita = document.querySelector('.arrows-container img:last-child');
   const semanaContentBox = document.querySelector('.semana-content-box');
+  const passaporteContainer = document.querySelector('.passaporte-container');
+  const botaoCarimbo = document.querySelector('.botao-conclusao-trilha');
+  
+  // Array com os IDs dos carimbos (7 carimbos para 7 semanas)
+  const carimbos = [
+    document.getElementById('carimbo1'),
+    document.getElementById('carimbo2'),
+    document.getElementById('carimbo3'),
+    document.getElementById('carimbo4'),
+    document.getElementById('carimbo5'),
+    document.getElementById('carimbo6'),
+    document.getElementById('carimbo7')
+  ];
   
   let casaAtual = 0; // Índice da casa atual (0 = casa1, 1 = casa2, etc)
+  
+  // ===== FUNÇÕES DO LOCALSTORAGE =====
+  const STORAGE_KEY = 'passaporte_carimbos';
+  
+  // Carregar estado dos carimbos do localStorage
+  function carregarCarimbosStorage() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+          try {
+              return JSON.parse(stored);
+          } catch (e) {
+              console.error('Erro ao carregar localStorage:', e);
+              return [false, false, false, false, false, false, false];
+          }
+      }
+      return [false, false, false, false, false, false, false];
+  }
+  
+  // Salvar estado dos carimbos no localStorage
+  function salvarCarimbosStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(carimbosRecebidos));
+      //console.log('Carimbos salvos no localStorage:', carimbosRecebidos);
+  }
+  
+  // Estado dos carimbos (false = não recebido, true = recebido)
+  let carimbosRecebidos = carregarCarimbosStorage();
 
   // Verificações iniciais
   if (casas.length === 0) {
@@ -29,8 +68,68 @@ document.addEventListener('DOMContentLoaded', function() {
       console.warn(`⚠️ Aviso: Número de casas (${casas.length}) diferente do número de bullets (${bullets.length})`);
   }
 
-  //console.log(`✅ Total de casas: ${casas.length}`);
-  //console.log(`✅ Total de bullets: ${bullets.length}`);
+  // Função para inicializar os carimbos (todos escondidos inicialmente)
+  function inicializarCarimbos() {
+      carimbos.forEach(carimbo => {
+          if (carimbo) {
+              carimbo.style.display = 'none';
+          }
+      });
+  }
+
+  // Função para atualizar a visibilidade dos carimbos baseado no estado
+  function atualizarCarimbos() {
+      carimbos.forEach((carimbo, index) => {
+          if (carimbo && carimbosRecebidos[index]) {
+              carimbo.style.display = 'block'; // Mostrar carimbo recebido
+          }
+      });
+  }
+
+  // Função para atualizar o estado do botão baseado nos carimbos recebidos
+  function atualizarBotaoCarimbo() {
+      if (!botaoCarimbo) return;
+      
+      // Verificar se o carimbo da semana atual já foi recebido
+      const semanaId = semanaContentBox.id;
+      const numeroSemana = parseInt(semanaId.replace('semana', ''));
+      
+      if (numeroSemana >= 1 && numeroSemana <= 7) {
+          const indiceCarimbo = numeroSemana - 1;
+          
+          if (carimbosRecebidos[indiceCarimbo]) {
+              // Carimbo já recebido - desabilitar botão
+              botaoCarimbo.style.backgroundColor = '#818181';
+              botaoCarimbo.style.cursor = 'default';
+              botaoCarimbo.style.pointerEvents = 'none';
+              botaoCarimbo.style.opacity = '0.7';
+              botaoCarimbo.disabled = true;
+              botaoCarimbo.textContent = 'Carimbo recebido';
+          } else {
+              // Carimbo não recebido - habilitar botão
+              botaoCarimbo.style.backgroundColor = ''; // Volta ao original
+              botaoCarimbo.style.cursor = 'pointer';
+              botaoCarimbo.style.pointerEvents = 'auto';
+              botaoCarimbo.style.opacity = '1';
+              botaoCarimbo.disabled = false;
+              botaoCarimbo.textContent = 'Receber carimbo';
+          }
+      }
+  }
+
+  // Função para mostrar/esconder o passaporte-container baseado na casa atual
+  function atualizarVisibilidadePassaporte(index) {
+      if (!passaporteContainer) return;
+      
+      // Casa 6 tem índice 5 (lembrando: 0 = casa1, 1 = casa2, 2 = casa3, 3 = casa4, 4 = casa5, 5 = casa6)
+      if (index === 5) {
+          passaporteContainer.style.display = 'flex'; // Mostrar na casa 6
+          // Atualizar carimbos sempre que o passaporte for mostrado
+          atualizarCarimbos();
+      } else {
+          passaporteContainer.style.display = 'none'; // Esconder nas outras casas
+      }
+  }
 
   // Função para atualizar o padding da semana-content-box usando classes
   function atualizarPaddingSemanaBox(index) {
@@ -51,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Adicionar a classe correspondente à casa atual (index + 1 porque as casas começam em 1)
       semanaContentBox.classList.add(`casa${index + 1}-padding`);
-      //console.log(`📦 Classe de padding adicionada: casa${index + 1}-padding`);
   }
 
   // Função para mostrar uma casa específica
@@ -62,15 +160,13 @@ document.addEventListener('DOMContentLoaded', function() {
           return;
       }
       
-      //console.log(`📺 Mostrando casa ${index + 1}`);
-      
       // Esconder todas as casas
       casas.forEach((casa, i) => {
           casa.style.display = 'none';
       });
       
       // Mostrar a casa selecionada
-      casas[index].style.display = 'flex'; // ou 'block' dependendo do seu layout
+      casas[index].style.display = 'flex';
       
       // Atualizar bullets
       bullets.forEach((bullet, i) => {
@@ -84,6 +180,12 @@ document.addEventListener('DOMContentLoaded', function() {
       // Atualizar padding do container principal usando classes
       atualizarPaddingSemanaBox(index);
       
+      // Atualizar visibilidade do passaporte (mostrar apenas na casa 6)
+      atualizarVisibilidadePassaporte(index);
+      
+      // Atualizar estado do botão baseado nos carimbos recebidos
+      atualizarBotaoCarimbo();
+      
       // Atualizar setas
       atualizarSetas(index);
       
@@ -95,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function atualizarSetas(index) {
       // Verificar se as setas existem
       if (!setaEsquerda || !setaDireita) {
-          console.warn('⚠️ Setas não encontradas');
+          console.warn('Setas não encontradas');
           return;
       }
       
@@ -138,6 +240,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function casaAnterior() {
       if (casaAtual > 0) {
           mostrarCasa(casaAtual - 1);
+
+          // Scroll para o topo da página
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
       }
   }
 
@@ -145,13 +253,57 @@ document.addEventListener('DOMContentLoaded', function() {
   function proximaCasa() {
       if (casaAtual < casas.length - 1) {
           mostrarCasa(casaAtual + 1);
+
+          // Scroll para o topo da página
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
       }
+  }
+
+  // Evento para o botão "Receber carimbo"
+  if (botaoCarimbo) {
+      botaoCarimbo.addEventListener('click', function() {
+          // Determinar qual semana está ativa baseado no ID da semana-content-box
+          const semanaId = semanaContentBox.id; // "semana1", "semana2", etc.
+          
+          // Extrair o número da semana (ex: "semana1" -> 1)
+          const numeroSemana = parseInt(semanaId.replace('semana', ''));
+          
+          // Verificar se o número da semana é válido (1-7)
+          if (numeroSemana >= 1 && numeroSemana <= 7) {
+              const indiceCarimbo = numeroSemana - 1; // 0-based index
+              
+              // Verificar se o carimbo já não foi recebido
+              if (!carimbosRecebidos[indiceCarimbo]) {
+                  // Marcar como recebido
+                  carimbosRecebidos[indiceCarimbo] = true;
+                  
+                  // Salvar no localStorage
+                  salvarCarimbosStorage();
+                  
+                  // Mostrar o carimbo
+                  if (carimbos[indiceCarimbo]) {
+                      carimbos[indiceCarimbo].style.display = 'block';
+                      
+                      // Feedback visual
+                      botaoCarimbo.style.backgroundColor = '#818181'; 
+                      botaoCarimbo.style.cursor = 'default';
+                      botaoCarimbo.style.pointerEvents = 'none';
+                      botaoCarimbo.style.opacity = '0.7';
+                      botaoCarimbo.disabled = true;
+                      
+                      //console.log(`Carimbo da semana ${numeroSemana} recebido e salvo!`);
+                  }
+              }
+          }
+      });
   }
 
   // Adicionar evento de clique nos bullets
   bullets.forEach((bullet, index) => {
       bullet.addEventListener('click', function() {
-          //console.log(`🎯 Bullet ${index + 1} clicado`);
           mostrarCasa(index);
       });
       
@@ -164,7 +316,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Adicionar evento de clique nas setas
   if (setaEsquerda) {
       setaEsquerda.addEventListener('click', function() {
-          console.log('⬅️ Seta esquerda clicada');
           casaAnterior();
       });
       
@@ -176,7 +327,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (setaDireita) {
       setaDireita.addEventListener('click', function() {
-          //console.log('➡️ Seta direita clicada');
           proximaCasa();
       });
       
@@ -192,11 +342,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
           if (e.key === 'ArrowLeft') {
               e.preventDefault();
-              //console.log('⬅️ Seta esquerda do teclado');
               casaAnterior();
           } else if (e.key === 'ArrowRight') {
               e.preventDefault();
-              //console.log('➡️ Seta direita do teclado');
               proximaCasa();
           }
       }
@@ -231,8 +379,17 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 
-  // Iniciar com a primeira casa visível
+  // Inicializar tudo
+  inicializarCarimbos();
+  atualizarCarimbos(); // Mostrar carimbos já recebidos do localStorage
+  
+  if (passaporteContainer) {
+      passaporteContainer.style.display = 'none'; // Começa escondido
+  }
+  
   mostrarCasa(0);
+  
+  //console.log('Carimbos carregados do localStorage:', carimbosRecebidos);
 
 });
 

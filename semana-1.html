@@ -108,14 +108,14 @@
 
       </div>
 
-      <div class="semana-content-box">
+      <div class="semana-content-box" id="semana1">
 
         <!-- SEMANA 1 - CASA 1 -->
         <div class="casa-content" id="casa1">
           <span class="titulo-casa" style="color: #2C1708;">Escolha seu destino</span>
-          <p class="subtitulo-casa" style="color: #2C1708;">Você deve selecionar um local, pode ser uma visita  <span class="subtitulo-mark" style="background-color: #A33E40;">virtual</span> ou <span class="subtitulo-mark" style="background-color: #A33E40;">presencial</span></p>
+          <p class="subtitulo-casa" style="color: #2C1708;">Você deve selecionar um local, pode ser uma visita  <span class="subtitulo-mark">virtual</span> ou <span class="subtitulo-mark">presencial</span></p>
 
-          <div class="casa-box" style="background-color: #A33E40;">
+          <div class="casa-box">
             <img src="assets/Semana1/pin-semana-1.svg" alt="">
             <ul class="lista-casa1-semana1">
               <li>Biblioteca pública ou Universitária</li>
@@ -126,10 +126,10 @@
           </div>
 
           <div class="alternativas-virtuais-container">
-            <h3 style="color: #A33E40;">Alternativas virtuais</h3>
+            <h3>Alternativas virtuais</h3>
             <ul class="lista-alternativas-virtuais">
-              <li>Tour virtual no Museu do Amanhã <a style="color: #A33E40;" target="_blank" href="https://museudoamanha.org.br/">LINK</a></li>
-              <li>Visita ao Google Arts & Culture – seção de ciências <a style="color: #A33E40;" target="_blank" href="https://artsandculture.google.com/search?q=Ci%C3%AAncias">LINK</a></li>
+              <li>Tour virtual no Museu do Amanhã <a target="_blank" href="https://museudoamanha.org.br/">LINK</a></li>
+              <li>Visita ao Google Arts & Culture – seção de ciências <a target="_blank" href="https://artsandculture.google.com/search?q=Ci%C3%AAncias">LINK</a></li>
               <li>Vídeos sobre diferentes tradições de conhecimentos no YouTube</li>
             </ul>
           </div>
@@ -144,62 +144,225 @@
 
           <div class="casa2-form-secao1">
             <div class="formulario input-nome-aluno">
-              <h3 style="color: #A33E40;">Nome do Aluno(a)</h3>
+              <h3>Nome do Aluno(a)</h3>
               <input type="text" placeholder="Digite seu nome completo...">
             </div>
 
             <div class="formulario input-local">
-              <h3 style="color: #A33E40;">Local</h3>
+              <h3>Local</h3>
               <input type="text" placeholder="Digite o nome do local que você visitou...">
             </div>
           </div>
 
           <div class="casa2-form-secao2" style="margin-top: 40px;">
             <div class="formulario checkIn-foto">
-              <h3 style="color: #A33E40;">Check-in em <span class="data-checkIn"></span></h3>
+              <h3>Check-in em <span class="data-checkIn"></span></h3>
               <div class="foto-local">
                 <span>Foto do <br> Local</span>
               </div>
             </div>
 
             <div class="formulario descricao-local">
-              <h3 style="color: #A33E40;">Descrição do local</h3>
+              <h3>Descrição do local</h3>
               <textarea name="" id="" placeholder="Escreva uma descrição do local que você visitou..."></textarea>
             </div>
-          </div>
-
-          <div class="botao-salvar-infos">
-            <button style="background-color: #A33E40;" id="salvarInfosCasa2">Salvar Alterações</button>
           </div>
         </div>
 
         <!-- SEMANA 1 - CASA 3 -->
         <div class="casa-content" id="casa3">
-          <span class="titulo-casa" style="color: #000;">Atividade do Passaporte</span>
-
-          <div class="botao-salvar-infos">
-            <button style="background-color: #A33E40;" id="salvarInfosCasa3">Salvar Alterações</button>
+          <div class="titulo-casa3">
+            <img src="assets/arquivos_gerais_semanas/atividade.png" alt="">
+            <span class="titulo-casa">Atividade do Passaporte</span>
           </div>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img src="assets/Semana1/lumi-semana1.png" alt="">
+              <p>Ei! Antes de escrever, <b>escolha um objeto ou fenômeno do cotidiano para observar com calma</b>. A ciência começa quando prestamos atenção ao que parece simples. Vou te dar algumas ideias!</p>
+            </div>
+          </div>
+
+          <div class="casa3-content-titulo">
+            <h3>Exemplos de fenômenos do cotidiano</h3>
+          </div>
+
+          <div class="row-content">
+            <ul>
+              <li>A água que ferve na panela</li>
+              <li>A sombra projetada no chão ao longo do dia</li>
+              <li>O vento balançando as árvores</li>
+              <li>A forma como o sabão limpa a louça</li>
+              <li>O gelo derretendo</li>
+            </ul>
+            <img src="assets/Semana1/Layer-4.png" alt="">
+          </div>
+
+          <div class="row-content" style="margin-top: 30px;">
+            <img style="transform: rotate(-2deg);" src="assets/Semana1/Layer-3.png" alt="">
+
+            <ul>
+              <li>O arco-íris do borrifador de água</li>
+              <li>O fogo da vela</li>
+              <li>O mofo que cresce no pão</li>
+              <li>O formato das nuvens</li>
+              <li>A lua visível durante o dia </li>
+            </ul>
+          </div>
+
+          <div class="casa3-content-titulo" style="margin-top: 70px;">
+            <h3>Tarefa</h3>
+          </div>
+
+          <div class="left-alignment">
+            <p>Observar um objeto ou fenômeno do cotidiano e identificar diferentes formas de conhecimento que ajudam a explicá-lo:</p>
+          </div>
+
+          <div class="casa3-box-tarefa">
+            <div>
+              <p><b>Conhecimento científico</b></p>
+            </div>
+
+            <div>
+              <p><b>Conhecimento popular</b> (saberes de família, cultura, tradição)</p>
+            </div>
+
+            <div>
+              <p><b>Conhecimento religioso ou espiritual</b></p>
+            </div>
+          </div>
+
+          <div class="casa3-content-titulo" style="margin-top: 65px;">
+            <h3>Use este espaço para registrar a sua atividade</h3>
+          </div>
+
+          <textarea class="casas-text-area" name="" id="" placeholder="O objeto ou fenômeno observado foi..."></textarea>
+
+          <div class="divisao">
+            <img src="assets/arquivos_gerais_semanas/divisao.png" alt="">
+          </div>
+
+          <div class="reflexao-casa3-box">
+            <img src="assets/arquivos_gerais_semanas/pensante-casa3.png" alt="">
+            <div class="reflexao-casa3-content">
+              <h4>Pergunta de reflexão</h4>
+              <p>Como diferentes formas de conhecimento ajudam a compreender esse fenômeno?</p>
+            </div>
+          </div>
+
+          <div class="casa-info-box" style="border-radius: 30px 30px 0 30px; margin-top: 60px; margin-bottom: 20px;">  
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+
+            <div class="casa-info-content">
+              <p style="margin-left: 3%;"><b>Ótimo trabalho!</b> Você escolheu um fenômeno para observar — exatamente o que combinamos lá no começo. Agora, experimente comparar sua escolha com  algum dos exemplos que eu mostrei: a sombra mudando de lugar, o gelo  derretendo, o vapor da panela… O que é parecido? O que é diferente? Quais formas de conhecimento ajudam mais em cada caso? Essa comparação vai deixar sua investigação ainda mais completa!</p>
+
+              <img style="width: 30%; transform: scaleX(-1);" src="assets/Semana1/lumi-semana1.png" alt="">
+            </div>
+          </div>
+          
         </div>
 
         <!-- SEMANA 1 - CASA 4 -->
         <div class="casa-content" id="casa4">
-          <span class="titulo-casa" style="color: #A33E40;">Aprendizado</span>
+
+          <div class="titulo-casa4-container">
+            <img src="assets/arquivos_gerais_semanas/lampada.png" alt="">
+            <div class="casa4-titulo-text">
+              <span class="titulo-casa">Aprendizado</span>
+              <span class="subtitulo-casa4">O que aprendi com a visita?</span>
+            </div>
+          </div>
+
+          <div class="left-alignment paragrafo-solto">
+            <p>Escreva, com suas palavras, o que você aprendeu durante a experiência e como isso dialoga com nossos estudos da Semana 1 (3–5 linhas).</p>
+            <p>Você pode complementar com um esquema, desenho, seta, mapa mental ou outro recurso visual. </p>
+          </div>
+
+          <textarea class="casas-text-area casa4-text-area" name="" id="" placeholder="Nessa semana, eu aprendi que..."></textarea>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img style="transform: rotate(7deg)" src="assets/Semana1/lumi-semana1.png" alt="">
+              <p class="info-content-casa4-5"><b>Conte o que descobriu!</b> Lembre-se: aprender ciência é aprender a narrar o que observamos. Uma narrativa científica pode contar uma mudança que você notou, um padrão que se repetiu ou algo inesperado que chamou sua atenção — como quando percebemos que a sombra ficou mais curta ao meio-dia, que a água esquentou mais rápido na panela pequena ou que um  inseto sempre voltava ao mesmo ponto da planta. <b>Escolha um detalhe e explique como você soube disso.</b></p>
+            </div>
+          </div>
           
         </div>
 
         <!-- SEMANA 1 - CASA 5 -->
         <div class="casa-content" id="casa5">
-          <span class="titulo-casa" style="color: #000;">Aplicação prática</span>
+
+          <span class="titulo-casa">Aplicação prática</span>
+
+          <div class="left-alignment paragrafo-solto">
+            <p>Agora, reflita: <b>o que você viu pode inspirar uma prática de sala de aula?</b></p>
+            <p>Pense em possibilidades pedagógicas para a Educação Infantil ou o EF I, como:</p>
+          </div>
+
+          <div class="casa-box" style="justify-content: left;">
+            <ul class="lista-casa1-semana1">
+              <li>Atividades exploratórias</li>
+              <li>Perguntas investigativas</li>
+              <li>Rodas de conversa</li>
+              <li>Leitura de imagens</li>
+              <li>Pequenas experiências com materiais simples</li>
+              <li>Observações guiadas</li>
+              <li>Histórias ou contações baseadas no fenômeno estudado</li>
+            </ul>
+          </div>
+
+          <div class="left-alignment paragrafo-solto">
+            <p>Escreva suas ideias, <b>mesmo que ainda estejam em rascunho.</b></p>
+            <textarea class="casas-text-area" style="height: 192px; margin-top: 12px;" name="" id="" placeholder="Digite aqui suas ideias..."></textarea>
+          </div>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img style="transform: rotate(7deg)" src="assets/Semana1/lumi-semana1.png" alt="">
+              <p class="info-content-casa4-5">Qual parte dessa experiência você levaria para sua futura turma? <b>Uma boa ideia começa com um rascunho!</b></p>
+            </div>
+          </div>
           
         </div>
 
         <!-- SEMANA 1 - CASA 6 -->
         <div class="casa-content" id="casa6">
-          <span class="titulo-casa" style="color: #000;">Conclusão da Trilha</span>
-          
+          <span class="titulo-casa">Conclusão da Trilha</span>
+          <p class="texto-conclusao-trilha">Jornada “<span class="titulo-conclusao"><b>A Ciência como Construção Humana</b> – Microexpedição de Conceitos</span>” concluída!</p>
+          <button class="botao-conclusao-trilha">Receber carimbo</button>
         </div>
 
+      </div>
+
+      <div class="passaporte-container">
+        <img src="assets/arquivos_gerais_semanas/passaporte.png" alt="Passaporte em branco">
+        
+        <div class="carimbos-esquerda">
+          <img class="carimbo" src="assets/Semana1/carimbo-semana-1.png" id="carimbo1" alt="Carimbo Semana 1">
+          <img class="carimbo" src="assets/Semana2/carimbo-semana-2.png" id="carimbo2" alt="Carimbo Semana 2">
+          <img class="carimbo" src="assets/Semana3/carimbo-semana-3.png" id="carimbo3" alt="Carimbo Semana 3">
+          <img class="carimbo" src="assets/Semana4/carimbo-semana-4.png" id="carimbo4" alt="Carimbo Semana 4">
+        </div>
+        
+        <div class="carimbos-direita">
+          <img class="carimbo" src="assets/Semana5/carimbo-semana-5.png" id="carimbo5" alt="Carimbo Semana 5">
+          <img class="carimbo" src="assets/Semana6/carimbo-semana-6.png" id="carimbo6" alt="Carimbo Semana 6">
+          <img class="carimbo" src="assets/Semana7/carimbo-semana-7.png" id="carimbo7" alt="Carimbo Semana 7">
+        </div>
       </div>
 
       <div class="arrows-container">
