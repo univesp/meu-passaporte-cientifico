@@ -40,6 +40,7 @@
   <link rel="stylesheet" href="https://apps.univesp.br/common/rea-geral-2.1.css">
   <!-- <link rel="stylesheet" href="../common/rea-geral-2.1.css">   -->
   <link rel="stylesheet" href="stylesheets/nav_footer.css">
+  <link rel="stylesheet" href="stylesheets/global.css">
   <link rel="stylesheet" href="stylesheets/semanas.css">
   <link rel="stylesheet" href="stylesheets/semana1.css">
 </head>
@@ -341,11 +342,36 @@
 
         <!-- SEMANA 1 - CASA 6 -->
         <div class="casa-content" id="casa6">
-          <span class="titulo-casa">Conclusão da Trilha</span>
-          <p class="texto-conclusao-trilha">Jornada “<span class="titulo-conclusao"><b>A Ciência como Construção Humana</b> – Microexpedição de Conceitos</span>” concluída!</p>
-          <button class="botao-conclusao-trilha">Receber carimbo</button>
-        </div>
+          <span class="titulo-casa" id="tituloCasa6">Conclusão da Trilha</span>
+          <p class="texto-conclusao-trilha" id="textoCasa6">Jornada “<span class="titulo-conclusao"><b>A Ciência como Construção Humana</b> – Microexpedição de Conceitos</span>” concluída!</p>
+          <button class="botao-carimbo-trilha" id="botaoCarimbo">Receber carimbo</button>
 
+          <!-- Última Tela -->
+          <div class="casa6-ultima-tela">
+            <div class="titulo-casa6-container">
+              <span class="titulo-casa titulo-ultima-tela">Parabens</span>
+              <span class="subtitulo-casa4">Você concluiu a primeira trilha.</span>
+            </div>
+
+            <div class="left-alignment paragrafo-solto">
+              <p class="marked-text-ultima-tela">Seu passaporte acaba de ganhar o primeiro carimbo!</p>
+              <p style="margin-top: 5px;">Você iniciou sua jornada no ensino de Ciências refletindo sobre a importância dessa área e deu passos significativos para se tornar um(a) educador(a) mais consciente, curioso(a) e investigativo(a).</p>
+
+              <p style="margin-top: 20px;">Antes da próxima trilha, estude o conteúdo da Semana 2 — isso enriquecerá sua próxima visita e fortalecerá o vínculo entre teoria e prática.</p>
+            </div>
+
+            <div class="casa-info-box casa-info-box-ultima-tela" style="border-radius: 30px 30px 30px 30px; margin-top: 60px; margin-bottom: 20px;">    
+              <div class="casa-info-content" style="justify-content: flex-start;">
+                <p style="margin: 8px 0 0 5%;"><b>Primeiro carimbo conquistado!</b> Semana que vem, vamos olhar para o céu — e para as ideias que mudaram nosso modo de entender o universo.</p>
+              </div>
+
+              <!-- Container específico para a imagem -->
+              <div class="imagem-container">
+                <img class="lumi-ultima-tela" src="assets/arquivos_gerais_semanas/lumi-ultima-tela.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="passaporte-container">
@@ -363,6 +389,16 @@
           <img class="carimbo" src="assets/Semana6/carimbo-semana-6.png" id="carimbo6" alt="Carimbo Semana 6">
           <img class="carimbo" src="assets/Semana7/carimbo-semana-7.png" id="carimbo7" alt="Carimbo Semana 7">
         </div>
+      </div>
+
+      <div class="botao-conclusao-trilha-container">
+        <button class="botao-conclusao-trilha">Concluir</button>
+      </div>
+
+      <div class="buttons-conclusao-container">
+        <button>Recomeçar trilha</button>
+        <button>Voltar para as jornadas</button>
+        <button>Meu passaporte</button>
       </div>
 
       <div class="arrows-container">
@@ -464,6 +500,7 @@
  
     <!-- Custom JS -->
     <script type="text/javascript" src="javascripts/events-components.js"></script>
+    <script type="text/javascript" src="javascripts/modal-passaporte.js"></script>
     <script type="text/javascript" src="javascripts/events-semanas.js"></script>
     
 

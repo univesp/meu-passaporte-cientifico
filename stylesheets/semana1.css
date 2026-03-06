@@ -7,6 +7,7 @@
   --cor-secundaria: #FFAB42;    /* Amarelo/Laranja */
   --cor-clara: #FFF7EE;          /* Bege claro */
   --cor-neutra: #EAE3E3;         /* Cinza claro */
+  --cor-botao-conclusao: #FFFFF3;
   --cor-texto-claro: #9A7777;    /* Marrom claro para texto */
   --cor-branca: #FFF;
 }
@@ -42,15 +43,21 @@ footer .aval-rea .btn-secondary {
 .casa-box, 
 .casa3-box-tarefa > div, 
 .casa-info-box,
-.botao-conclusao-trilha {
+.botao-carimbo-trilha,
+.marked-text-ultima-tela {
   background-color: var(--cor-primaria);
+}
+
+.botao-conclusao-trilha {
+  background-color: var(--cor-botao-conclusao);
 }
 
 .alternativas-virtuais-container > h3, 
 .lista-alternativas-virtuais > li > a,
 .formulario > h3, 
 .casa3-content-titulo > h3,
-.titulo-conclusao {
+.titulo-conclusao,
+.titulo-ultima-tela {
   color: var(--cor-primaria);
 }
 

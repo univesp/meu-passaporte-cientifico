@@ -450,7 +450,7 @@
   margin: 12px 0 20px 0;
 }
 
-.botao-conclusao-trilha {
+.botao-carimbo-trilha, .botao-conclusao-trilha {
   border: 0;
   outline: none !important;
   /* Remover qualquer outline que apareça no focus/active */
@@ -466,12 +466,12 @@
   transition: all 0.2s ease;
 }
 
-.botao-conclusao-trilha:hover {
+.botao-carimbo-trilha:hover, .botao-conclusao-trilha:hover, .buttons-conclusao-container > button:hover {
   transform: scale(1.02);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.botao-conclusao-trilha:active {
+.botao-carimbo-trilha:active, .botao-conclusao-trilha:active, .buttons-conclusao-container > button:active {
   transform: scale(0.98); 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border: 0;
@@ -482,6 +482,47 @@
   background-color: #818181;
 }
 
+.casa6-ultima-tela {
+  flex-direction: column;
+  max-width: 770px;
+  width: 100%;
+}
+
+.titulo-casa6-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.paragrafo-solto >.marked-text-ultima-tela {
+  color: #FFF;
+  font-weight: bold;
+  padding: 3px 7px;
+  width: max-content;
+}
+
+.casa-info-box-ultima-tela {
+  position: relative;
+  width: 100%;
+}
+
+.imagem-container {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.lumi-ultima-tela {
+  width: 250px;
+  position: absolute;
+  bottom: -80px;
+  left: 600px;
+  z-index: 10;
+}
 
 /* PASSAPORTE */
 .passaporte-container {
@@ -550,6 +591,39 @@
   width: 20%;
 }
 
+
+.botao-conclusao-trilha-container {
+  justify-content: center;
+}
+
+.botao-conclusao-trilha-container > .botao-conclusao-trilha {
+  color: #000;
+  min-width: 280px;
+  width: auto;
+}
+
+.buttons-conclusao-container {
+  display: flex;
+  justify-content: center;
+  gap: 0 30px;
+  margin: 80px 0 50px 0;
+}
+
+.buttons-conclusao-container > button {
+  background-color: #FFFFF3;
+  color: #000;
+  text-transform: uppercase;
+  border: 0;
+  outline: none;
+  padding: 12px 20px;
+  border-radius: 23px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  transition: all 0.2s ease;
+}
+
+
 /* ARROWS */
 .arrows-container {
   background-color: #212121;
@@ -588,6 +662,6 @@
   padding: 50px 0 70px 0;
 }
 
-.semana-content-box.casa6-padding {
+.semana-content-box.casa6-padding, .casa6-ultima-tela {
   padding: 30px 0 30px 0;
 }
