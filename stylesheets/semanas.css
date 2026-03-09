@@ -1,11 +1,15 @@
+.container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .titulo-semana-container {
   width: 100%;
   background-color: #212121;
   height: 70px;
-  margin-top: 38px;
   display: flex;
-  gap: 0 160px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .semana-titulo-container {
@@ -43,6 +47,7 @@
 .bullets {
   display: flex;
   gap: 0 10px;
+  margin-right: 2%
 }
 
 .bullet-item {
@@ -50,6 +55,11 @@
   height: 30px;
   border-radius: 50%;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.bullet-item:hover {
+  transform: scale(1.15);
 }
 
 .bullet-ativo {
@@ -453,7 +463,6 @@
 .botao-carimbo-trilha, .botao-conclusao-trilha {
   border: 0;
   outline: none !important;
-  /* Remover qualquer outline que apareça no focus/active */
   -webkit-tap-highlight-color: transparent; /* Remove destaque em dispositivos móveis */
   color: #FFF;
   text-transform: uppercase;
@@ -524,84 +533,42 @@
   z-index: 10;
 }
 
-/* PASSAPORTE */
-.passaporte-container {
-  position: relative;
+.botao-conclusao-trilha-container {
+  position: relative; 
   display: flex;
   justify-content: center;
-  margin: 40px 0;
+  align-items: center;
+  margin: 20px 0;
 }
 
-.passaporte-container > img:first-child {
-  width: 60%;
-  display: block;
-}
-
-/* Carimbos posicionados individualmente */
-.carimbo {
-  position: absolute;
-  display: none;
-}
-
-/* LADO ESQUERDO - 4 CARIMBOS */
-.carimbo:nth-of-type(1) { /* Semana 1 */
-  left: 28%;
-  top: 8%;
-  rotate: -1deg;
-  width: 16%;
-}
-
-.carimbo:nth-of-type(2) { /* Semana 2 */
-  left: 28%;
-  top: 28%;
-  rotate: -2deg;
-  width: 20%;
-}
-
-.carimbo:nth-of-type(3) { /* Semana 3 */
-  left: 24%;
-  top: 54.5%;
-  rotate: -1deg;
-  width: 15%;
-}
-
-.carimbo:nth-of-type(4) { /* Semana 4 */
-  left: 39%;
-  top: 65%;
-  rotate: 5deg;
-  width: 10%;
-}
-
-/* LADO DIREITO - 3 CARIMBOS */
-.carimbos-direita > .carimbo:nth-of-type(1) { /* Semana 5 */
-  left: 50%;
-  top: 12%;
-  width: 25%;
-}
-
-.carimbos-direita > .carimbo:nth-of-type(2) { /* Semana 6 */
-  left: 59%;
-  top: 43%;
-  width: 14%;
-}
-
-.carimbos-direita > .carimbo:nth-of-type(3) { /* Semana 7 */
-  left: 52%;
-  top: 66%;
-  width: 20%;
-}
-
-
-.botao-conclusao-trilha-container {
-  justify-content: center;
-}
-
-.botao-conclusao-trilha-container > .botao-conclusao-trilha {
+.botao-conclusao-trilha {
+  position: relative; 
   color: #000;
-  min-width: 280px;
+  min-width: 200px;
   width: auto;
+  padding: 15px 30px; 
+  border: none;
+  border-radius: 28px; 
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: #FFFFF3;
+  z-index: 1; 
 }
 
+.botao-conclusao-trilha-container > img {
+  position: absolute; 
+  left: 40%; 
+  transform: translateX(-50%) scaleX(-1); 
+  width: 10%;
+  height: auto;
+  z-index: 2; 
+  pointer-events: none; 
+}
 .buttons-conclusao-container {
   display: flex;
   justify-content: center;
@@ -634,11 +601,16 @@
   padding: 20px;
   float: right;
   border-radius: 25px;
-  margin: 20px 90px 40px 0;
+  margin: 10px 95px 40px 0;
 }
 
 .arrows-container > img {
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.arrows-container > img:hover {
+  transform: scale(1.15);
 }
 
 /* Paddings diferentes para cada casa */
@@ -664,4 +636,10 @@
 
 .semana-content-box.casa6-padding, .casa6-ultima-tela {
   padding: 30px 0 30px 0;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .arrows-container {
+    margin: 10px 10px 40px 0;
+  }
 }

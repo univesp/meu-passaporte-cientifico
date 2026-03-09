@@ -5,6 +5,7 @@
   /* Cores principais */
   --cor-primaria: #A33E40;      /* Vermelho/terracota principal */
   --cor-secundaria: #FFAB42;    /* Amarelo/Laranja */
+  --cor-secundaria-hover: #FF8E1D; /* Amarelo/Laranja Hover */
   --cor-clara: #FFF7EE;          /* Bege claro */
   --cor-neutra: #EAE3E3;         /* Cinza claro */
   --cor-botao-conclusao: #FFFFF3;
@@ -67,12 +68,16 @@ footer .aval-rea .btn-secondary {
   background-color: var(--cor-neutra);
 }
 
-.bullet-item {
+.bullet-item, .semana-id {
   background-color: var(--cor-secundaria);
 }
 
-.bullet-ativo {
+.bullets .bullet-ativo, .bullets .bullet-ativo:hover {
   background-color: var(--cor-clara);
+}
+
+.bullet-item:hover {
+  background-color: var(--cor-secundaria-hover);
 }
 
 .lista-casa1-semana1 > li::marker {
@@ -101,6 +106,7 @@ footer .aval-rea .btn-secondary {
   color: var(--cor-primaria);
   text-transform: uppercase;
 }
+
 
 @media (max-width: 1199.98px) {
   footer .sharing i {

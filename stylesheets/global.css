@@ -15,6 +15,74 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+/* PASSAPORTE */
+.passaporte-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.passaporte-container > img:first-child {
+  width: 60%;
+  display: block;
+}
+
+/* Carimbos posicionados individualmente */
+.carimbo {
+  position: absolute;
+  display: none;
+}
+
+/* LADO ESQUERDO - 4 CARIMBOS */
+.carimbo:nth-of-type(1) { /* Semana 1 */
+  left: 28%;
+  top: 8%;
+  rotate: -1deg;
+  width: 16%;
+}
+
+.carimbo:nth-of-type(2) { /* Semana 2 */
+  left: 28%;
+  top: 28%;
+  rotate: -2deg;
+  width: 20%;
+}
+
+.carimbo:nth-of-type(3) { /* Semana 3 */
+  left: 24%;
+  top: 54.5%;
+  rotate: -1deg;
+  width: 15%;
+}
+
+.carimbo:nth-of-type(4) { /* Semana 4 */
+  left: 39%;
+  top: 65%;
+  rotate: 5deg;
+  width: 10%;
+}
+
+/* LADO DIREITO - 3 CARIMBOS */
+.carimbos-direita > .carimbo:nth-of-type(1) { /* Semana 5 */
+  left: 50%;
+  top: 12%;
+  width: 25%;
+}
+
+.carimbos-direita > .carimbo:nth-of-type(2) { /* Semana 6 */
+  left: 59%;
+  top: 43%;
+  width: 14%;
+}
+
+.carimbos-direita > .carimbo:nth-of-type(3) { /* Semana 7 */
+  left: 52%;
+  top: 66%;
+  width: 20%;
+}
+
+
 /* MODAL DO PASSAPORTE */
 .modal-passaporte-overlay {
   position: fixed;

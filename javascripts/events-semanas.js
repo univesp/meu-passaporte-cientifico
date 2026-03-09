@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Tela recarregada sempre inicia no topo
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+
     // Elementos
     const bullets = document.querySelectorAll('.bullet-item');
     const bulletsContainer = document.querySelector('.bullets');
@@ -168,7 +174,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (tituloCasa6) tituloCasa6.style.display = 'none';
         if (textoCasa6) textoCasa6.style.display = 'none';
         if (botaoCarimbo) botaoCarimbo.style.display = 'none';
-        if (ultimaTelaCasa6) ultimaTelaCasa6.style.display = 'flex';
+        if (ultimaTelaCasa6) {
+            ultimaTelaCasa6.style.display = 'flex';
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              });
+        } 
         
         // Esconder passaporte
         if (passaporteContainer) {
@@ -337,9 +349,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Caminho base para as setas ativas da semana atual
+        const caminhoSetasAtivas = `assets/Semana${numeroSemana}/`;
+        
         if (index === 0) {
             setaEsquerda.src = 'assets/arquivos_gerais_semanas/seta-esquerda-desativa.svg';
-            setaDireita.src = 'assets/arquivos_gerais_semanas/seta-direita-ativa.svg';
+            setaDireita.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
             setaEsquerda.style.opacity = '0.5';
             setaDireita.style.opacity = '1';
             
@@ -347,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setaDireita.style.pointerEvents = 'auto';
             
         } else if (index === casas.length - 1) {
-            setaEsquerda.src = 'assets/arquivos_gerais_semanas/seta-esquerda-ativa.svg';
+            setaEsquerda.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
             setaDireita.src = 'assets/arquivos_gerais_semanas/seta-direita-desativa.svg';
             setaEsquerda.style.opacity = '1';
             setaDireita.style.opacity = '0.5';
@@ -356,8 +371,8 @@ document.addEventListener('DOMContentLoaded', function() {
             setaDireita.style.pointerEvents = 'none';
             
         } else {
-            setaEsquerda.src = 'assets/arquivos_gerais_semanas/seta-esquerda-ativa.svg';
-            setaDireita.src = 'assets/arquivos_gerais_semanas/seta-direita-ativa.svg';
+            setaEsquerda.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
+            setaDireita.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
             setaEsquerda.style.opacity = '1';
             setaDireita.style.opacity = '1';
             
@@ -444,10 +459,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem(CONCLUSAO_KEY, 'false');
                 
                 // Restaurar carimbo correspondente para false no localStorage
+                /*
                 if (carimbosRecebidos[indiceCarimbo]) {
                     carimbosRecebidos[indiceCarimbo] = false;
                     salvarCarimbosStorage();
                 }
+                */
                 
                 //console.log(`Semana ${numeroSemana} reiniciada!`);
                 
