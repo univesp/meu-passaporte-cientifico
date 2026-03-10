@@ -3,19 +3,20 @@
 /* ===== VARIÁVEIS DE CORES ===== */
 :root {
   /* Cores principais */
-  --cor-primaria: #A33E40;      
-  --cor-secundaria: #FFAB42;    
-  --cor-secundaria-hover: #FF8E1D; 
+  --cor-primaria: #013475;      
+  --cor-secundaria: #E0EEFF;    
+  --cor-secundaria-hover: #A7CFFF; 
+  --cor-list-bullets: #FCBE71;
   --cor-clara: #FFF7EE;          
-  --cor-neutra: #EAE3E3;         
+  --cor-neutra: #E3E4EA;         
   --cor-botao-conclusao: #FFFFF3;
-  --cor-texto-claro: #9A7777; 
+  --cor-texto-claro: #8193A4; 
   --cor-branca: #FFF;
 }
 
 
 body {
-  background-image: url(../assets/Semana1/biblioteca.jpg);
+  background-image: url(../assets/Semana2/bg_2.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -58,7 +59,8 @@ footer .aval-rea .btn-secondary {
 .formulario > h3, 
 .casa3-content-titulo > h3,
 .titulo-conclusao,
-.titulo-ultima-tela {
+.titulo-ultima-tela,
+ol {
   color: var(--cor-primaria);
 }
 
@@ -81,7 +83,7 @@ footer .aval-rea .btn-secondary {
 }
 
 .lista-casa1-semana1 > li::marker {
-  color: var(--cor-secundaria);
+  color: var(--cor-list-bullets);
   font-size: 24px;
 }
 
@@ -105,6 +107,53 @@ footer .aval-rea .btn-secondary {
 .casa4-titulo-text > .titulo-casa {
   color: var(--cor-primaria);
   text-transform: uppercase;
+}
+
+.lumi-astronauta {
+  width: 20%;
+  transform: scaleX(-1) rotate(-7deg);
+}
+
+.list-semana2-casa3 {
+  list-style: disc;
+}
+
+.list-semana2-casa3 > li {
+  color: #000;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.semana2-imagens-container-casa3 {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 770px;
+  gap: 30px; 
+  row-gap: 40px; 
+}
+
+.semana2-imagens-container-casa3 > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: calc(33.33% - 20px); 
+}
+
+.semana2-imagens-container-casa3 > div > img {
+  width: 100%; 
+  height: 137px;
+  object-fit: cover; 
+} 
+
+.semana2-imagens-container-casa3 > div > span {
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  color: #000;
+  font-size: 20px;
+  margin-top: 8px; 
+  line-height: 1.2; 
 }
 
 

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="assets/fb-share.png">
+  <meta name="author" content="Univesp">
+
+  <meta name="description" property="og:description"
+  content="">
+
+  <title>Univesp | Meu Passaporte Científico</title>
+
+  <link rel="shortcut icon" href="https://apps.univesp.br/common/favicon.ico" type="image/x-icon"/>
+
+  <!-- Arquivos Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+  <!-- Ícones por Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <!-- Ícones por Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Tipografia institucional por Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Barlow:300,400,700|Open+Sans:400,400i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Compartilhamento por jsSocials -->
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-minima.css" />
+
+  <!-- Animate CSS. Descomente se for utilizar. Caso contrário, remova. -->
+  <!-- <link rel="stylesheet" href="https://apps.univesp.br/common/animate.css"> -->
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="https://apps.univesp.br/common/rea-geral-2.1.css">
+  <!-- <link rel="stylesheet" href="../common/rea-geral-2.1.css">   -->
+  <link rel="stylesheet" href="stylesheets/nav_footer.css">
+  <link rel="stylesheet" href="stylesheets/global.css">
+  <link rel="stylesheet" href="stylesheets/semanas.css">
+  <link rel="stylesheet" href="stylesheets/semana2.css">
+</head>
+
+<body class="d-flex flex-column">
+
+  <!-- Utilizar essa DIV caso o REA não se adapte a todos os tamanhos de tela -->
+  <!-- <div class="esconder-tela-pequena"> -->
+
+  <!-- Menu -->
+  <!--///////////////////////////////////////////////////////////////
+  Classe para nav
+  - padrão => header estático
+  - class="header-dinamico" => header possui posição fixa e é mostrado apenas quando a página está no topo (necessário ajustar padding ou margin superior e inferior do main).
+  //////////////////////////////////////////////////////////////////-->
+  <!-- <nav class="header-dinamico"> -->
+    <!--
+  <nav>
+    <div class="container">
+      
+      <div class="logo">
+        <a class="pularNavegacao" href="#conteudoPrincipal">Pular para Conteúdo Principal</a>
+        <a href="https://univesp.br/" target="_blank">
+          <img src="https://apps.univesp.br/common/traco-negativa.svg" alt="Link para site institucional. Logotipo da universidade formado pela palavra Univesp, sendo a letra V estilizada.">
+          
+        </a>
+      </div>
+     
+      <ul class="nav justify-content-end">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons" aria-label="Opções de Compartilhamento">share</i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="sharing"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  -->
+
+  <!-- Conteúdo -->
+  <main id="conteudoPrincipal">
+
+    <div class="titulo-semana-container">
+
+      <div class="semana-titulo-container">
+        <div class="semana-id">
+          <!-- Trocar para a semana correspondente -->
+          <span>Semana 2</span>
+        </div>
+        <div class="semana-titulo">
+          <span>História da Astronomia e Mudanças Paradigmáticas – Viagem pelas Estrelas e Ideias</span>
+        </div>
+      </div>
+
+      <div class="bullets">
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+      </div>
+
+    </div>
+
+    <div class="container">
+      <!-- Seu conteúdo -->
+
+      <div class="semana-content-box" id="semana2"> <!-- Trocar id para a semana correspondente -->
+
+        <!-- SEMANA 2 - CASA 1 -->
+        <div class="casa-content" id="casa1">
+          <span class="titulo-casa" style="color: #2C1708;">Escolha seu destino</span>
+          <p class="subtitulo-casa" style="color: #2C1708;">Você deve selecionar um local, pode ser uma visita  <span class="subtitulo-mark">virtual</span> ou <span class="subtitulo-mark">presencial</span></p>
+
+          <div class="casa-box">
+            <img src="assets/Semana1/pin-semana-1.svg" alt="">
+            <ul class="lista-casa1-semana1">
+              <li>Observatório astronômico municipal</li>
+              <li>Praça ou parque para observar o céu</li>
+              <li>Planetário local</li>
+            </ul>
+          </div>
+
+          <div class="alternativas-virtuais-container">
+            <h3>Alternativas virtuais</h3>
+            <ul class="lista-alternativas-virtuais">
+              <li>Planetário Virtual da NASA <a target="_blank" href="https://eyes.nasa.gov/apps/solar-system/#/home">LINK</a></li>
+              <li>Stellarium Web <a target="_blank" href="https://stellarium-web.org/">LINK</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- SEMANA 2 - CASA 2 -->
+        <div class="casa-content" id="casa2" >
+          <div class="titulo-casa2">
+            <img src="assets/arquivos_gerais_semanas/passaporte.png" alt="">
+            <span class="titulo-casa" style="color: #2C1708;">Passaporte</span>
+          </div>
+
+          <div class="casa2-form-secao1">
+            <div class="formulario input-nome-aluno">
+              <h3>Nome do Aluno(a)</h3>
+              <input type="text" placeholder="Digite seu nome completo...">
+            </div>
+
+            <div class="formulario input-local">
+              <h3>Local</h3>
+              <input type="text" placeholder="Digite o nome do local que você visitou...">
+            </div>
+          </div>
+
+          <div class="casa2-form-secao2" style="margin-top: 40px;">
+            <div class="formulario checkIn-foto">
+              <h3>Check-in em <span class="data-checkIn"></span></h3>
+              <div class="foto-local">
+                <span>Foto do <br> Local</span>
+              </div>
+            </div>
+
+            <div class="formulario descricao-local">
+              <h3>Descrição do local</h3>
+              <textarea name="" id="" placeholder="Escreva uma descrição do local que você visitou..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEMANA 2 - CASA 3 -->
+        <div class="casa-content" id="casa3">
+          <div class="titulo-casa3">
+            <img src="assets/arquivos_gerais_semanas/atividade.png" alt="">
+            <span class="titulo-casa">Atividade do Passaporte</span>
+          </div>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img style="transform: rotate(-7deg);" class="lumi-astronauta" src="assets/Semana2/lumi_astronauta.png" alt="">
+              <p>Observar o céu é uma das práticas científicas mais antigas da humanidade. Para  transformar sua observação em conhecimento, você precisa registrar o que vê de forma organizada. Vou te mostrar como fazer isso!</p>
+            </div>
+          </div>
+
+          <div class="casa3-content-titulo">
+            <h3>Tarefa</h3>
+          </div>
+
+          <div class="left-alignment">
+            <p>Registrar uma observação do céu noturno ou relatar a visita a um espaço cultural  relacionado à Astronomia (como um planetário, observatório ou visita virtual). </p>
+          </div>
+
+          <div class="casa3-content-titulo">
+            <h3>Como fazer o registro da observação científica</h3>
+          </div>
+
+          <div class="left-alignment">
+            <ol>
+              <li class="ol-list-items">
+                <span class="title-ol-lists">Escolha um momento de observação:</span>
+                <ul class="list-semana2-casa3">
+                  <li>céu ao entardecer</li>
+                  <li>céu noturno</li>
+                  <li>nascer do sol</li>
+                  <li>fase da Lua visível</li>
+                  <li>posição de estrelas mais brilhantes</li>
+                </ul>
+              </li>
+
+              <li class="ol-list-items">
+                <span class="title-ol-lists">Observe o céu por alguns minutos com atenção real.</span>
+                <p class="ol-paragraphs">Nada de olhar rápido — respire, observe, compare.</p>
+              </li>
+
+              <li class="ol-list-items">
+                <span class="title-ol-lists">Registre no passaporte informações essenciais (modelo de protocolo simples):</span>
+                <ul class="list-semana2-casa3">
+                  <li>Data: ___ / ___ / ___</li>
+                  <li>Horário aproximado: 18h? 20h? madrugada?</li>
+                  <li>Local: cidade, bairro, parque, varanda etc.</li>
+                  <li>Condições do céu: limpo, nublado, parcialmente nublado, poluição luminosa etc.</li>
+                  <li>Sensações e percepções: algo te chamou atenção?</li>
+                  <li>O que você conseguiu ver:</li>
+                </ul>
+                <div class="semana2-imagens-container-casa3">
+                  <div>
+                    <img src="assets/Semana2/estrelas.jpg" alt="">
+                    <span>estrelas?</span>
+                  </div>
+                  <div>
+                    <img src="assets/Semana2/lua.jpg" alt="">
+                    <span>Lua? qual fase?</span>
+                  </div>
+                  <div>
+                    <img src="assets/Semana2/planeta.jpg" alt="">
+                    <span>planetas-aparentes</span>
+                  </div>
+                  <div>
+                    <img src="assets/Semana2/cores.jpg" alt="">
+                    <span>cores do céu?</span>
+                  </div>
+                  <div>
+                    <img src="assets/Semana2/constelacao.jpg" alt="">
+                    <span>constelações reconhecíveis?</span>
+                  </div>
+                  <div>
+                    <img src="assets/Semana2/lua-posicao.jpg" alt="">
+                    <span>posição da Lua <span style="font-weight: 400;">(alto, baixo, leste, oeste)</span>?</span>
+                  </div>
+                </div>
+              </li>
+
+              <li class="ol-list-items">
+                <span class="title-ol-lists">Caso a observação seja virtual</span>
+                <p class="ol-paragraphs" style="margin-bottom: 0;">Registrar o que foi visualizado no simulador (Stellarium/NASA), como:</p>
+                <ul class="list-semana2-casa3">
+                  <li>data simulada</li>
+                  <li>objetos observados</li>
+                  <li>posição da Lua/estrelas</li>
+                  <li>fenômenos destacados (ex.: movimentação aparente)</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+
+          <div class="casa3-content-titulo">
+            <h3>Use este espaço para registrar a sua atividade</h3>
+          </div>
+
+          <textarea class="casas-text-area" name="" id="" placeholder="O objeto ou fenômeno observado foi..."></textarea>
+
+          <div class="divisao">
+            <img src="assets/arquivos_gerais_semanas/divisao.png" alt="">
+          </div>
+
+          <div class="reflexao-casa3-box">
+            <img src="assets/arquivos_gerais_semanas/pensante-casa3.png" alt="">
+            <div class="reflexao-casa3-content">
+              <h4>Pergunta de reflexão</h4>
+              <p>Como a observação do céu influenciou diferentes culturas ao longo da história? </p>
+            </div>
+          </div>
+
+          <div class="casa-info-box" style="border-radius: 30px 30px 0 30px; margin-top: 60px; margin-bottom: 20px;">  
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+
+            <div class="casa-info-content">
+              <p style="margin-left: 3%;"><b>Pronto!</b> Um bom registro científico ajuda a organizar o olhar e permite comparar observações diferentes. Agora sim, você está praticando Astronomia como muitas culturas fizeram por séculos!</p>
+
+              <img style="transform: scaleX(1); transform: rotate(7deg);" class="lumi-astronauta" src="assets/Semana2/lumi_astronauta.png" alt="">
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- SEMANA 2 - CASA 4 -->
+        <div class="casa-content" id="casa4">
+
+          <div class="titulo-casa4-container">
+            <img src="assets/arquivos_gerais_semanas/lampada.png" alt="">
+            <div class="casa4-titulo-text">
+              <span class="titulo-casa">Aprendizado</span>
+              <span class="subtitulo-casa4">O que aprendi com a visita?</span>
+            </div>
+          </div>
+
+          <div class="left-alignment paragrafo-solto">
+            <p>Escreva, com suas palavras, o que você aprendeu durante a experiência e como isso dialoga com nossos estudos da Semana 2 (3–5 linhas).</p>
+            <p>Você pode complementar com um esquema, desenho, seta, mapa mental ou outro recurso visual. </p>
+          </div>
+
+          <textarea class="casas-text-area casa4-text-area" name="" id="" placeholder="Nessa semana, eu aprendi que..."></textarea>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img style="transform: scaleX(1) rotate(-7deg); width: 15%;" class="lumi-astronauta" src="assets/Semana2/lumi_astronauta.png" alt="">
+              <p class="info-content-casa4-5"><b>O céu conta histórias</b> — científicas, culturais e até míticas. O que você descobriu na sua observação?</p>
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- SEMANA 2 - CASA 5 -->
+        <div class="casa-content" id="casa5">
+
+          <span class="titulo-casa">Aplicação prática</span>
+
+          <div class="left-alignment paragrafo-solto">
+            <p>Após sua visita, reflita: <b>como essa experiência pode inspirar uma prática de sala de aula?</b></p>
+            <p>Sugestões que o estudante pode considerar:</p>
+          </div>
+
+          <div class="casa-box" style="justify-content: left;">
+            <ul class="lista-casa1-semana1">
+              <li>Observar a Lua com crianças por uma semana</li>
+              <li>Desenhar o céu do final da tarde</li>
+              <li>Explorar histórias míticas sobre constelações</li>
+              <li>Criar pequenos mapas do céu que as crianças percebem</li>
+              <li>Usar lanternas e bolas para simular Lua e Sol</li>
+              <li>Fazer leituras e rodas de conversa sobre dia/noite</li>
+            </ul>
+          </div>
+
+          <div class="left-alignment paragrafo-solto">
+            <p>Escreva suas ideias, <b>mesmo que ainda estejam em rascunho.</b></p>
+            <textarea class="casas-text-area" style="height: 192px; margin-top: 12px;" name="" id="" placeholder="Digite aqui suas ideias..."></textarea>
+          </div>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img class="lumi-astronauta" style="transform: rotate(5deg)" src="assets/Semana2/lumi_astronauta.png" alt="">
+              <p class="info-content-casa4-5">Com crianças pequenas, observar o céu é sempre uma descoberta. E isso não  acontece só à noite! Durante o dia, podemos ver o formato e o movimento  das nuvens, perceber a posição do Sol, acompanhar a mudança das sombras e, em alguns dias, até encontrar a Lua no céu claro. À noite, surgem as estrelas, as constelações e, quando visível, a Lua cheia ou crescente. <br> Para observar, não precisamos de nada complicado: um caderno de desenho, um lápis, uma bússola simples ou até uma lanterna já ajudam muito. <br> <b>Agora me conte: qual parte da sua experiência você levaria para sua sala de aula?</b></p>
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- SEMANA 1 - CASA 6 -->
+        <div class="casa-content" id="casa6">
+          <span class="titulo-casa" id="tituloCasa6">Conclusão da Trilha</span>
+          <p class="texto-conclusao-trilha" id="textoCasa6">Jornada “<span class="titulo-conclusao"><b>História da Astronomia e Mudanças Paradigmáticas</b> – Viagem pelas Estrelas e Ideias</span>” concluída!</p>
+          <button class="botao-carimbo-trilha" id="botaoCarimbo">Receber carimbo</button>
+
+          <!-- Última Tela -->
+          <div class="casa6-ultima-tela">
+            <div class="titulo-casa6-container">
+              <span class="titulo-casa titulo-ultima-tela" style="color: #000;">Parabéns!</span>
+            </div>
+
+            <div class="left-alignment paragrafo-solto">
+              <p class="marked-text-ultima-tela">Parabéns por concluir a Trilha da Semana 2!</p>
+              <p style="margin-top: 5px;">Você explorou a história da Astronomia e compreendeu como as mudanças de pensamento transformaram nossa visão do universo.</p>
+
+              <p style="margin-top: 20px;">Antes de seguir para a próxima trilha, estude o conteúdo da Semana 3.</p>
+            </div>
+
+            <div class="casa-info-box casa-info-box-ultima-tela" style="border-radius: 30px 30px 30px 30px; margin-top: 60px; margin-bottom: 20px;">    
+              <div class="casa-info-content" style="justify-content: flex-start;">
+                <p style="margin: 8px 0 0 5%;"><b>Carimbo conquistado!</b> Na próxima semana, vamos conversar sobre como ciência e religião se encontram — ou se desencontram — na história da humanidade.</p>
+              </div>
+
+              <!-- Container específico para a imagem -->
+              <div class="imagem-container" style="bottom: 0; left: -5px;">
+                <img style="transform: rotate(5deg);" class="lumi-ultima-tela" src="assets/Semana2/lumi-ultima-tela.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="passaporte-container">
+        <img src="assets/arquivos_gerais_semanas/passaporte.png" alt="Passaporte em branco">
+        
+        <div class="carimbos-esquerda">
+          <img class="carimbo" src="assets/Semana1/carimbo-semana-1.png" id="carimbo1" alt="Carimbo Semana 1">
+          <img class="carimbo" src="assets/Semana2/carimbo-semana-2.png" id="carimbo2" alt="Carimbo Semana 2">
+          <img class="carimbo" src="assets/Semana3/carimbo-semana-3.png" id="carimbo3" alt="Carimbo Semana 3">
+          <img class="carimbo" src="assets/Semana4/carimbo-semana-4.png" id="carimbo4" alt="Carimbo Semana 4">
+        </div>
+        
+        <div class="carimbos-direita">
+          <img class="carimbo" src="assets/Semana5/carimbo-semana-5.png" id="carimbo5" alt="Carimbo Semana 5">
+          <img class="carimbo" src="assets/Semana6/carimbo-semana-6.png" id="carimbo6" alt="Carimbo Semana 6">
+          <img class="carimbo" src="assets/Semana7/carimbo-semana-7.png" id="carimbo7" alt="Carimbo Semana 7">
+        </div>
+      </div>
+
+      <div class="botao-conclusao-trilha-container">
+        <button class="botao-conclusao-trilha">
+          Concluir
+        </button>
+        <!-- Trocar para a semana correspondente -->
+        <img style="left: 39%;" src="assets/Semana2/lumi-ultima-tela.png" alt="">
+      </div>
+
+      <div class="buttons-conclusao-container">
+        <button>Recomeçar trilha</button>
+        <button>Voltar para as jornadas</button>
+        <button>Meu passaporte</button>
+      </div>
+
+      <div class="arrows-container">
+        <img src="assets/arquivos_gerais_semanas/seta-esquerda-desativa.svg" alt="">
+
+        <!-- Trocar para a semana correspondente -->
+        <img src="assets/Semana1/seta-direita-ativa.svg" alt="">
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- RODAPÉ -->
+  <!--//////////////////////////////////////////////////////
+  Classes prontas p/ footer (podem ser combinadas):
+  padrão => texto e contornos em cinza
+  class = "black" => texto e contornos em preto
+  class = "negativo" => texto e contornos em branco, sobre fundo escuro
+  class = "transparente" => fundo transparente (necessário ajustar cor dos ícones de compartilhamento nos círculos, para bater com a cor de fundo)
+  /////////////////////////////////////////////////////////-->
+  <!-- <footer class="black"> -->
+  <!-- <footer class="negativo"> -->
+  <!-- <footer class="transparente"> -->
+  <!-- <footer class="transparente black"> -->
+  <!-- <footer class="transparente negativo"> -->
+  <footer id="footer">
+    <!-- components/footer.js -->
+  </footer>
+  <!-- Fim do rodapé -->
+
+  <!-- Fim da div .esconder-tela-pequena
+  Utilizar essa div caso o REA não se adapte a todos os formatos de tela -->
+  <!-- </div> -->
+
+  <!-- //////////////////////////////////////////////////////////
+  AVISO =+960px
+  Utilizar caso o REA possua limitações quanto aos tamanhos de tela
+  Caso contrário, deletar
+  ///////////////////////////////////////////////////////////////-->
+  <!-- <div class= "container d-lg-none text-center">
+    <div class="container">
+      <a href="https://univesp.br/" target="_blank">
+        <img src="https://apps.univesp.br/common/logo-univesp-positivo.svg" alt="Logo da Univesp" height="47px" width="135px" class='img-responsive center-block' style="margin-top:4rem">
+      </a>
+    </div>
+    <img src='https://apps.univesp.br/common/aviso-tela.gif' alt="Computador Animado" height="117px" width="160px" class='img-responsive center-block' style="margin-top:3rem">
+    <div style="margin-top:.5rem">
+      <p>
+        <font style=font-family:"Barlow" color="#3b78d1" 'text-center' size="10rem"><b>OPS!</b></font>
+      </p>
+      <p>
+        <font style=font-family:"Verdana" "text-center" size="3rem">Visualize este recurso em um computador, em janela com largura mínima de 992px.</font>
+      </p>
+    </div>
+  </div> -->
+
+  <!-- CRÉDITOS -->
+  <div class="modal fade" id="creditos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- components/creditos.js -->
+  </div>
+
+  <!-- Arquivos Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://apps.univesp.br/common/jquery-ui-touch-punch.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+  <!-- jsSocials -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+  <script>
+    var share = $(".sharing");
+    var page_title = $(document).attr('title');
+    var page_url = window.location.href;
+    share.jsSocials({
+      shares: [
+        {
+          share: "facebook",
+          logo: "fab fa-facebook-f",
+        },
+        {
+          share: "twitter",
+          logo: "fab fa-twitter",
+        },
+        {
+          share: "whatsapp",
+          logo: "fab fa-whatsapp",
+        },
+      ],
+      url: page_url,
+      text: 'Confira o REA ' + page_title + '.',
+      showLabel: false,
+      showCount: false,
+      shareIn: "popup",
+    });
+  </script>
+
+   <!-- Componentes -->
+   <script type="text/javascript" src="components/creditos.js"></script>
+   <script type="text/javascript" src="components/footer.js"></script>
+ 
+    <!-- Custom JS -->
+    <script type="text/javascript" src="javascripts/events-components.js"></script>
+    <script type="text/javascript" src="javascripts/modal-passaporte.js"></script>
+    <script type="text/javascript" src="javascripts/events-semanas.js"></script>
+    
+
+  <!-- MathJax. Descomente se for utilizar. Caso contrário, remova. -->
+  <!-- <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+  
+
+</body>
+
+</html>

@@ -1,3 +1,23 @@
+ol {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+ol > .ol-list-items {
+  margin-bottom: 40px;
+}
+
+/* Remove o espaçamento do último item para não sobrar */
+ol > .ol-list-items:last-child {
+  margin-bottom: 0;
+}
+
+.ol-paragraphs {
+  color: #000;
+  font-size: 20px;
+  font-weight: 400;
+}
+
 .container {
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -588,6 +608,12 @@
   font-weight: bold;
   font-size: 20px;
   transition: all 0.2s ease;
+}
+
+.title-ol-lists {
+  font-weight: bold;
+  font-size: 22px;
+  color: #000;
 }
 
 
