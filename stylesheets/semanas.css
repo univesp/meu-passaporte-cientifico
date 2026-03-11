@@ -12,10 +12,22 @@ ol > .ol-list-items:last-child {
   margin-bottom: 0;
 }
 
+li {
+  font-size: 20px;
+}
+
 .ol-paragraphs {
   color: #000;
   font-size: 20px;
   font-weight: 400;
+}
+
+.inner-list {
+  list-style: disc;
+}
+
+.outside-list {
+  list-style: square !important;
 }
 
 .container {
