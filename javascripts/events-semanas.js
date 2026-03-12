@@ -699,3 +699,13 @@ document.addEventListener('DOMContentLoaded', function() {
       
       btnRemover.style.display = 'none';
   }
+
+  // Loading State Inicial
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        }
+    }, 1500);
+});

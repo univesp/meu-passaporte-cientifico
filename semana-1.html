@@ -47,6 +47,27 @@
 
 <body class="d-flex flex-column">
 
+  <div id="loading-screen" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+  ">
+    <div style="text-align: center; color: white;">
+
+      <!-- Trocar para a semana correspondente -->
+      <img src="assets/Semana1/lumi-ultima-tela.png" alt="Lumi" style="width: 150px; animation: pulse 1s infinite;">
+      <p style="margin-top: 20px; font-family: 'Nunito', sans-serif; font-size: 20px;">Carregando sua jornada...</p>
+    </div>
+  </div>
+
   <!-- Utilizar essa DIV caso o REA não se adapte a todos os tamanhos de tela -->
   <!-- <div class="esconder-tela-pequena"> -->
 
