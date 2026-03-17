@@ -42,7 +42,7 @@
   <link rel="stylesheet" href="stylesheets/nav_footer.css">
   <link rel="stylesheet" href="stylesheets/global.css">
   <link rel="stylesheet" href="stylesheets/semanas.css">
-  <link rel="stylesheet" href="stylesheets/semana3.css">
+  <link rel="stylesheet" href="stylesheets/semana5.css"> <!-- Trocar id para a semana correspondente -->
 </head>
 
 <body class="d-flex flex-column">
@@ -62,10 +62,18 @@
   ">
     <div style="text-align: center; color: white;">
       <!-- Trocar para a semana correspondente -->
-      <img src="assets/Semana1/lumi-ultima-tela.png" alt="Lumi" style="width: 150px; animation: pulse 1s infinite;">
+      <img src="assets/Semana5/lumi-ultima-tela.png" alt="Lumi" style="width: 150px; animation: pulse 1s infinite;">
       <p style="margin-top: 20px; font-family: 'Nunito', sans-serif; font-size: 20px;">Carregando sua jornada...</p>
     </div>
   </div>
+
+<style>
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+</style>
 
   <!-- Utilizar essa DIV caso o REA não se adapte a todos os tamanhos de tela -->
   <!-- <div class="esconder-tela-pequena"> -->
@@ -111,10 +119,10 @@
       <div class="semana-titulo-container">
         <div class="semana-id">
           <!-- Trocar para a semana correspondente -->
-          <span>Semana 3</span>
+          <span>Semana 5</span>
         </div>
         <div class="semana-titulo">
-          <span>Ciência e Religião: Paradigmas em Confronto – Rotas do Diálogo e do Conflito</span>
+          <span>O ambiente e a relação com a ciência e a tecnologia – Missão Sustentabilidade em Ação</span>
         </div>
       </div>
 
@@ -132,26 +140,39 @@
     <div class="container">
       <!-- Seu conteúdo -->
 
-      <div class="semana-content-box" id="semana3"> <!-- Trocar id para a semana correspondente -->
+      <div class="semana-content-box" id="semana5"> <!-- Trocar id para a semana correspondente -->
 
-        <!-- SEMANA 3 - CASA 1 -->
+        <!-- SEMANA 5 - CASA 1 -->
         <div class="casa-content" id="casa1">
           <span class="titulo-casa" style="color: #2C1708;">Escolha seu destino</span>
           <p class="subtitulo-casa" style="color: #2C1708;">Você deve selecionar um local, pode ser uma visita  <span class="subtitulo-mark">virtual</span> ou <span class="subtitulo-mark">presencial</span></p>
 
           <div class="casa-box">
-            <img src="assets/Semana3/pin-semana-1.svg" alt=""> <!-- Trocar id para a semana correspondente -->
+            <img src="assets/Semana5/pin-semana-5.svg" alt=""> <!-- Trocar id para a semana correspondente -->
             <ul class="lista-casa1-semana1">
-              <li>Espaços culturais e religiosos (igreja, templo, centro cultural)</li>
-              <li>Museu histórico local</li>
+              <li>Coleta seletiva do bairro.</li>
+              <li>Cooperativa de reciclagem.</li>
+              <li>Parque ou rio local para observar a poluição.</li>
             </ul>
           </div>
 
           <div class="alternativas-virtuais-container">
             <h3>Alternativas virtuais</h3>
             <ul class="lista-alternativas-virtuais">
-              <li>Documentários sobre ciência e religião no YouTube ou Netflix</li>
-              <li>Visita virtual ao Vaticano Museum <a target="_blank" href="https://www.museivaticani.va/content/museivaticani/en/collezioni/musei/tour-virtuali-elenco.html">LINK</a></li>
+              <li>Documentário “Lixo Extraordinário” (YouTube/Netflix)</li>
+              <li>Tours virtuais sobre mudanças climáticas:</li>
+            </ul>
+
+            <ul class="list-semana2-casa3 outside-list" style="margin: 0 0 0 22px;">
+              <li>Sea of Islands (VR/360º) – <a style="color: #33675B;" target="_blank" href="https://webtv.un.org/en/asset/k1s/k1sbvxqll2">UN Web TV: experiência imersiva sobre impactos climáticos no Pacífico</a>.</li>
+
+              <li style="margin-top: 10px;"><a style="color: #33675B;" target="_blank" href="https://brasil.un.org/pt-br/140311-exibi%C3%A7%C3%A3o-virtual-da-onu-mostra-o-custo-humano-da-mudan%C3%A7a-clim%C3%A1tica">Exibição virtual “O custo humano da mudança climática”</a> (ONU Brasil): mostra online com casos e imagens para análise.</li>
+
+              <li style="margin-top: 10px;">Tours virtuais do Serviço de Visitantes da ONU (Viena): <a style="color: #33675B;" target="_blank" href="https://unis.unvienna.org/unis/en/visitors_service/virtual-tours.html">série de vídeos #GlobalGoals</a> (5 min) que funcionam como “visitas” temáticas.</li>
+
+              <li style="margin-top: 10px;">Tour Virtual da ONU (sede): <a style="color: #33675B;" target="_blank" href="https://www.un.org/en/visit/virtual-tours">opção oficial de tour on-line</a> (1h), útil para contextualizar ODS e governança global.</li>
+
+              <li style="margin-top: 10px;"><a style="color: #33675B;" target="_blank" href="https://www.un.org/en/visitors-service-nairobi/walking-tour-un-overview-briefing">Serviço de Visitantes da ONU em Nairóbi</a> (briefings/tours virtuais sob demanda): informações e agendamento aparecem neste canal oficial.</li>
             </ul>
           </div>
 
@@ -161,13 +182,13 @@
             </div>
             
             <div class="casa-info-content">
-              <img src="assets/Semana1/lumi-semana1.png" alt="">
-              <p><b>Esta trilha é sobre caminhos que se encontram</b> — e às vezes se desencontram.  Escolha um espaço que permita observar como diferentes culturas  expressam suas formas de compreender o mundo.</p>
+              <img class="icone-lumi-box" src="assets/Semana5/lumi-semana5.png" alt="">
+              <p><b>Hoje vamos olhar para os desafios ambientais ao nosso redor</b> — desde aqueles  que vemos todos os dias até os impactos globais. A sustentabilidade começa com o nosso olhar atento!</p>
             </div>
           </div>
         </div>
 
-        <!-- SEMANA 3 - CASA 2 -->
+        <!-- SEMANA 5 - CASA 2 -->
         <div class="casa-content" id="casa2" >
           <div class="titulo-casa2">
             <img src="assets/arquivos_gerais_semanas/passaporte.png" alt="">
@@ -201,7 +222,7 @@
           </div>
         </div>
 
-        <!-- SEMANA 3 - CASA 3 -->
+        <!-- SEMANA 5 - CASA 3 -->
         <div class="casa-content" id="casa3">
           <div class="titulo-casa3">
             <img src="assets/arquivos_gerais_semanas/atividade.png" alt="">
@@ -213,17 +234,11 @@
           </div>
 
           <div class="left-alignment">
-            <p><b>Escolha uma notícia ou texto que apresente uma situação de diálogo ou conflito entre ciência e religião.</b></p>
+            <p><b>Fotografar ou registrar um problema ambiental próximo da sua casa.</b></p>
           </div>
 
           <div class="left-alignment">
-            <p style="margin-bottom: 0;">Podem ser:</p>
-            <ul>
-              <li>reportagens sobre vacinas, evolução, clima, saúde, origem do universo</li>
-              <li>notícias sobre debates escolares (BNCC, ensino religioso vs. ensino de Ciências)</li>
-              <li>textos que abordem posições religiosas sobre temas científicos</li>
-              <li>situações históricas de confronto ou aproximação (ex.: Galileu, Darwin, Bioética)</li>
-            </ul>
+            <p>Exemplos: lixo acumulado, excesso de plástico, fumaça de queima, água poluída,  esgoto a céu aberto, desperdício de água, descarte irregular, ilhas de  calor, ruído excessivo, poda inadequada, ausência de vegetação etc.</p>
           </div>
 
           <div class="casa-info-box">
@@ -232,86 +247,83 @@
             </div>
             
             <div class="casa-info-content">
-              <img src="assets/Semana1/lumi-semana1.png" alt="">
-              <p>Preste atenção aos argumentos! Essa é uma habilidade científica essencial. Em um debate, o que é usado como evidência? O que é crença? O que é tradição cultural? Vamos organizar esse olhar?</p>
+              <img class="icone-lumi-box" style="transform: rotate(-7deg);" src="assets/Semana5/lumi-semana5.png" alt="">
+              <p><b>Problemas ambientais estão por toda parte</b> — alguns visíveis, outros sutis. Para fazer um bom registro, observe o que está acontecendo e o que pode estar causando aquela situação.</p>
             </div>
           </div>
 
           <div class="casa3-content-titulo">
-            <h3>Como fazer o registro da observação científica</h3>
+            <h3>Como fazer o registro do problema ambiental</h3>
           </div>
 
           <div class="left-alignment">
             <ol>
               <li class="ol-list-items">
-                <span class="title-ol-lists">Identificação da notícia ou texto:</span>
+                <span class="title-ol-lists">Identifique e documente:</span>
                 <ul class="list-semana2-casa3">
-                  <li>Título</li>
-                  <li>Autor/veículo</li>
-                  <li>Data</li>
-                  <li>Link (se houver)</li>
+                  <li>Foto(s) do local</li>
+                  <li>Localização aproximada</li>
+                  <li>Data e horário</li>
+                  <li>Condições do ambiente (chuva, calor, fluxo de pessoas, resíduos no solo etc.)</li>
                 </ul>
               </li>
 
               <li class="ol-list-items">
-                <span class="title-ol-lists">Resumo objetivo da situação analisada</span> <span style="font-weight: 400; color: #000;">(3–5 linhas)</span>
+                <span class="title-ol-lists">Descreva o que está acontecendo</span>
+                <ul class="list-semana2-casa3">
+                  <li>Qual é o <b>problema</b>?</li>
+                  <li>Há <b>materiais</b> envolvidos (plástico, água, resíduos orgânicos etc.)?</li>
+                  <li>Há <b>impacto</b> sobre plantas, animais ou pessoas?</li>
+                  <li>Há <b>cheiro, cor, acúmulo, fumaça, escoamento</b>?</li>
+                </ul>
               </li>
 
               <li class="ol-list-items">
-                <span class="title-ol-lists"><span class="title-ol-lists">Mapeamento dos argumentos —</span> <span style="font-weight: 400; color: #000;">dividido em:</span></span>
-                <ul class="list-semana2-casa3 outside-list" style="margin-top: 20px;">
-                  <li>
-                    <b>Argumentos científicos:</b>
-                    <ul class="inner-list">
-                      <li>evidências, experimentos, dados, pesquisas, teorias, método científico</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <b>Argumentos culturais ou religiosos:</b>
-                    <ul class="inner-list">
-                      <li>valores, tradições, textos sagrados, crenças, costumes, discursos de autoridade</li>
-                    </ul>
-                  </li>
+                <span class="title-ol-lists">Levante hipóteses simples</span>
+                <ul class="list-semana2-casa3">
+                  <li>O que pode estar causando o problema?</li>
+                  <li>O problema é pontual ou recorrente?</li>
+                  <li>É natural, humano ou misto?</li>
                 </ul>
               </li>
             </ol>
           </div>
 
-          <div class="casa3-content-titulo" style="margin-top: 65px;">
+          <div class="casa3-content-titulo">
             <h3>Use este espaço para registrar a sua atividade</h3>
           </div>
 
-          <textarea class="casas-text-area" name="" id="" placeholder="A notícia escolhida foi..."></textarea>
+          <textarea class="casas-text-area" name="" id="" placeholder="O elemento geológico observado foi..."></textarea>
 
-          <div class="divisao">
+          <div class="divisao" style="margin: 60px 0;">
             <img src="assets/arquivos_gerais_semanas/divisao.png" alt="">
           </div>
 
-          <!--
+          
           <div class="reflexao-casa3-box">
             <img src="assets/arquivos_gerais_semanas/pensante-casa3.png" alt="">
             <div class="reflexao-casa3-content">
               <h4>Pergunta de reflexão</h4>
-              <p>Como diferentes formas de conhecimento ajudam a compreender esse fenômeno?</p>
+              <p>Que soluções sustentáveis poderiam ser aplicadas a este problema? </p>
             </div>
           </div>
-          -->
+          
 
-          <div class="casa-info-box" style="border-radius: 30px 30px 0 30px; margin-top: 0;">  
+          <div class="casa-info-box" style="border-radius: 30px 30px 0 30px; margin-top: 60px; margin-bottom: 20px;">  
             <div class="icone-balao-container">
               <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
             </div>
 
             <div class="casa-info-content">
-              <p style="margin-left: 3%;"><b>Ótimo!</b> Registrar assim te ajuda a comparar discursos e compreender por que certos temas geram conflito e como podemos trabalhar isso com respeito na escola.</p>
+              <p style="margin-left: 3%; width: 91%;">Soluções sustentáveis podem começar pequenas — <b>reciclar, reorganizar, informar, criar campanhas, envolver a comunidade</b>. Toda mudança começa com uma boa pergunta!</p>
 
-              <img style="width: 25%; transform: scaleX(-1);" src="assets/Semana1/lumi-semana1.png" alt="">
+              <img class="icone-lumi-box" style="transform: scaleX(-1) rotate(2deg);" src="assets/Semana5/lumi-semana5.png" alt="">
             </div>
           </div>
           
         </div>
 
-        <!-- SEMANA 3 - CASA 4 -->
+        <!-- SEMANA 5 - CASA 4 -->
         <div class="casa-content" id="casa4">
 
           <div class="titulo-casa4-container">
@@ -325,11 +337,11 @@
           <div class="left-alignment paragrafo-solto">
             <p><b>Escreva:</b></p>
             <ul>
-              <li>o que mais chamou sua atenção;</li>
-              <li>os conhecimentos adquiridos;</li>
-              <li>as conexões com os conteúdos estudados na disciplina.</li>
+              <li>O que mais chamou atenção no local</li>
+              <li>Conhecimentos adquiridos</li>
+              <li>Relações com os conteúdos de Ciências e com a BNCC</li>
+              <li>Possíveis causas e consequências identificadas</li>
             </ul>
-            <p>Você pode escrever ou organizar suas ideias em mapas, esquemas, setas, desenhos ou quadros.</p>
           </div>
 
           <textarea class="casas-text-area casa4-text-area" name="" id="" placeholder="O que mais chamou minha atenção..."></textarea>
@@ -340,29 +352,31 @@
             </div>
             
             <div class="casa-info-content">
-              <img style="transform: rotate(7deg)" src="assets/Semana1/lumi-semana1.png" alt="">
-              <p class="info-content-casa4-5"><b>Ciência e religião não precisam ser inimigas,</b> mas ocupam lugares diferentes na forma de explicar o mundo. O que você descobriu sobre isso?</p>
+              <img class="icone-lumi-box" style="transform: rotate(-7deg)" src="assets/Semana5/lumi-semana5.png" alt="">
+              <p class="info-content-casa4-5"><b>Observar o ambiente é um ato científico e cidadão.</b> O que você descobriu sobre o lugar onde vive?</p>
             </div>
           </div>
           
         </div>
 
-        <!-- SEMANA 3 - CASA 5 -->
+        <!-- SEMANA 5 - CASA 5 -->
         <div class="casa-content" id="casa5">
 
           <span class="titulo-casa">Aplicação prática</span>
 
           <div class="left-alignment paragrafo-solto">
             <p>Reflita: <b>como essa experiência pode inspirar práticas para EI e EF I?</b></p>
-            <p style="margin-top: 20px;">Possíveis caminhos:</p>
+            <p style="margin-top: 20px;">Algumas sugestões:</p>
           </div>
 
           <div class="casa-box" style="justify-content: left;">
             <ul class="lista-casa5">
-              <li>Leitura e conversa sobre diferentes explicações para fenômenos naturais</li>
-              <li>Rodas de diálogo sobre respeito à diversidade de crenças atividades que diferenciem opiniões, tradições e evidências</li>
-              <li>Contação de histórias de diferentes culturas sobre a origem do mundo, seguida de observação da natureza</li>
-              <li>Experiências simples que mostrem como as crianças podem “testar ideias”</li>
+              <li>Jogos de separação de resíduos</li>
+              <li>Observação de plantas resistentes/poluídas</li>
+              <li>Experiências com filtragem de água (simulada)</li>
+              <li>Criação de cartazes sobre cuidados com o ambiente</li>
+              <li>Projetos simples de redução de resíduos na escola</li>
+              <li>Rodas de conversa sobre “o que podemos fazer em casa”</li>
             </ul>
           </div>
 
@@ -377,17 +391,17 @@
             </div>
             
             <div class="casa-info-content">
-              <img style="transform: rotate(7deg)" src="assets/Semana1/lumi-semana1.png" alt="">
-              <p class="info-content-casa4-5"><b>A diversidade faz parte do mundo — e da escola.</b> <br> Como você ajudaria suas futuras crianças a entender que as pessoas podem pensar diferente e  ainda assim aprender juntas?</p>
+              <img class="icone-lumi-box" style="transform: rotate(0deg)" src="assets/Semana5/lumi-semana5.png" alt="">
+              <p class="info-content-casa4-5"><b>As crianças adoram cuidar do planeta!</b> Que atividade você criaria para que elas também façam parte dessa missão?</p>
             </div>
           </div>
           
         </div>
 
-        <!-- SEMANA 3 - CASA 6 -->
+        <!-- SEMANA 5 - CASA 6 -->
         <div class="casa-content" id="casa6">
           <span class="titulo-casa" id="tituloCasa6">Conclusão da Trilha</span>
-          <p class="texto-conclusao-trilha" id="textoCasa6">Jornada “<span class="titulo-conclusao"><b>Ciência e Religião: Paradigmas em Confronto</b> – Rotas do Diálogo e do Conflito</span>” concluída!</p>
+          <p class="texto-conclusao-trilha" id="textoCasa6">Jornada “<span class="titulo-conclusao"><b>O ambiente e a relação com a ciência e a tecnologia –</b> Missão Sustentabilidade em Ação</span>” concluída!</p>
           <button class="botao-carimbo-trilha" id="botaoCarimbo">Receber carimbo</button>
 
           <!-- Última Tela -->
@@ -397,18 +411,18 @@
             </div>
 
             <div class="left-alignment paragrafo-solto">
-              <p class="marked-text-ultima-tela">Você concluiu a Trilha da Semana 3!</p>
-              <p style="margin-top: 5px;">Nesta etapa, refletiu sobre as relações entre Ciência e Religião ao longo da história — ora em conflito, ora em diálogo — e como essas diferentes formas de compreender o mundo atravessam nossa sociedade e chegam à escola.</p>
+              <p class="marked-text-ultima-tela">Você finalizou a Trilha da Semana 5!</p>
+              <p style="margin-top: 5px;">Nesta etapa, refletiu sobre os desafios ambientais contemporâneos e o papel da ciência e da tecnologia tanto na origem quanto na solução dos problemas ambientais.</p>
             </div>
 
             <div class="casa-info-box casa-info-box-ultima-tela" style="border-radius: 30px 30px 30px 30px; margin-top: 60px; margin-bottom: 20px;">    
               <div class="casa-info-content" style="justify-content: flex-start;">
-                <p style="margin: 8px 0 0 5%;"><b>Excelente trabalho!</b> Agora, prepare-se: na próxima trilha vamos colocar os pés no chão — de verdade — para entender como a Terra se move e se transforma.</p>
+                <p style="margin: 8px 0 0 5%;"><b>Excelente trabalho!</b> Na próxima trilha, vamos viajar para o mundo microscópico e descobrir como a vida funciona por dentro.</p>
               </div>
 
               <!-- Container específico para a imagem -->
               <div class="imagem-container">
-                <img class="lumi-ultima-tela" src="assets/Semana1/lumi-ultima-tela.png" alt="">
+                <img class="lumi-ultima-tela" src="assets/Semana5/lumi-ultima-tela.png" alt="">
               </div>
             </div>
           </div>
@@ -437,7 +451,7 @@
           Concluir
         </button>
         <!-- Trocar para a semana correspondente -->
-        <img src="assets/Semana1/lumi-ultima-tela.png" alt="">
+        <img src="assets/Semana5/lumi-ultima-tela.png" alt="">
       </div>
 
       <div class="buttons-conclusao-container">
