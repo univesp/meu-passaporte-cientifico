@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="assets/fb-share.png">
+  <meta name="author" content="Univesp">
+
+  <meta name="description" property="og:description"
+  content="">
+
+  <title>Univesp | Meu Passaporte Científico</title>
+
+  <link rel="shortcut icon" href="https://apps.univesp.br/common/favicon.ico" type="image/x-icon"/>
+
+  <!-- Arquivos Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+  <!-- Ícones por Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <!-- Ícones por Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Tipografia institucional por Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Barlow:300,400,700|Open+Sans:400,400i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Compartilhamento por jsSocials -->
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-minima.css" />
+
+  <!-- Animate CSS. Descomente se for utilizar. Caso contrário, remova. -->
+  <!-- <link rel="stylesheet" href="https://apps.univesp.br/common/animate.css"> -->
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="https://apps.univesp.br/common/rea-geral-2.1.css">
+  <!-- <link rel="stylesheet" href="../common/rea-geral-2.1.css">   -->
+  <link rel="stylesheet" href="stylesheets/nav_footer.css">
+  <link rel="stylesheet" href="stylesheets/global.css">
+  <link rel="stylesheet" href="stylesheets/semanas.css">
+  <link rel="stylesheet" href="stylesheets/semana6.css"> <!-- Trocar id para a semana correspondente -->
+</head>
+
+<body class="d-flex flex-column">
+
+  <div id="loading-screen" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+  ">
+    <div style="text-align: center; color: white;">
+      <!-- Trocar para a semana correspondente -->
+      <img src="assets/Semana6/lumi-ultima-tela.png" alt="Lumi" style="width: 150px; animation: pulse 1s infinite;">
+      <p style="margin-top: 20px; font-family: 'Nunito', sans-serif; font-size: 20px;">Carregando sua jornada...</p>
+    </div>
+  </div>
+
+<style>
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+</style>
+
+  <!-- Utilizar essa DIV caso o REA não se adapte a todos os tamanhos de tela -->
+  <!-- <div class="esconder-tela-pequena"> -->
+
+  <!-- Menu -->
+  <!--///////////////////////////////////////////////////////////////
+  Classe para nav
+  - padrão => header estático
+  - class="header-dinamico" => header possui posição fixa e é mostrado apenas quando a página está no topo (necessário ajustar padding ou margin superior e inferior do main).
+  //////////////////////////////////////////////////////////////////-->
+  <!-- <nav class="header-dinamico"> -->
+    <!--
+  <nav>
+    <div class="container">
+      
+      <div class="logo">
+        <a class="pularNavegacao" href="#conteudoPrincipal">Pular para Conteúdo Principal</a>
+        <a href="https://univesp.br/" target="_blank">
+          <img src="https://apps.univesp.br/common/traco-negativa.svg" alt="Link para site institucional. Logotipo da universidade formado pela palavra Univesp, sendo a letra V estilizada.">
+          
+        </a>
+      </div>
+     
+      <ul class="nav justify-content-end">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons" aria-label="Opções de Compartilhamento">share</i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="sharing"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  -->
+
+  <!-- Conteúdo -->
+  <main id="conteudoPrincipal">
+
+    <div class="titulo-semana-container">
+
+      <div class="semana-titulo-container">
+        <div class="semana-id">
+          <!-- Trocar para a semana correspondente -->
+          <span>Semana 6</span>
+        </div>
+        <div class="semana-titulo">
+          <span>Vida microscópica e Biologia molecular – Jornada pelo Mundo Microscópico</span>
+        </div>
+      </div>
+
+      <div class="bullets">
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+        <div class="bullet-item"></div>
+      </div>
+
+    </div>
+
+    <div class="container">
+      <!-- Seu conteúdo -->
+
+      <div class="semana-content-box" id="semana6"> <!-- Trocar id para a semana correspondente -->
+
+        <!-- SEMANA 6 - CASA 1 -->
+        <div class="casa-content" id="casa1">
+          <span class="titulo-casa" style="color: #2C1708;">Escolha seu destino</span>
+          <p class="subtitulo-casa" style="color: #2C1708;">Você deve selecionar um local, pode ser uma visita  <span class="subtitulo-mark">virtual</span> ou <span class="subtitulo-mark">presencial</span></p>
+
+          <div class="casa-box">
+            <img src="assets/Semana6/pin-semana-6.svg" alt=""> <!-- Trocar id para a semana correspondente -->
+            <ul class="lista-casa1-semana1">
+              <li>Farmácia ou mercado para observar rótulos com informações sobre transgênicos.</li>
+              <li>Feira orgânica para comparar alimentos.</li>
+            </ul>
+          </div>
+
+          <div class="alternativas-virtuais-container">
+            <h3>Alternativas virtuais</h3>
+            <ul class="lista-alternativas-virtuais">
+              <li>Laboratórios virtuais de biologia (LabXchange) <a target="_blank" href="https://www.labxchange.org/">LINK</a></li>
+              <li>Simulações em Genética e Evolução (PhET) <a target="_blank" href="https://phet.colorado.edu/en/simulations/natural-selection">LINK</a></li>
+            </ul>
+          </div>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img class="icone-lumi-box" src="assets/Semana6/lumi-semana6.png" alt="">
+              <p><b>Nesta trilha, vamos enxergar o invisível!</b> <br> A vida tem códigos escondidos — e muitos deles aparecem nos alimentos que consumimos todos os dias.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEMANA 6 - CASA 2 -->
+        <div class="casa-content" id="casa2" >
+          <div class="titulo-casa2">
+            <img src="assets/arquivos_gerais_semanas/passaporte.png" alt="">
+            <span class="titulo-casa" style="color: #2C1708;">Passaporte</span>
+          </div>
+
+          <div class="casa2-form-secao1">
+            <div class="formulario input-nome-aluno">
+              <h3>Nome do Aluno(a)</h3>
+              <input type="text" placeholder="Digite seu nome completo...">
+            </div>
+
+            <div class="formulario input-local">
+              <h3>Local</h3>
+              <input type="text" placeholder="Digite o nome do local que você visitou...">
+            </div>
+          </div>
+
+          <div class="casa2-form-secao2" style="margin-top: 40px;">
+            <div class="formulario checkIn-foto">
+              <h3>Check-in em <span class="data-checkIn"></span></h3>
+              <div class="foto-local">
+                <span>Foto do <br> Local</span>
+              </div>
+            </div>
+
+            <div class="formulario descricao-local">
+              <h3>Descrição do local</h3>
+              <textarea name="" id="" placeholder="Escreva uma descrição do local que você visitou..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEMANA 5 - CASA 3 -->
+        <div class="casa-content" id="casa3">
+          <div class="titulo-casa3">
+            <img src="assets/arquivos_gerais_semanas/atividade.png" alt="">
+            <span class="titulo-casa">Atividade do Passaporte</span>
+          </div>
+
+          <div class="casa3-content-titulo" style="margin-top: 70px;">
+            <h3>Tarefa</h3>
+          </div>
+
+          <div class="left-alignment">
+            <p><b>Analisar um alimento industrializado e identificar elementos ligados à biotecnologia.</b></p>
+          </div>
+
+          <div class="left-alignment">
+            <p>Exemplos: presença do símbolo de transgênico, ingredientes modificados, aditivos, processos de conservação ou fermentação, ingredientes enriquecidos etc.</p>
+          </div>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img class="icone-lumi-box" style="transform: rotate(-7deg);" src="assets/Semana6/lumi-semana6.png" alt="">
+              <p><b>A Biologia Molecular está presente em muitos dos alimentos que consumimos.</b> Vamos aprender a ‘ler’ essas pistas escondidas nos rótulos?</p>
+            </div>
+          </div>
+
+          <div class="casa3-content-titulo">
+            <h3>Como realizar a análise do alimento industrializado </h3>
+          </div>
+
+          <div class="left-alignment">
+            <ol>
+              <li class="ol-list-items">
+                <span class="title-ol-lists">Escolha o alimento.</span> <span class="title-ol-lists" style="font-weight: 400;">Pode ser:</span>
+                <ul class="list-semana2-casa3">
+                  <li>óleo de soja</li>
+                  <li>milho enlatado</li>
+                  <li>salgadinhos de milho</li>
+                  <li>biscoitos</li>
+                  <li>leites vegetais</li>
+                  <li>ração animal (se quiser ampliar o olhar)</li>
+                  <li>qualquer alimento que traga o símbolo de transgênico</li>
+                </ul>
+              </li>
+
+              <li class="ol-list-items">
+                <span class="title-ol-lists">Observe o rótulo e registre:</span>
+                <ul class="list-semana2-casa3">
+                  <li>Nome do produto</li>
+                  <li>Marca</li>
+                  <li>Lista de ingredientes</li>
+                  <li>Presença ou ausência do símbolo T (transgênico)</li>
+                  <li>Menções a “contém ingredientes geneticamente modificados”</li>
+                  <li>Informações sobre aditivos, enriquecimentos ou processos biotecnológicos</li>
+                  <li>Dados do fabricante</li>
+                </ul>
+              </li>
+
+              <li class="ol-list-items">
+                <span class="title-ol-lists">Analise como o alimento pode estar ligado à biotecnologia.</span> <span class="title-ol-lists" style="font-weight: 400;">Considere:</span>
+                <ul class="list-semana2-casa3">
+                  <li>Plantas geneticamente modificadas (soja, milho, canola)</li>
+                  <li>Processos industriais envolvendo microrganismos (fermentação, enzimas)</li>
+                  <li>Uso de genes específicos para resistência a pragas</li>
+                  <li>Estratégias para aumentar rendimento ou durabilidade</li>
+                </ul>
+              </li>
+
+              <li class="ol-list-items">
+                <span class="title-ol-lists">Faça conexões com seu cotidiano e com a sala de aula</span>
+                <ul class="list-semana2-casa3">
+                  <li>Você já sabia dessa informação?</li>
+                  <li>Esse produto é comum na sua família?</li>
+                  <li>Como discutir isso com crianças pequenas de forma acessível?</li>
+                  <li>Qual cuidado ético, ambiental ou alimentar pode surgir dessa análise?</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+
+          <div class="casa3-content-titulo">
+            <h3>Use este espaço para registrar a sua atividade</h3>
+          </div>
+
+          <textarea class="casas-text-area" name="" id="" placeholder="O alimento industrializado analisado foi..."></textarea>
+
+          <div class="divisao" style="margin: 60px 0;">
+            <img src="assets/arquivos_gerais_semanas/divisao.png" alt="">
+          </div>
+
+          
+          <div class="reflexao-casa3-box">
+            <img src="assets/arquivos_gerais_semanas/pensante-casa3.png" alt="">
+            <div class="reflexao-casa3-content">
+              <h4>Pergunta de reflexão</h4>
+              <p>Como a biotecnologia influencia a produção e o consumo de alimentos?</p>
+            </div>
+          </div>
+          
+
+          <div class="casa-info-box" style="border-radius: 30px 30px 0 30px; margin-top: 60px; margin-bottom: 20px;">  
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+
+            <div class="casa-info-content">
+              <p style="margin-left: 3%; width: 72%;"><b>A biotecnologia pode resolver problemas, mas também traz dúvidas e desafios.</b> Entender como os alimentos são produzidos é parte importante da educação científica!</p>
+
+              <img class="icone-lumi-box" style="transform: scaleX(-1) rotate(2deg);" src="assets/Semana6/lumi-semana6.png" alt="">
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- SEMANA 6 - CASA 4 -->
+        <div class="casa-content" id="casa4">
+
+          <div class="titulo-casa4-container">
+            <img src="assets/arquivos_gerais_semanas/lampada.png" alt="">
+            <div class="casa4-titulo-text">
+              <span class="titulo-casa">Aprendizado</span>
+              <span class="subtitulo-casa4">O que aprendi com a visita?</span>
+            </div>
+          </div>
+
+          <div class="left-alignment paragrafo-solto">
+            <p><b>Escreva:</b></p>
+            <ul>
+              <li>O que mais chamou sua atenção</li>
+              <li>Novos conhecimentos obtidos</li>
+              <li>Relações com os conteúdos da disciplina</li>
+              <li>Percepções sobre transgênicos, genética e biotecnologia</li>
+            </ul>
+          </div>
+
+          <textarea class="casas-text-area casa4-text-area" name="" id="" placeholder="O que mais chamou minha atenção..."></textarea>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img class="icone-lumi-box" style="transform: rotate(-7deg)" src="assets/Semana6/lumi-semana6.png" alt="">
+              <p class="info-content-casa4-5"><b>A vida é feita de moléculas — e algumas delas mudam com a ajuda da ciência.</b> O que isso te fez pensar?</p>
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- SEMANA 6 - CASA 5 -->
+        <div class="casa-content" id="casa5">
+
+          <span class="titulo-casa">Aplicação prática</span>
+
+          <div class="left-alignment paragrafo-solto">
+            <p>Reflita: <b>como essa experiência pode inspirar práticas para EI e EF I?</b></p>
+            <p style="margin-top: 20px;">Algumas sugestões:</p>
+          </div>
+
+          <div class="casa-box" style="justify-content: left;">
+            <ul class="lista-casa5">
+              <li>Jogo de “detetive dos rótulos” (mediado pelo professor)</li>
+              <li>Comparação de frutas naturais e alimentos embalados</li>
+              <li>Mini-investigação sobre o que tem no lanche da turma</li>
+              <li>Experiências com fermentação (pão, iogurte — sempre com segurança)</li>
+              <li>Roda de conversa sobre alimentos “da natureza” e “da indústria”</li>
+              <li>Desenhos ou mapas que mostrem a cadeia do alimento até chegar à mesa</li>
+            </ul>
+          </div>
+
+          <div class="left-alignment paragrafo-solto">
+            <p>Escreva suas ideias, <b>mesmo que ainda estejam em rascunho.</b></p>
+            <textarea class="casas-text-area" style="height: 192px; margin-top: 12px;" name="" id="" placeholder="Digite aqui suas ideias..."></textarea>
+          </div>
+
+          <div class="casa-info-box">
+            <div class="icone-balao-container">
+              <img class="icone-balao" src="assets/arquivos_gerais_semanas/icone_balao_lumi.png" alt="">
+            </div>
+            
+            <div class="casa-info-content">
+              <img class="icone-lumi-box" style="transform: rotate(0deg)" src="assets/Semana6/lumi-semana6.png" alt="">
+              <p class="info-content-casa4-5"><b>As crianças adoram investigar o mundo dos alimentos!</b> Pensando nisso, qual  ideia relacionada ao tema — como observar o que a turma traz no lanche,  comparar rótulos ou explorar de onde vem cada alimento — você poderia transformar em uma prática pedagógica?</p>
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- SEMANA 6 - CASA 6 -->
+        <div class="casa-content" id="casa6">
+          <span class="titulo-casa" id="tituloCasa6">Conclusão da Trilha</span>
+          <p class="texto-conclusao-trilha" id="textoCasa6">Jornada “<span class="titulo-conclusao"><b>Vida microscópica e Biologia molecular –</b> Jornada pelo Mundo Microscópico</span>” concluída!</p>
+          <button class="botao-carimbo-trilha" id="botaoCarimbo">Receber carimbo</button>
+
+          <!-- Última Tela -->
+          <div class="casa6-ultima-tela">
+            <div class="titulo-casa6-container">
+              <span class="titulo-casa titulo-ultima-tela" style="color: #000;">Parabéns!</span>
+            </div>
+
+            <div class="left-alignment paragrafo-solto">
+              <p class="marked-text-ultima-tela">Parabéns por concluir a Trilha da Semana 6!</p>
+              <p style="margin-top: 5px;">Prepare-se, viajante científico! Na próxima trilha, vamos falar de ética, limites, escolhas e responsabilidades da ciência moderna.</p>
+
+              <p style="margin-top: 20px;">Agora, siga para a Semana 7!</p>
+            </div>
+
+            <div class="casa-info-box casa-info-box-ultima-tela" style="border-radius: 30px 30px 30px 30px; margin-top: 60px; margin-bottom: 20px;">    
+              <div class="casa-info-content" style="justify-content: flex-start;">
+                <p style="margin: 8px 0 0 5%;"><b>Prepare-se, viajante científico!</b> Na próxima trilha, vamos falar de ética, limites, escolhas e responsabilidades da ciência moderna.</p>
+              </div>
+
+              <!-- Container específico para a imagem -->
+              <div class="imagem-container">
+                <img class="lumi-ultima-tela" src="assets/Semana6/lumi-ultima-tela.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="passaporte-container">
+        <img src="assets/arquivos_gerais_semanas/passaporte.png" alt="Passaporte em branco">
+        
+        <div class="carimbos-esquerda">
+          <img class="carimbo" src="assets/Semana1/carimbo-semana-1.png" id="carimbo1" alt="Carimbo Semana 1">
+          <img class="carimbo" src="assets/Semana2/carimbo-semana-2.png" id="carimbo2" alt="Carimbo Semana 2">
+          <img class="carimbo" src="assets/Semana3/carimbo-semana-3.png" id="carimbo3" alt="Carimbo Semana 3">
+          <img class="carimbo" src="assets/Semana4/carimbo-semana-4.png" id="carimbo4" alt="Carimbo Semana 4">
+        </div>
+        
+        <div class="carimbos-direita">
+          <img class="carimbo" src="assets/Semana5/carimbo-semana-5.png" id="carimbo5" alt="Carimbo Semana 5">
+          <img class="carimbo" src="assets/Semana6/carimbo-semana-6.png" id="carimbo6" alt="Carimbo Semana 6">
+          <img class="carimbo" src="assets/Semana7/carimbo-semana-7.png" id="carimbo7" alt="Carimbo Semana 7">
+        </div>
+      </div>
+
+      <div class="botao-conclusao-trilha-container">
+        <button class="botao-conclusao-trilha">
+          Concluir
+        </button>
+        <!-- Trocar para a semana correspondente -->
+        <img src="assets/Semana6/lumi-ultima-tela.png" alt="">
+      </div>
+
+      <div class="buttons-conclusao-container">
+        <button>Recomeçar trilha</button>
+        <button>Voltar para as jornadas</button>
+        <button>Meu passaporte</button>
+      </div>
+
+      <div class="arrows-container">
+        <img src="assets/arquivos_gerais_semanas/seta-esquerda-desativa.svg" alt="">
+
+        <!-- Trocar para a semana correspondente -->
+        <img src="assets/Semana6/seta-direita-ativa.svg" alt="">
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- RODAPÉ -->
+  <!--//////////////////////////////////////////////////////
+  Classes prontas p/ footer (podem ser combinadas):
+  padrão => texto e contornos em cinza
+  class = "black" => texto e contornos em preto
+  class = "negativo" => texto e contornos em branco, sobre fundo escuro
+  class = "transparente" => fundo transparente (necessário ajustar cor dos ícones de compartilhamento nos círculos, para bater com a cor de fundo)
+  /////////////////////////////////////////////////////////-->
+  <!-- <footer class="black"> -->
+  <!-- <footer class="negativo"> -->
+  <!-- <footer class="transparente"> -->
+  <!-- <footer class="transparente black"> -->
+  <!-- <footer class="transparente negativo"> -->
+  <footer id="footer">
+    <!-- components/footer.js -->
+  </footer>
+  <!-- Fim do rodapé -->
+
+  <!-- Fim da div .esconder-tela-pequena
+  Utilizar essa div caso o REA não se adapte a todos os formatos de tela -->
+  <!-- </div> -->
+
+  <!-- //////////////////////////////////////////////////////////
+  AVISO =+960px
+  Utilizar caso o REA possua limitações quanto aos tamanhos de tela
+  Caso contrário, deletar
+  ///////////////////////////////////////////////////////////////-->
+  <!-- <div class= "container d-lg-none text-center">
+    <div class="container">
+      <a href="https://univesp.br/" target="_blank">
+        <img src="https://apps.univesp.br/common/logo-univesp-positivo.svg" alt="Logo da Univesp" height="47px" width="135px" class='img-responsive center-block' style="margin-top:4rem">
+      </a>
+    </div>
+    <img src='https://apps.univesp.br/common/aviso-tela.gif' alt="Computador Animado" height="117px" width="160px" class='img-responsive center-block' style="margin-top:3rem">
+    <div style="margin-top:.5rem">
+      <p>
+        <font style=font-family:"Barlow" color="#3b78d1" 'text-center' size="10rem"><b>OPS!</b></font>
+      </p>
+      <p>
+        <font style=font-family:"Verdana" "text-center" size="3rem">Visualize este recurso em um computador, em janela com largura mínima de 992px.</font>
+      </p>
+    </div>
+  </div> -->
+
+  <!-- CRÉDITOS -->
+  <div class="modal fade" id="creditos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- components/creditos.js -->
+  </div>
+
+  <!-- Arquivos Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://apps.univesp.br/common/jquery-ui-touch-punch.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+  <!-- jsSocials -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+  <script>
+    var share = $(".sharing");
+    var page_title = $(document).attr('title');
+    var page_url = window.location.href;
+    share.jsSocials({
+      shares: [
+        {
+          share: "facebook",
+          logo: "fab fa-facebook-f",
+        },
+        {
+          share: "twitter",
+          logo: "fab fa-twitter",
+        },
+        {
+          share: "whatsapp",
+          logo: "fab fa-whatsapp",
+        },
+      ],
+      url: page_url,
+      text: 'Confira o REA ' + page_title + '.',
+      showLabel: false,
+      showCount: false,
+      shareIn: "popup",
+    });
+  </script>
+
+   <!-- Componentes -->
+   <script type="text/javascript" src="components/creditos.js"></script>
+   <script type="text/javascript" src="components/footer.js"></script>
+ 
+    <!-- Custom JS -->
+    <script type="text/javascript" src="javascripts/events-components.js"></script>
+    <script type="text/javascript" src="javascripts/modal-passaporte.js"></script>
+    <script type="text/javascript" src="javascripts/events-semanas.js"></script>
+    
+
+  <!-- MathJax. Descomente se for utilizar. Caso contrário, remova. -->
+  <!-- <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+  
+
+</body>
+
+</html>
