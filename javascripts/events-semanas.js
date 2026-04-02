@@ -157,8 +157,19 @@ document.addEventListener('DOMContentLoaded', function() {
         modoConclusaoAtivo = false;
     }
   
-    // Função para ativar o modo de conclusão (mostrar apenas a casa 6 com última tela)
+    // Função para ativar o modo de conclusão
     function ativarModoConclusao() {
+        // Se for a semana 7, redirecionar para encerramento.html e interromper a função
+        if (numeroSemana === 7) {
+            // Marcar a semana 7 como concluída no localStorage
+            semanaConcluida = true;
+            salvarConclusaoStorage(true);
+
+            // Redirecionar para a página de encerramento
+            window.location.href = 'encerramento.html';
+            return; // Sai da função, não executa o código abaixo
+        }
+
         // Esconder todas as casas primeiro
         casas.forEach((casa, i) => {
             casa.style.display = 'none';
