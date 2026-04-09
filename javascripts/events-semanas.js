@@ -118,6 +118,52 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Função para salvar dados do usuário
+    function salvarDadosUsuario() {
+        try {
+            const dados = {
+                nomeAluno: document.getElementById('nomeAluno')?.value || '',
+                local: document.getElementById('localVisita')?.value || '',
+                dataCheckIn: document.querySelector('.data-checkIn')?.textContent || '',
+                descricaoLocal: document.getElementById('descricaoLocal')?.value || '',
+                atividade: document.getElementById('registroAtividade')?.value || '',
+                aprendizado: document.getElementById('registroAprendizado')?.value || '',
+                reflexoes: document.getElementById('registroReflexoes')?.value || '',
+                dataSalvamento: new Date().toISOString()
+            };
+            
+            // NÃO salvar a imagem para evitar estouro de cota
+            // A imagem será mantida apenas na memória durante a sessão
+            
+            localStorage.setItem(`${semanaId}Dados`, JSON.stringify(dados));
+            //console.log('Dados salvos (sem imagem):', semanaId);
+        } catch(e) {
+            console.error('Erro ao salvar:', e);
+        }
+    }
+        
+    // Função para carregar dados do usuário
+    function carregarDadosUsuario() {
+        try {
+            const dadosSalvos = localStorage.getItem(`${semanaId}Dados`);
+            if (!dadosSalvos) return;
+            
+            const dados = JSON.parse(dadosSalvos);
+            
+            document.getElementById('nomeAluno') && (document.getElementById('nomeAluno').value = dados.nomeAluno || '');
+            document.getElementById('localVisita') && (document.getElementById('localVisita').value = dados.local || '');
+            document.getElementById('descricaoLocal') && (document.getElementById('descricaoLocal').value = dados.descricaoLocal || '');
+            document.getElementById('registroAtividade') && (document.getElementById('registroAtividade').value = dados.atividade || '');
+            document.getElementById('registroAprendizado') && (document.getElementById('registroAprendizado').value = dados.aprendizado || '');
+            document.getElementById('registroReflexoes') && (document.getElementById('registroReflexoes').value = dados.reflexoes || '');
+            
+            // NÃO carregar a imagem - ela será perdida ao recarregar a página
+            // Isso é intencional para evitar estouro de cota
+        } catch(e) {
+            console.error('Erro ao carregar:', e);
+        }
+    }
   
     // Função para resetar o estado da Casa 6 (voltar ao normal)
     function resetarCasa6() {
@@ -159,6 +205,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Função para ativar o modo de conclusão
     function ativarModoConclusao() {
+        salvarDadosUsuario();
+
         // Se for a semana 7, redirecionar para encerramento.html e interromper a função
         if (numeroSemana === 7) {
             // Marcar a semana 7 como concluída no localStorage
@@ -576,6 +624,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
   
+    carregarDadosUsuario();
     // Inicializar tudo
     inicializarCarimbos();
     atualizarCarimbos();
