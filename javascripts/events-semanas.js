@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== IDENTIFICAR A SEMANA ATUAL =====
     const semanaId = semanaContentBox.id; // "semana1", "semana2", etc.
     const numeroSemana = parseInt(semanaId.replace('semana', ''));
-    //console.log(`Semana atual: ${numeroSemana}`);
     
     // Elementos da Casa 6 (sempre a última casa)
     const tituloCasa6 = document.getElementById('tituloCasa6');
@@ -40,12 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('carimbo7')
     ];
     
-    let casaAtual = 0; // Índice da casa atual (0 = casa1, 1 = casa2, etc)
-    let modoConclusaoAtivo = false; // Flag para controlar se está no modo de conclusão
+    let casaAtual = 0;
+    let modoConclusaoAtivo = false;
     
     // ===== FUNÇÕES DO LOCALSTORAGE =====
     const STORAGE_KEY = 'passaporte_carimbos';
-    const CONCLUSAO_KEY = `semana${numeroSemana}_concluida`; 
     
     // Carregar estado dos carimbos do localStorage
     function carregarCarimbosStorage() {
@@ -61,20 +59,23 @@ document.addEventListener('DOMContentLoaded', function() {
         return [false, false, false, false, false, false, false];
     }
     
-    // Carregar estado de conclusão da semana (AGORA DINÂMICO)
-    function carregarConclusaoStorage() {
-        const stored = localStorage.getItem(CONCLUSAO_KEY);
-        return stored === 'true';
-    }
-    
     // Salvar estado dos carimbos no localStorage
     function salvarCarimbosStorage() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(carimbosRecebidos));
     }
     
-    // Salvar estado de conclusão da semana (AGORA DINÂMICO)
-    function salvarConclusaoStorage(concluida) {
-        localStorage.setItem(CONCLUSAO_KEY, concluida);
+    // Função para carregar o status de conclusão da semana (agora lê dos dados)
+    function carregarConclusaoStorage() {
+        const dadosSalvos = localStorage.getItem(`${semanaId}Dados`);
+        if (dadosSalvos) {
+            try {
+                const dados = JSON.parse(dadosSalvos);
+                return dados.concluida === true;
+            } catch(e) {
+                return false;
+            }
+        }
+        return false;
     }
     
     // Estado dos carimbos (false = não recebido, true = recebido)
@@ -83,12 +84,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Verificações iniciais
     if (casas.length === 0) {
-        console.error('❌ Nenhuma casa encontrada! Verifique se as divs têm a classe "casa-content"');
+        console.error('❌ Nenhuma casa encontrada!');
         return;
     }
   
     if (bullets.length === 0) {
-        console.error('❌ Nenhum bullet encontrado! Verifique se as divs têm a classe "bullet-item"');
+        console.error('❌ Nenhum bullet encontrado!');
         return;
     }
   
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn(`Aviso: Número de casas (${casas.length}) diferente do número de bullets (${bullets.length})`);
     }
   
-    // Função para inicializar os carimbos (todos escondidos inicialmente)
+    // Função para inicializar os carimbos
     function inicializarCarimbos() {
         carimbos.forEach(carimbo => {
             if (carimbo) {
@@ -110,11 +111,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
   
-    // Função para atualizar a visibilidade dos carimbos baseado no estado
     function atualizarCarimbos() {
         carimbos.forEach((carimbo, index) => {
             if (carimbo && carimbosRecebidos[index]) {
-                carimbo.style.display = 'block'; // Mostrar carimbo recebido
+                carimbo.style.display = 'block';
             }
         });
     }
@@ -122,22 +122,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Função para salvar dados do usuário
     function salvarDadosUsuario() {
         try {
-            const dados = {
-                nomeAluno: document.getElementById('nomeAluno')?.value || '',
-                local: document.getElementById('localVisita')?.value || '',
-                dataCheckIn: document.querySelector('.data-checkIn')?.textContent || '',
-                descricaoLocal: document.getElementById('descricaoLocal')?.value || '',
-                atividade: document.getElementById('registroAtividade')?.value || '',
-                aprendizado: document.getElementById('registroAprendizado')?.value || '',
-                reflexoes: document.getElementById('registroReflexoes')?.value || '',
-                dataSalvamento: new Date().toISOString()
-            };
+            const dadosExistentes = localStorage.getItem(`${semanaId}Dados`);
+            let dados = dadosExistentes ? JSON.parse(dadosExistentes) : {};
             
-            // NÃO salvar a imagem para evitar estouro de cota
-            // A imagem será mantida apenas na memória durante a sessão
+            dados.nomeAluno = document.getElementById('nomeAluno')?.value || '';
+            dados.local = document.getElementById('localVisita')?.value || '';
+            dados.dataCheckIn = document.querySelector('.data-checkIn')?.textContent || '';
+            dados.descricaoLocal = document.getElementById('descricaoLocal')?.value || '';
+            dados.atividade = document.getElementById('registroAtividade')?.value || '';
+            dados.aprendizado = document.getElementById('registroAprendizado')?.value || '';
+            dados.reflexoes = document.getElementById('registroReflexoes')?.value || '';
+            dados.dataSalvamento = new Date().toISOString();
             
             localStorage.setItem(`${semanaId}Dados`, JSON.stringify(dados));
-            //console.log('Dados salvos (sem imagem):', semanaId);
         } catch(e) {
             console.error('Erro ao salvar:', e);
         }
@@ -158,44 +155,41 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('registroAprendizado') && (document.getElementById('registroAprendizado').value = dados.aprendizado || '');
             document.getElementById('registroReflexoes') && (document.getElementById('registroReflexoes').value = dados.reflexoes || '');
             
-            // NÃO carregar a imagem - ela será perdida ao recarregar a página
-            // Isso é intencional para evitar estouro de cota
+            // Carregar o status de conclusão
+            if (dados.concluida !== undefined) {
+                semanaConcluida = dados.concluida;
+            }
         } catch(e) {
             console.error('Erro ao carregar:', e);
         }
     }
   
-    // Função para resetar o estado da Casa 6 (voltar ao normal)
+    // Função para resetar o estado da Casa 6
     function resetarCasa6() {
         if (tituloCasa6) tituloCasa6.style.display = 'block';
         if (textoCasa6) textoCasa6.style.display = 'block';
         if (botaoCarimbo) botaoCarimbo.style.display = 'block';
         if (ultimaTelaCasa6) ultimaTelaCasa6.style.display = 'none';
         
-        // Mostrar passaporte novamente
         if (passaporteContainer && casaAtual === casas.length - 1) {
             passaporteContainer.style.display = 'flex';
             atualizarCarimbos();
         }
         
-        // Esconder container de botões de conclusão
         if (botoesConclusaoContainer) {
             botoesConclusaoContainer.style.display = 'none';
         }
         
-        // Mostrar botão de conclusão simples
         if (botaoConclusao) {
             botaoConclusao.style.display = 'flex';
             const botao = botaoConclusao.querySelector('button');
             if (botao) botao.textContent = 'Concluir';
         }
         
-        // Mostrar bullets container
         if (bulletsContainer) {
             bulletsContainer.style.display = 'flex';
         }
         
-        // Mostrar setas container
         if (setasContainer) {
             setasContainer.style.display = 'flex';
         }
@@ -207,29 +201,32 @@ document.addEventListener('DOMContentLoaded', function() {
     function ativarModoConclusao() {
         salvarDadosUsuario();
 
-        // Se for a semana 7, redirecionar para encerramento.html e interromper a função
-        if (numeroSemana === 7) {
-            // Marcar a semana 7 como concluída no localStorage
-            semanaConcluida = true;
-            salvarConclusaoStorage(true);
-
-            // Redirecionar para a página de encerramento
-            window.location.href = 'encerramento.html';
-            return; // Sai da função, não executa o código abaixo
+        // Marcar semana como concluída dentro do objeto de dados
+        const dadosSalvos = localStorage.getItem(`${semanaId}Dados`);
+        if (dadosSalvos) {
+            const dados = JSON.parse(dadosSalvos);
+            dados.concluida = true;
+            dados.dataConclusao = new Date().toISOString();
+            localStorage.setItem(`${semanaId}Dados`, JSON.stringify(dados));
         }
 
-        // Esconder todas as casas primeiro
+        semanaConcluida = true;
+
+        // Se for a semana 7, redirecionar para encerramento.html
+        if (numeroSemana === 7) {
+            window.location.href = 'encerramento.html';
+            return;
+        }
+
         casas.forEach((casa, i) => {
             casa.style.display = 'none';
         });
         
-        // Mostrar apenas a última casa (casa 6)
         const ultimaCasa = document.getElementById(`casa${casas.length}`);
         if (ultimaCasa) {
             ultimaCasa.style.display = 'flex';
         }
         
-        // Dentro da última casa, esconder elementos iniciais e mostrar última tela
         if (tituloCasa6) tituloCasa6.style.display = 'none';
         if (textoCasa6) textoCasa6.style.display = 'none';
         if (botaoCarimbo) botaoCarimbo.style.display = 'none';
@@ -241,54 +238,41 @@ document.addEventListener('DOMContentLoaded', function() {
               });
         } 
         
-        // Esconder passaporte
         if (passaporteContainer) {
             passaporteContainer.style.display = 'none';
         }
         
-        // Esconder botão de conclusão simples
         if (botaoConclusao) {
             botaoConclusao.style.display = 'none';
         }
         
-        // Mostrar container com os três botões
         if (botoesConclusaoContainer) {
             botoesConclusaoContainer.style.display = 'flex';
         }
         
-        // Esconder bullets container
         if (bulletsContainer) {
             bulletsContainer.style.display = 'none';
         }
         
-        // Esconder setas container
         if (setasContainer) {
             setasContainer.style.display = 'none';
         }
         
         modoConclusaoAtivo = true;
-        
-        // Salvar que a semana foi concluída
-        semanaConcluida = true;
-        salvarConclusaoStorage(true);
     }
   
-    // Função para atualizar o estado do botão de carimbo baseado nos carimbos recebidos
     function atualizarBotaoCarimbo() {
         if (!botaoCarimbo) return;
         
-        // Se estiver no modo conclusão, esconder botão de carimbo
         if (modoConclusaoAtivo) {
             botaoCarimbo.style.display = 'none';
             return;
         }
         
-        // Verificar se o carimbo da semana atual já foi recebido
         if (numeroSemana >= 1 && numeroSemana <= 7) {
             const indiceCarimbo = numeroSemana - 1;
             
             if (carimbosRecebidos[indiceCarimbo]) {
-                // Carimbo já recebido - desabilitar botão
                 botaoCarimbo.style.backgroundColor = '#818181';
                 botaoCarimbo.style.cursor = 'default';
                 botaoCarimbo.style.pointerEvents = 'none';
@@ -296,8 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 botaoCarimbo.textContent = 'Carimbo recebido';
                 botaoCarimbo.style.display = 'block';
             } else {
-                // Carimbo não recebido - habilitar botão
-                botaoCarimbo.style.backgroundColor = ''; // Volta ao original
+                botaoCarimbo.style.backgroundColor = '';
                 botaoCarimbo.style.cursor = 'pointer';
                 botaoCarimbo.style.pointerEvents = 'auto';
                 botaoCarimbo.style.opacity = '1';
@@ -308,52 +291,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
   
-    // Função para atualizar a visibilidade do botão de conclusão
     function atualizarBotaoConclusao(index) {
         if (!botaoConclusao) return;
         
-        // Verificar se está na última casa E se o carimbo da semana atual foi recebido
-        const carimboAtualRecebido = carimbosRecebidos[numeroSemana - 1]; // Carimbo da semana atual
+        const carimboAtualRecebido = carimbosRecebidos[numeroSemana - 1];
         
         if (index === casas.length - 1 && carimboAtualRecebido) {
-            botaoConclusao.style.display = 'flex'; // Mostrar botão
+            botaoConclusao.style.display = 'flex';
             
-            // Se a semana já foi concluída, ativar modo conclusão automaticamente
             if (semanaConcluida && !modoConclusaoAtivo) {
                 ativarModoConclusao();
             } else if (!semanaConcluida && modoConclusaoAtivo) {
                 resetarCasa6();
             }
         } else {
-            botaoConclusao.style.display = 'none'; // Esconder botão
-            // Se não estiver na última casa, resetar modo conclusão
+            botaoConclusao.style.display = 'none';
             if (modoConclusaoAtivo) {
                 resetarCasa6();
             }
         }
     }
   
-    // Função para mostrar/esconder o passaporte-container baseado na casa atual
     function atualizarVisibilidadePassaporte(index) {
         if (!passaporteContainer) return;
         
-        // Se estiver no modo conclusão, não mostrar passaporte
         if (modoConclusaoAtivo) {
             passaporteContainer.style.display = 'none';
             return;
         }
         
-        // Última casa
         if (index === casas.length - 1) {
-            passaporteContainer.style.display = 'flex'; // Mostrar na última casa
-            // Atualizar carimbos sempre que o passaporte for mostrado
+            passaporteContainer.style.display = 'flex';
             atualizarCarimbos();
         } else {
-            passaporteContainer.style.display = 'none'; // Esconder nas outras casas
+            passaporteContainer.style.display = 'none';
         }
     }
   
-    // Função para atualizar o padding da semana-content-box usando classes
     function atualizarPaddingSemanaBox(index) {
         const paddingClasses = [
             'casa1-padding',
@@ -371,7 +345,6 @@ document.addEventListener('DOMContentLoaded', function() {
         semanaContentBox.classList.add(`casa${index + 1}-padding`);
     }
   
-    // Função para mostrar uma casa específica
     function mostrarCasa(index) {
         if (index < 0 || index >= casas.length) {
             console.error(`❌ Índice inválido: ${index}`);
@@ -395,20 +368,18 @@ document.addEventListener('DOMContentLoaded', function() {
         atualizarPaddingSemanaBox(index);
         atualizarVisibilidadePassaporte(index);
         atualizarBotaoCarimbo();
-        atualizarBotaoConclusao(index); // Atualizar botão de conclusão
+        atualizarBotaoConclusao(index);
         atualizarSetas(index);
         
         casaAtual = index;
     }
   
-    // Função para atualizar estado das setas
     function atualizarSetas(index) {
         if (!setaEsquerda || !setaDireita) {
             console.warn('Setas não encontradas');
             return;
         }
         
-        // Caminho base para as setas ativas da semana atual
         const caminhoSetasAtivas = `assets/Semana${numeroSemana}/`;
         
         if (index === 0) {
@@ -416,31 +387,25 @@ document.addEventListener('DOMContentLoaded', function() {
             setaDireita.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
             setaEsquerda.style.opacity = '0.5';
             setaDireita.style.opacity = '1';
-            
             setaEsquerda.style.pointerEvents = 'none';
             setaDireita.style.pointerEvents = 'auto';
-            
         } else if (index === casas.length - 1) {
             setaEsquerda.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
             setaDireita.src = 'assets/arquivos_gerais_semanas/seta-direita-desativa.svg';
             setaEsquerda.style.opacity = '1';
             setaDireita.style.opacity = '0.5';
-            
             setaEsquerda.style.pointerEvents = 'auto';
             setaDireita.style.pointerEvents = 'none';
-            
         } else {
             setaEsquerda.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
             setaDireita.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
             setaEsquerda.style.opacity = '1';
             setaDireita.style.opacity = '1';
-            
             setaEsquerda.style.pointerEvents = 'auto';
             setaDireita.style.pointerEvents = 'auto';
         }
     }
   
-    // Função para navegar para a casa anterior
     function casaAnterior() {
         if (casaAtual > 0) {
             mostrarCasa(casaAtual - 1);
@@ -451,7 +416,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
   
-    // Função para navegar para a próxima casa
     function proximaCasa() {
         if (casaAtual < casas.length - 1) {
             mostrarCasa(casaAtual + 1);
@@ -481,7 +445,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         botaoCarimbo.disabled = true;
                         botaoCarimbo.textContent = 'Carimbo recebido';
                         
-                        // Atualizar botão de conclusão após receber carimbo
                         atualizarBotaoConclusao(casaAtual);
                     }
                 }
@@ -496,11 +459,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (botao) {
             botao.addEventListener('click', function() {
                 if (modoConclusaoAtivo) {
-                    // Se estiver no modo conclusão, voltar para o estado normal
                     resetarCasa6();
                     atualizarBotaoConclusao(casaAtual);
                 } else {
-                    // Ativar modo conclusão
                     ativarModoConclusao();
                 }
             });
@@ -512,21 +473,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (botaoRecomecar) {
         botaoRecomecar.addEventListener('click', function() {
             if (numeroSemana >= 1 && numeroSemana <= 7) {
-                const indiceCarimbo = numeroSemana - 1;
-                
-                // Restaurar semana_concluida para false no localStorage (USANDO A CHAVE DINÂMICA)
-                localStorage.setItem(CONCLUSAO_KEY, 'false');
-                
-                // Restaurar carimbo correspondente para false no localStorage
-                /*
-                if (carimbosRecebidos[indiceCarimbo]) {
-                    carimbosRecebidos[indiceCarimbo] = false;
-                    salvarCarimbosStorage();
-                }
-                */
-                
-                //console.log(`Semana ${numeroSemana} reiniciada!`);
-                
+                // Remover os dados da semana atual
+                localStorage.removeItem(`${semanaId}Dados`);
                 // Recarregar a página
                 location.reload();
             }
@@ -542,7 +490,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Evento para o botão "Meu passaporte"
-    // Código no arquivo: modal-passaporte.js
     const botaoMeuPassaporte = document.querySelector('.buttons-conclusao-container button:nth-child(3)');
     if (botaoMeuPassaporte) {
         botaoMeuPassaporte.addEventListener('click', function() {
@@ -550,7 +497,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
   
-    // Adicionar evento de clique nos bullets
+    // Eventos dos bullets
     bullets.forEach((bullet, index) => {
         bullet.addEventListener('click', function() {
             mostrarCasa(index);
@@ -561,12 +508,11 @@ document.addEventListener('DOMContentLoaded', function() {
         bullet.setAttribute('aria-label', `Ir para casa ${index + 1}`);
     });
   
-    // Adicionar evento de clique nas setas
+    // Eventos das setas
     if (setaEsquerda) {
         setaEsquerda.addEventListener('click', function() {
             casaAnterior();
         });
-        
         setaEsquerda.setAttribute('role', 'button');
         setaEsquerda.setAttribute('tabindex', '0');
         setaEsquerda.setAttribute('aria-label', 'Casa anterior');
@@ -576,13 +522,12 @@ document.addEventListener('DOMContentLoaded', function() {
         setaDireita.addEventListener('click', function() {
             proximaCasa();
         });
-        
         setaDireita.setAttribute('role', 'button');
         setaDireita.setAttribute('tabindex', '0');
         setaDireita.setAttribute('aria-label', 'Próxima casa');
     }
   
-    // Adicionar suporte para teclado
+    // Suporte para teclado
     document.addEventListener('keydown', function(e) {
         if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
             if (e.key === 'ArrowLeft') {
@@ -595,7 +540,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
   
-    // Suporte para tecla Enter nos bullets
     bullets.forEach((bullet, index) => {
         bullet.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -605,7 +549,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
   
-    // Suporte para tecla Enter nas setas
     if (setaEsquerda) {
         setaEsquerda.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -625,7 +568,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
     carregarDadosUsuario();
-    // Inicializar tudo
     inicializarCarimbos();
     atualizarCarimbos();
     
@@ -634,19 +576,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (botaoConclusao) {
-        botaoConclusao.style.display = 'none'; // Começa escondido
+        botaoConclusao.style.display = 'none';
     }
     
     if (botoesConclusaoContainer) {
-        botoesConclusaoContainer.style.display = 'none'; // Começa escondido
+        botoesConclusaoContainer.style.display = 'none';
     }
     
-    // Garantir que a última tela comece escondida
     if (ultimaTelaCasa6) {
         ultimaTelaCasa6.style.display = 'none';
     }
     
-    // SE A SEMANA JÁ FOI CONCLUÍDA, ATIVAR MODO CONCLUSÃO IMEDIATAMENTE
     if (semanaConcluida) {
         ativarModoConclusao();
     } else {
@@ -662,25 +602,21 @@ document.addEventListener('DOMContentLoaded', function() {
       const dia = String(hoje.getDate()).padStart(2, '0');
       const mes = String(hoje.getMonth() + 1).padStart(2, '0');
       const ano = hoje.getFullYear();
-      
       dataCheckIn.textContent = `${dia}/${mes}/${ano}`;
   }
   
   // Upload de imagem para a div .foto-local
   const fotoLocal = document.querySelector('.foto-local');
   if (fotoLocal) {
-      // Criar input file escondido
       const inputFile = document.createElement('input');
       inputFile.type = 'file';
       inputFile.accept = 'image/*';
       inputFile.style.display = 'none';
       document.body.appendChild(inputFile);
       
-      // Estado inicial (sem imagem)
       let temImagem = false;
-      const textoOriginal = fotoLocal.innerHTML; // Salvar texto original
+      const textoOriginal = fotoLocal.innerHTML;
       
-      // Criar botão de remover (X) - inicialmente escondido
       const btnRemover = document.createElement('button');
       btnRemover.innerHTML = '×';
       btnRemover.style.position = 'absolute';
@@ -702,52 +638,38 @@ document.addEventListener('DOMContentLoaded', function() {
       btnRemover.style.lineHeight = '1';
       btnRemover.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
       
-      // Adicionar botão à div
       fotoLocal.style.position = 'relative';
       fotoLocal.appendChild(btnRemover);
       
-      // Ao clicar na div (exceto no botão remover)
       fotoLocal.addEventListener('click', function(e) {
-          if (e.target === btnRemover) {
-              return;
-          }
-          
-          if (!temImagem) {
-              inputFile.click();
-          }
+          if (e.target === btnRemover) return;
+          if (!temImagem) inputFile.click();
       });
       
-      // Quando um arquivo for selecionado
       inputFile.addEventListener('change', function(e) {
           const file = e.target.files[0];
           if (file) {
               const reader = new FileReader();
-              
               reader.onload = function(event) {
                   fotoLocal.innerHTML = '';
                   fotoLocal.appendChild(btnRemover);
-                  
                   const img = document.createElement('img');
                   img.src = event.target.result;
                   img.style.width = '100%';
                   img.style.height = '100%';
                   img.style.objectFit = 'cover';
                   img.style.borderRadius = 'inherit';
-                  
                   fotoLocal.appendChild(img);
                   temImagem = true;
                   fotoLocal.style.border = 'none';
                   btnRemover.style.display = 'flex';
               };
-              
               reader.readAsDataURL(file);
           }
       });
       
-      // Evento para remover imagem
       btnRemover.addEventListener('click', function(e) {
           e.stopPropagation();
-          
           fotoLocal.innerHTML = textoOriginal;
           fotoLocal.style.border = '';
           fotoLocal.appendChild(btnRemover);

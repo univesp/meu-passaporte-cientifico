@@ -63,11 +63,49 @@
 }
 
 .botoes-inicio {
-  margin: 100px 0;
+  margin: 100px auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .botoes-inicio > button {
-  width: 100%;
+  width: 30%;
   padding: 0 50px;
   border-radius: 28px;
+}
+
+.button-encerramento-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-style {
+  font-family: "Nunito", sans-serif;
+  font-size: 24px;
+  width: 40%;
+  height: 74px;
+  border-radius: 50px;
+  background-color: #DD3A76;
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 0 #942C52;
+  border: none;
+  outline: none;
+}
+
+.button-style:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #942C52;
+  outline: none;
+}
+
+.button-style:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #942C52;
+  outline: none;
 }
