@@ -1,0 +1,117 @@
+.portfolio-title-container {
+  display: flex;
+  align-items: center;
+  gap: 0 10px;
+}
+
+.portfolio-title-container > h3 {
+  font-family: 'Oswald', sans-serif;
+  color: #FFF;
+  font-size: 36px;
+  margin-top: 10px;
+}
+
+.text-mark {
+  background-color: #DD3A76;
+  font-weight: bold;
+  padding: 3px;
+}
+
+.botoes-inicio > button {
+  width: 100%;
+}
+
+#portfolioButton {
+  width: 450px;
+}
+
+.botoes-portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px 40px;
+  margin-bottom: 50px;
+}
+
+.portfolio-button-item {
+  font-family: 'Nunito', sans-serif;
+  background-color: #FFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.semana-portfolio-container {
+  transition: background-image 0.3s ease;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding: 70px 0;
+}
+
+.semana-content-box {
+  width: 952px;
+  height: auto;
+  background-color: #FFF;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 0 70px 0;
+}
+
+.semana-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 30px;
+}
+
+.content-titulo {
+  text-align: left;
+  width: 100%;
+  max-width: 770px;
+  margin-top: 50px;
+  padding-left: 0;
+  display: flex;
+  align-items: center; 
+  gap: 0 12px; 
+  margin-bottom: 20px;
+}
+
+.content-titulo > h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+  margin: 0; 
+  white-space: nowrap;
+}
+
+.content-titulo::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  margin-top: 5px;
+}
+
+.textarea-portfolio {
+  font-family: 'Nunito', sans-serif;
+  width: 82%;
+  height: 265px;
+  background-color: #EAE3E3;
+  border-radius: 9px;
+  border: none;
+  outline: none;
+  padding: 20px;
+  font-size: 18px;
+  resize: none;
+}
+
+.portfolio-button-item.active {
+  background-color: #FFAB42;
+}
