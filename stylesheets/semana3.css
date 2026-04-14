@@ -18,7 +18,7 @@
 body {
   background-image: url(../assets/Semana3/bg_3.jpg);
   background-size: cover;
-  background-position: center;
+  /*background-position: center;*/
   background-repeat: no-repeat;
 }
 
