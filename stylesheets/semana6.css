@@ -28,7 +28,8 @@ nav .nav-link:focus,
 nav .nav-link:hover, 
 nav .nav-link[aria-expanded="true"],
 footer, 
-footer .sharing i {
+footer .sharing i,
+.data-desbloqueio {
   background-color: var(--cor-primaria) !important;
   color: var(--cor-branca);
 }

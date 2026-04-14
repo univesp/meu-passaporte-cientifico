@@ -18,10 +18,65 @@ document.addEventListener('DOMContentLoaded', function() {
     const botaoCarimbo = document.querySelector('.botao-carimbo-trilha');
     const botaoConclusao = document.querySelector('.botao-conclusao-trilha-container');
     const botoesConclusaoContainer = document.querySelector('.buttons-conclusao-container');
+    const conteudoBloqueado = document.querySelector('#conteudoBloqueado');
+    const conteudoDesbloqueado = document.querySelector('#conteudoDesbloqueado');
     
     // ===== IDENTIFICAR A SEMANA ATUAL =====
     const semanaId = semanaContentBox.id; // "semana1", "semana2", etc.
     const numeroSemana = parseInt(semanaId.replace('semana', ''));
+
+    // LÓGICA PARA BLOQUEIO / DESBLOQUEIO DE CONTEÚDO
+    // Datas de desbloqueio de cada semana
+    function dataBrasil(ano, mes, dia) {
+        return new Date(ano, mes - 1, dia);
+    }
+    
+    // Datas de desbloqueio de cada semana (Ano, Mês, Dia)
+    const datasDesbloqueio = [
+        dataBrasil(2026, 4, 14), // semana 1
+        dataBrasil(2026, 4, 15), // semana 2
+        dataBrasil(2026, 4, 28), // semana 3
+        dataBrasil(2026, 5, 5),  // semana 4
+        dataBrasil(2026, 5, 12), // semana 5
+        dataBrasil(2026, 5, 19), // semana 6
+        dataBrasil(2026, 5, 26)  // semana 7
+    ];
+    
+    // Data atual
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    
+    // Criar array baseado na data
+    let semanaDesbloqueada = datasDesbloqueio.map(dataDesbloqueio => {
+        dataDesbloqueio.setHours(0, 0, 0, 0);
+        return hoje >= dataDesbloqueio;
+    });
+
+    for (let i = 0; i < semanaDesbloqueada.length; i++) {
+
+       if(numeroSemana === i+1) {
+
+        // Insere a data no campo determinado no html no formato dd/mm
+        const dataSpan = document.querySelector('.data-desbloqueio');
+        if (dataSpan) {
+            const data = datasDesbloqueio[i];
+            const dia = data.getDate().toString().padStart(2, '0');
+            const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+            dataSpan.innerText = `${dia}/${mes}`;
+        }
+
+        // Desbloqueia/Bloqueia a semana
+        if(semanaDesbloqueada[i]) {
+            conteudoDesbloqueado.style.display = 'block';
+            bulletsContainer.style.display = 'flex';
+            conteudoBloqueado.style.display = 'none';
+        } else {
+            conteudoDesbloqueado.style.display = 'none';
+            bulletsContainer.style.display = 'none';
+            conteudoBloqueado.style.display = 'flex';
+        }
+       }        
+    }
     
     // Elementos da Casa 6 (sempre a última casa)
     const tituloCasa6 = document.getElementById('tituloCasa6');

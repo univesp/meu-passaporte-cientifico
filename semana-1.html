@@ -130,7 +130,7 @@
 
     </div>
 
-    <div class="container">
+    <div class="container" id="conteudoDesbloqueado">
       <!-- Seu conteúdo -->
 
       <div class="semana-content-box" id="semana1"> <!-- Trocar id para a semana correspondente -->
@@ -436,6 +436,20 @@
         <img src="assets/Semana1/seta-direita-ativa.svg" alt="">
       </div>
       
+    </div>
+
+    <!-- CONTEÚDO RENDERIZADO ANTES DA DATA DE DESBLOQUEIO DA SEMANA -->
+    <div class="container" id="conteudoBloqueado">
+      <div class="semana-content-box">
+        <div class="conteudo-bloqueado-container">
+          <img src="/assets/introducao/cadeado.png" alt="">
+          <span class="conteudo-bloqueado-titulo">Conteúdo <br> Bloqueado</span>
+          <span class="conteudo-bloqueado-texto">O conteúdo da semana 1 será desbloqueado no dia 
+            <span class="data-desbloqueio"> <!-- Texto com a data gerado no Javascript --> </span>
+          </span>
+          <button class="jornadasButton" onclick="window.location.href = 'jornadas.html';">Voltar para as jornadas</button>
+        </div>
+      </div>
     </div>
   </main>
 
