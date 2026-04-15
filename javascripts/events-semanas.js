@@ -33,13 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Datas de desbloqueio de cada semana (Ano, Mês, Dia)
     const datasDesbloqueio = [
-        dataBrasil(2026, 4, 14), // semana 1
+        dataBrasil(2026, 4, 15), // semana 1
         dataBrasil(2026, 4, 15), // semana 2
-        dataBrasil(2026, 4, 28), // semana 3
-        dataBrasil(2026, 5, 5),  // semana 4
-        dataBrasil(2026, 5, 12), // semana 5
-        dataBrasil(2026, 5, 19), // semana 6
-        dataBrasil(2026, 5, 26)  // semana 7
+        dataBrasil(2026, 4, 15), // semana 3
+        dataBrasil(2026, 4, 15),  // semana 4
+        dataBrasil(2026, 4, 15), // semana 5
+        dataBrasil(2026, 4, 15), // semana 6
+        dataBrasil(2026, 4, 17)  // semana 7
     ];
     
     // Data atual
@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const botaoVoltarJornadas = document.querySelector('.buttons-conclusao-container button:nth-child(2)');
     if (botaoVoltarJornadas) {
         botaoVoltarJornadas.addEventListener('click', function() {
-            window.location.href = '/jornadas.html';
+            window.location.href = 'jornadas.html';
         });
     }
 

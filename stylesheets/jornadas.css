@@ -1,5 +1,323 @@
 @import url('global.css');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ICONES */
+
+nav .logo {
+  width: 65px;
+  height: 35px;
+}
+
+nav .nav-link {
+   width: 26px;
+   height: 25px;
+}
+
+nav .material-icons {
+  margin: 0;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -5px;
+}
+
+/* BODY */
+
 body {
   background-color: #2A5555;
+  font-family: 'Nunito', sans-serif;
+}
+
+.conteudo {
+  padding: 24px 16px;
+}
+
+.titulo {
+  color: white;
+  margin-top: 28px;
+  margin-bottom: 33px;
+  text-align: center;
+}
+
+.titulo h1 {
+  font-family: 'KG-Happy', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+
+}
+
+.lista-jornadas {
+  list-style: none;
+  width: 100%;
+}
+
+.jornada {
+  display: flex;
+  align-items: center;
+  /* text-align: center; */
+  margin-bottom: 47px;
+  height: 81px;
+  /* border: 3px yellow solid; */
+}
+
+.jornada h2, .jornada p {
+  max-width: 262px;
+}
+
+.numero {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  min-width: 29px;
+  height: 100%;
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 3px blue solid; */
+
+}
+
+.secao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+}
+
+.secao h2 {
+  font-size: 12px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.secao p {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* JORNADA ATIVA */
+
+.jornada-ativa {
+  background-color: #DD3A76;
+  cursor: pointer !important;
+  transition: all 0.2s ease;
+}
+
+.jornada-ativa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.jornada-ativa:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.jornada-ativa .numero {
+  background-color: white;
+  color: black;
+}
+
+.jornada-ativa h2, .jornada-ativa p {
+  color: #FFFFFF;
+}
+
+/*  JORNADA BLOQUEADA */
+
+.jornada-bloqueada {
+  background-color: #33131F;
+  /* padding: 16px; */
+  position: relative;
+  cursor: default !important;
+}
+
+.jornada-bloqueada .numero {
+  /* background-color: #DD3A76; */
+  /* o layout de mobile e desktop divergem quanto ao background color */
+  color: #FFF9FB;
+}
+
+.jornada-bloqueada h2, .jornada-bloqueada p {
+  color: #FFF9FB;
+}
+
+/* CADEADO */
+
+.icone-cadeado {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 42px;
+  height: 52px;
+  transform: rotate(5deg);
+}
+
+.icone-cadeado:hover {
+  transform: scale(1.3)rotate(9deg);
+  transition: all 0.2s ease;
+}
+
+/* EM BREVE */
+
+.em-breve{
+  position: absolute;
+  bottom: -35px;
+  right: 10px;
+
+  color: white;
+
+  padding: 15px 20px;
+
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.cadeado-container:hover .em-breve{
+  opacity: 1;
+}
+
+
+/* BOTÃO VOLTAR */
+
+.botao {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 64px;
+  /* margin-top: 41px; */
+}
+
+.btn-voltar {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  width: 122px;
+  height: 50px;
+  border-radius: 12px;
+  background-color: #DD3A76;
+  color: #FFFFFF;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+}
+
+.btn-voltar:hover {
+  transform: translateY(-2px);
+}
+
+.btn-voltar:active {
+  transform: translateY(4px);
+}
+
+/* DESKTOP */
+
+@media (min-width: 1024px){
+
+  /* ICONES */
+  nav .logo {
+    width: 201px;
+    height: 108px;
+  }
+
+  nav .nav-link {
+    width: 80px;
+    height: 67px;
+  }
+
+  nav .material-icons {
+    font-size: 40px;
+    margin-top: 5px;
+  }
+
+  /* centraliza conteúdo */
+  .conteudo{
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* título */
+  .titulo h1 {
+    font-size: 44px;
+    font-weight: 400;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  /* lista */
+  .lista-jornadas{
+    max-width: 843px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+  }
+
+  /* cards */
+  .jornada{
+    height: 95px;
+    margin-bottom: 28px;
+    cursor: pointer;
+    /* padding: 0 30px; */
+  }
+
+  .jornada h2, .jornada p {
+    min-width: 584px;
+  }
+
+  /* número */
+  .numero{
+    font-size: 50px;
+    min-width: 77px;
+  }
+
+  /* texto */
+  .secao h2{
+    font-size: 22px;
+  }
+
+  .secao p{
+    font-size: 22px;
+  }
+
+  /* CADEADO */
+  .icone-cadeado{
+    width: 52px;
+    height: 64px;
+    right: -15px;
+    bottom: -15px;
+  }
+
+  /* EM BREVE */
+
+  .em-breve {
+    font-size: 20px;
+    padding: 5px 30px;
+  }
+
+  /* BOTÃO VOLTAR */
+  .btn-voltar{
+    width: 182px;
+    height: 74px;
+    font-size: 18px;
+    border-radius: 28px;
+    font-size: 24px;
+  }
+
 }

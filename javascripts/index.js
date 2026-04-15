@@ -32,7 +32,7 @@ $(document).ready(function(){
 
   // Navega para a tela de Jornadas
   function vaiParaTelaJornadas() {
-    window.location.href = '/jornadas.html';
+    window.location.href = 'jornadas.html';
   }
   const botaoJornadas = document.querySelector('#buttonJornadas');
   const botaoFinalIntroducao = document.querySelector('#botaoFinalIntroducao');
