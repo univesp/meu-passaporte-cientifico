@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const btnVoltar = document.querySelector('.btn-voltar');
   if (btnVoltar) {
       btnVoltar.addEventListener('click', function() {
-          window.history.back();
+        window.location.href = 'index.html';
       });
   }
 
