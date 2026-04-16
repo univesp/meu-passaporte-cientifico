@@ -227,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
 #box-2 {
   background-color: #FFFFF3; 
   width: 760px; 
-  height: 150px; 
+  height: auto; 
   margin-top: 50px; 
   gap: 0 20px; 
   margin-left: 7%; 
