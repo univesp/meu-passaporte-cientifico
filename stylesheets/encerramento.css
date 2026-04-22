@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .text-encerramento-container {
   display: flex;
   flex-direction: column;
@@ -69,7 +73,7 @@
 }
 
 .botoes-inicio > button {
-  width: 30%;
+  width: 500px;
   padding: 0 50px;
   border-radius: 28px;
 }
@@ -84,7 +88,7 @@
 .button-style {
   font-family: "Nunito", sans-serif;
   font-size: 24px;
-  width: 40%;
+  width: 400px;
   height: 74px;
   border-radius: 50px;
   background-color: #DD3A76;
@@ -108,4 +112,64 @@
   transform: translateY(4px);
   box-shadow: 0 0 0 #942C52;
   outline: none;
+}
+
+@media (max-width: 991px) { 
+  .introducao-inicio__content > img {
+    width: 90%;
+  }
+
+  .imagem-container {
+    bottom: 15px;
+  }
+  .imagem-container > img {
+    width: 200px;
+  } 
+
+  .box-encerramento, .box-encerramento2 {
+    width: 95%;
+  }
+}
+
+@media (max-width: 849px) {
+  .imagem-container {
+    left: 520px;
+  }
+}
+
+@media (max-width: 767px) {
+  .imagem-container {
+    display: none;
+  }
+
+  .box-encerramento2 {
+    display: flex;
+    justify-content: center;
+  }
+  .box-encerramento2 > p {
+    margin-left: 0;
+  }
+}
+
+
+@media (max-width: 575px) {
+  .button-style {
+    width: 100%;
+    font-size: 20px;
+  }
+
+  .box-encerramento2 > p {
+    width: 90%;
+  }
+
+  .botoes-inicio > button {
+    width: 90%;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 439px) {
+  .button-style, .botoes-inicio > button {
+    font-size: 16px;
+  }
 }
