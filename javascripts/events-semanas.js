@@ -26,21 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const numeroSemana = parseInt(semanaId.replace('semana', ''));
 
     // LÓGICA PARA BLOQUEIO / DESBLOQUEIO DE CONTEÚDO
-    // Datas de desbloqueio de cada semana
-    function dataBrasil(ano, mes, dia) {
-        return new Date(ano, mes - 1, dia);
-    }
-    
-    // Datas de desbloqueio de cada semana (Ano, Mês, Dia)
-    const datasDesbloqueio = [
-        dataBrasil(2026, 4, 15), // semana 1
-        dataBrasil(2026, 4, 15), // semana 2
-        dataBrasil(2026, 4, 15), // semana 3
-        dataBrasil(2026, 4, 15),  // semana 4
-        dataBrasil(2026, 4, 15), // semana 5
-        dataBrasil(2026, 4, 15), // semana 6
-        dataBrasil(2026, 4, 17)  // semana 7
-    ];
+    const datasDesbloqueio = CONFIG.getDatasDesbloqueio();
     
     // Data atual
     const hoje = new Date();
@@ -48,8 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Criar array baseado na data
     let semanaDesbloqueada = datasDesbloqueio.map(dataDesbloqueio => {
-        dataDesbloqueio.setHours(0, 0, 0, 0);
-        return hoje >= dataDesbloqueio;
+        const data = new Date(dataDesbloqueio);
+        data.setHours(0, 0, 0, 0);
+        return hoje >= data;
     });
 
     for (let i = 0; i < semanaDesbloqueada.length; i++) {

@@ -1,18 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    function dataBrasil(ano, mes, dia) {
-        return new Date(ano, mes - 1, dia);
-    }
-  
-    const datasDesbloqueio = [
-        dataBrasil(2026, 4, 14), // jornada 1
-        dataBrasil(2026, 4, 15), // jornada 2
-        dataBrasil(2026, 4, 15), // jornada 3
-        dataBrasil(2026, 4, 15), // jornada 4
-        dataBrasil(2026, 4, 15), // jornada 5
-        dataBrasil(2026, 4, 15), // jornada 6
-        dataBrasil(2026, 4, 17)  // jornada 7
-    ];
+    const datasDesbloqueio = CONFIG.getDatasDesbloqueio();
   
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
