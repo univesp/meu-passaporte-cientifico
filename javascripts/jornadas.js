@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    const datasDesbloqueio = CONFIG.getDatasDesbloqueio();
+    const datasDesbloqueio = CONFIG.getDatasDesbloqueio(); //Datas definidas em datas-config.js
   
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);

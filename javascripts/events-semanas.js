@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const numeroSemana = parseInt(semanaId.replace('semana', ''));
 
     // LÓGICA PARA BLOQUEIO / DESBLOQUEIO DE CONTEÚDO
-    const datasDesbloqueio = CONFIG.getDatasDesbloqueio();
+    const datasDesbloqueio = CONFIG.getDatasDesbloqueio(); //Datas definidas em datas-config.js
     
     // Data atual
     const hoje = new Date();
