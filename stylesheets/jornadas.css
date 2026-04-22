@@ -6,27 +6,6 @@
   box-sizing: border-box;
 }
 
-/* ICONES */
-
-nav .logo {
-  width: 65px;
-  height: 35px;
-}
-
-nav .nav-link {
-   width: 26px;
-   height: 25px;
-}
-
-nav .material-icons {
-  margin: 0;
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: -5px;
-}
-
 /* BODY */
 
 body {
@@ -47,7 +26,7 @@ body {
 
 .titulo h1 {
   font-family: 'KG-Happy', sans-serif;
-  font-size: 20px;
+  font-size: 42px;
   font-weight: 400;
 
 }
@@ -66,9 +45,7 @@ body {
   /* border: 3px yellow solid; */
 }
 
-.jornada h2, .jornada p {
-  max-width: 262px;
-}
+
 
 .numero {
   font-family: 'Oswald', sans-serif;
@@ -94,13 +71,13 @@ body {
 }
 
 .secao h2 {
-  font-size: 12px;
+  font-size: 20px;
   font-weight: 800;
   margin: 0;
 }
 
 .secao p {
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 600;
   margin: 0;
 }
@@ -153,7 +130,7 @@ body {
 
 /* CADEADO */
 
-.icone-cadeado {
+.icone-cadeado{
   position: absolute;
   bottom: -15px;
   right: -15px;
@@ -165,6 +142,13 @@ body {
 .icone-cadeado:hover {
   transform: scale(1.3)rotate(9deg);
   transition: all 0.2s ease;
+}
+
+.icone-check {
+  width: 52px;
+  position: relative;
+  bottom: -32px;
+  right: -15px;
 }
 
 /* EM BREVE */
@@ -227,23 +211,7 @@ body {
 
 /* DESKTOP */
 
-@media (min-width: 1024px){
-
-  /* ICONES */
-  nav .logo {
-    width: 201px;
-    height: 108px;
-  }
-
-  nav .nav-link {
-    width: 80px;
-    height: 67px;
-  }
-
-  nav .material-icons {
-    font-size: 40px;
-    margin-top: 5px;
-  }
+@media (min-width: 992px){
 
   /* centraliza conteúdo */
   .conteudo{
@@ -320,4 +288,14 @@ body {
     font-size: 24px;
   }
 
+}
+
+@media (max-width: 575px) {
+  .secao h2 {
+    font-size: 16px;
+  }
+
+  .secao p {
+    font-size: 14px;
+  }
 }
