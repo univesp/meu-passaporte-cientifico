@@ -115,3 +115,92 @@
 .portfolio-button-item.active {
   background-color: #FFAB42;
 }
+
+
+@media (min-width: 911px) and (max-width: 991px) {
+  .imagem-container {
+    left: 75%;
+  }
+}
+
+@media (max-width: 991px) {
+  .semana-content-box {
+    width: 90%;
+  }
+
+  .content-titulo {
+    width: 85%;
+  }
+}
+
+@media (max-width: 767px) {
+  .box-encerramento2 > p {
+    width: 90%;
+  }
+}
+
+@media (max-width: 699px) {
+  .botoes-portfolio-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px 50px;
+  }
+
+  .portfolio-button-item {
+    width: 200px;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 599px) {
+  .semana-title {
+    font-size: 24px;
+  }
+
+  .content-titulo > h3 {
+    font-size: 22px;
+  }
+
+  .textarea-portfolio {
+    font-size: 16px;
+    height: 210px;
+  }
+
+  .botoes-inicio > button {
+    font-size: 20px;
+  }
+
+  #portfolioButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 499px) {
+  .text-encerramento-container {
+    width: 85%;
+  }
+
+  .botoes-portfolio-container {
+    display: flex !important;
+    flex-direction: column;
+    gap: 30px 0;
+  }
+
+  .portfolio-button-item {
+    width: 300px;
+  }
+
+  .textarea-portfolio {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .semana-title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .botoes-inicio > button {
+    font-size: 18px;
+  }
+}
