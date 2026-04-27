@@ -759,3 +759,107 @@ li {
     margin: 10px 10px 40px 0;
   }
 }
+
+@media (max-width: 991px) {
+  .semana-titulo > span {
+    font-size: 17px;
+  }
+
+  .semana-content-box {
+    width: auto;
+  }
+
+  .titulo-casa {
+    font-size: 34px;
+  }
+
+  .subtitulo-casa {
+    width: 80%;
+    font-size: 25px;
+  }
+
+  .arrows-container {
+    width: 25%;
+    margin-right: 10px;
+  }
+
+  .casa-info-box {
+    width: 95%;
+  }
+
+  .foto-local {
+    width: 265px;
+    height: 285px;
+  }
+
+  .titulo-casa2 {
+    margin-left: -115px;
+  }
+
+  .titulo-casa2 > img {
+    transform: rotate(7deg);
+    position: relative;
+    left: 86%;
+  }
+
+  .casa3-content-titulo {
+    width: 90%;
+  }
+
+  .left-alignment {
+    width: 89%;
+  }
+
+  .casa3-box-tarefa {
+    max-width: 600px;
+  }
+
+  .casas-text-area {
+    width: 90%;
+  }
+
+  .reflexao-casa3-box {
+    width: 90%;
+  }
+
+  .reflexao-casa3-content > p {
+    width: 100%;
+  }
+
+  #registroReflexoes {
+    width: 100%;
+  }
+
+  .texto-conclusao-trilha {
+    width: 80%;
+  }
+
+  .botao-conclusao-trilha-container > img {
+    left: 35%;
+    width: 17%;
+  }
+
+  .lumi-ultima-tela {
+    width: 120px;
+    bottom: 5%;
+    left: 540px;
+  }
+
+  .casa6-ultima-tela {
+    align-items: center;
+  }
+
+  .buttons-conclusao-container {
+    margin-top: 40px;
+  }
+
+  .buttons-conclusao-container > button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    max-width: 95% !important;
+  }
+}
