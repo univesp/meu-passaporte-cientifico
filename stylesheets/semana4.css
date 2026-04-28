@@ -184,4 +184,11 @@ ol {
   .titulo-semana-container {
     background-image: url(../assets/Semana4/bg_4.jpg);
   }
+
+  .titulo-casa2 > span, 
+  .botao-conclusao-trilha,
+  .buttons-conclusao-container > button {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca) !important;
+  }
 }

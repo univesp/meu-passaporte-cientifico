@@ -754,6 +754,11 @@ li {
   outline: none;
 }
 
+.images-semana1-casa3-mobile {
+  display: none;
+}
+
+
 @media (min-width: 992px) and (max-width: 1199px) {
   .arrows-container {
     margin: 10px 10px 40px 0;
@@ -856,9 +861,17 @@ li {
   .buttons-conclusao-container > button {
     font-size: 16px;
   }
+
+  .divisao > img {
+    width: 25%;
+  }
 }
 
 @media (max-width: 767px) {
+  body{
+    overflow-x: hidden;
+  }
+
   .container {
     max-width: 95% !important;
   }
@@ -869,6 +882,11 @@ li {
     height: 220px;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+
+  .semana-id {
+    height: auto;
+    min-height: 70px;
   }
 
   .semana-titulo {
@@ -894,7 +912,7 @@ li {
   }
 
   .subtitulo-casa {
-    font-size: 23px;
+    font-size: 22px;
   }
 
   .casa-box {
@@ -927,5 +945,167 @@ li {
 
   .icone-balao {
     width: 10%;
+  }
+
+  .titulo-casa2 {
+    margin: 0 0 40px 0;
+    justify-content: center;
+    gap: 0 5px;
+  }
+
+  .titulo-casa2 > img {
+    left: 15px;
+    top: 10px;
+    transform: rotate(-7deg);
+    width: 100px;
+  }
+
+  .titulo-casa2 > span {
+    padding: 5px 20px;
+    border-radius: 10px;
+  }
+
+  .casa2-form-secao1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+  }
+
+  .casa2-form-secao2 {
+    flex-direction: column;
+    gap: 50px 0;
+  }
+
+  .foto-local {
+    margin: 30px auto 0 auto;
+  }
+
+  .descricao-local > textarea {
+    width: 100%;
+    height: 240px;
+  }
+
+  .formulario input[type='text'] {
+    height: 50px;
+  }
+
+  .titulo-casa3 > span {
+    text-align: center;
+    width: 300px;
+  }
+
+  .titulo-casa3 > img {
+    width: 80px;
+  }
+
+  .casa3-content-titulo {
+    width: 95%;
+  }
+
+  .row-content {
+    flex-direction: column;
+    padding: 0;
+    align-items: flex-start;
+    width: 100%;
+    margin-left: 8%;
+  }
+
+  .row-content > ul {
+    text-align: left;
+    width: 100%;
+  }
+
+  .row-content > ul > li {
+    text-align: left; 
+  }
+
+  .row-content > img {
+    display: none;
+  }
+
+  .images-semana1-casa3-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 0 50px;
+    margin: 20px 0;
+  }
+
+  .images-semana1-casa3-mobile > img {
+    width: 180px;
+  }
+
+  .casa3-box-tarefa {
+    flex-direction: column;
+    gap: 30px 0;
+  }
+
+  .casa3-box-tarefa > div {
+    width: 320px;
+    min-height: 100px;
+  }
+
+  .left-alignment {
+    width: 93%;
+  }
+
+  .casas-text-area {
+    width: 100%;
+    height: 240px;
+  }
+
+  .divisao > img {
+    width: 35%;
+  }
+
+  .reflexao-casa3-box {
+    width: 110%;
+    height: 190px;
+  }
+
+  .casa-info-content > .info-content-casa4-5 {
+    width: 90%;
+  }
+
+  .semana-content-box.casa3-padding, 
+  .semana-content-box.casa4-padding,
+  .semana-content-box.casa5-padding,
+  .semana-content-box.casa6-padding {
+    padding-top: 15px;
+  }
+
+  .texto-conclusao-trilha {
+    width: 100%;
+  }
+
+  .titulo-casa {
+    font-size: 32px;
+  }
+
+  .botao-conclusao-trilha-container {
+    margin-bottom: 50px;
+  }
+
+  .botao-conclusao-trilha-container > img {
+    left: 31%;
+  }
+
+  .casa6-ultima-tela {
+    padding-top: 0;
+  }
+
+  .buttons-conclusao-container {
+    flex-direction: column;
+    gap: 30px 0;
+    align-items: center;
+  }
+
+  .buttons-conclusao-container > button {
+    font-size: 18px;
+    width: 80%;
+    min-height: 70px;
+  }
+
+  .lumi-ultima-tela {
+    display: none;
   }
 }

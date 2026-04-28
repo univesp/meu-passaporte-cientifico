@@ -189,4 +189,9 @@ ol,
   .titulo-semana-container {
     background-image: url(../assets/Semana7/bg_7.jpg);
   }
+  
+  .titulo-casa2 > span, .botao-conclusao-trilha {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca) !important;
+  }
 }

@@ -149,6 +149,11 @@ body {
   .box-encerramento2 > p {
     margin-left: 0;
   }
+
+  .botoes-inicio > button {
+    width: 430px;
+    font-size: 20px;
+  }
 }
 
 
@@ -163,7 +168,7 @@ body {
   }
 
   .botoes-inicio > button {
-    width: 90%;
+    width: 385px;
     font-size: 20px;
   }
 }
@@ -171,5 +176,9 @@ body {
 @media (max-width: 439px) {
   .button-style, .botoes-inicio > button {
     font-size: 16px;
+  }
+
+  .botoes-inicio > button {
+    width: 90%;
   }
 }

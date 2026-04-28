@@ -124,4 +124,11 @@ footer .aval-rea .btn-secondary {
   .titulo-semana-container {
     background-image: url(../assets/Semana1/biblioteca.jpg);
   }
+
+  .titulo-casa2 > span, 
+  .botao-conclusao-trilha,
+  .buttons-conclusao-container > button {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca) !important;
+  }
 }
