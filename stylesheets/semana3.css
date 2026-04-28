@@ -171,7 +171,17 @@ ol {
 
 @media (max-width: 1199.98px) {
   footer .sharing i {
-    background-color: transparent;
-    color: var(--cor-branca);
+    background-color: var(--cor-branca) !important;
+    color: var(--cor-primaria) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    background-image: none;
+  }
+
+  .titulo-semana-container {
+    background-image: url(../assets/Semana3/bg_3.jpg);
   }
 }

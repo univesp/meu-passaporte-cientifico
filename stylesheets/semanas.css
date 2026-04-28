@@ -862,4 +862,70 @@ li {
   .container {
     max-width: 95% !important;
   }
+
+  .titulo-semana-container {
+    flex-direction: column;
+    align-items: baseline;
+    height: 220px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .semana-titulo {
+    background-color: #212121;
+    margin-left: 0;
+  }
+
+  .semana-titulo > span {
+    padding: 0 35px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .bullets {
+    margin: 0 auto;
+    background-color: #212121;
+    padding: 25px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .semana-content-box.casa1-padding {
+    padding-top: 20px;
+  }
+
+  .subtitulo-casa {
+    font-size: 23px;
+  }
+
+  .casa-box {
+    width: 95%;
+  }
+
+  .casa-box > img {
+    width: 12%;
+  }
+
+  .arrows-container {
+    width: 200px;
+    gap: 0 30px;
+    margin: 10px auto 40px auto;
+    float: none;
+  }
+
+  .casa-info-content > img {
+    display: none;
+  }
+
+  .casa-info-content > p {
+    width: 95%;
+    margin-top: 10px;
+  }
+
+  .icone-balao-container {
+    margin-right: -23px;
+  }
+
+  .icone-balao {
+    width: 10%;
+  }
 }
