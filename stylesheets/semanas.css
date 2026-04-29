@@ -758,6 +758,14 @@ li {
   display: none;
 }
 
+#arrows-container-desktop {
+  display: flex;
+}
+
+#arrows-container-mobile {
+  display: none;
+}
+
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .arrows-container {
@@ -867,13 +875,15 @@ li {
   }
 }
 
+@media (min-width: 576px) and (max-width: 767px) {
+  .container {
+      max-width: 95% !important;
+  }
+}
+
 @media (max-width: 767px) {
   body{
     overflow-x: hidden;
-  }
-
-  .container {
-    max-width: 95% !important;
   }
 
   .titulo-semana-container {
@@ -1107,5 +1117,107 @@ li {
 
   .lumi-ultima-tela {
     display: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .container {
+    width: 100% !important;
+  }
+
+  .titulo-semana-container {
+    height: 300px;
+    background-position: 50% 90px;
+  }
+
+  .semana-titulo-container {
+    flex-direction: column;
+  }
+
+  .semana-id {
+    width: 100%;
+  }
+
+  .semana-titulo {
+    padding: 15px 0;
+  }
+
+  .semana-titulo > span {
+    font-size: 17px;
+  }
+
+  .casa-box {
+    justify-content: flex-start;
+  }
+
+  .casa-box > img {
+    width: 45px;
+    position: absolute;
+    left: 89.5%;
+    top: 170px;
+  }
+
+  .alternativas-virtuais-container {
+    padding: 40px 20px 0 20px;
+  }
+
+  .icone-balao {
+    width: 12%;
+  }
+
+  #arrows-container-desktop {
+    display: none;
+  }
+
+  #arrows-container-mobile {
+    display: flex;
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .arrow-left-container,
+  .arrow-right-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 15px 10px;
+    transition: all 0.2s ease;
+  }
+
+  .arrow-left-container:hover,
+  .arrow-right-container:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .arrow-left-container span,
+  .arrow-right-container span {
+    color: #FFF;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .arrow-left-container img,
+  .arrow-right-container img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .casa2-form-secao1, .casa2-form-secao2 {
+    padding-left: 20px;
+  }
+
+  .formulario input[type='text'] {
+    width: 95%;
+  }
+
+  .descricao-local > textarea {
+    width: 95%;
+    height: 210px;
   }
 }

@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const setaEsquerda = document.querySelector('.arrows-container img:first-child');
     const setaDireita = document.querySelector('.arrows-container img:last-child');
     const setasContainer = document.querySelector('.arrows-container');
+    const setaEsquerdaMobile = document.querySelector('#arrows-container-mobile .arrow-left-container');
+    const setaDireitaMobile = document.querySelector('#arrows-container-mobile .arrow-right-container');
     const semanaContentBox = document.querySelector('.semana-content-box');
     const passaporteContainer = document.querySelector('.passaporte-container');
     const botaoCarimbo = document.querySelector('.botao-carimbo-trilha');
@@ -424,6 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const caminhoSetasAtivas = `assets/Semana${numeroSemana}/`;
         
+        // Elementos desktop
         if (index === 0) {
             setaEsquerda.src = 'assets/arquivos_gerais_semanas/seta-esquerda-desativa.svg';
             setaDireita.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
@@ -431,6 +434,30 @@ document.addEventListener('DOMContentLoaded', function() {
             setaDireita.style.opacity = '1';
             setaEsquerda.style.pointerEvents = 'none';
             setaDireita.style.pointerEvents = 'auto';
+            
+            // Atualizar elementos mobile
+            if (setaEsquerdaMobile) {
+                const imgEsq = setaEsquerdaMobile.querySelector('img');
+                const spanEsq = setaEsquerdaMobile.querySelector('span');
+                if (imgEsq) {
+                    imgEsq.src = 'assets/arquivos_gerais_semanas/seta-esquerda-desativa.svg';
+                    imgEsq.style.opacity = '0.5';
+                }
+                if (spanEsq) spanEsq.style.opacity = '0.5';
+                setaEsquerdaMobile.style.pointerEvents = 'none';
+            }
+            
+            if (setaDireitaMobile) {
+                const imgDir = setaDireitaMobile.querySelector('img');
+                const spanDir = setaDireitaMobile.querySelector('span');
+                if (imgDir) {
+                    imgDir.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
+                    imgDir.style.opacity = '1';
+                }
+                if (spanDir) spanDir.style.opacity = '1';
+                setaDireitaMobile.style.pointerEvents = 'auto';
+            }
+            
         } else if (index === casas.length - 1) {
             setaEsquerda.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
             setaDireita.src = 'assets/arquivos_gerais_semanas/seta-direita-desativa.svg';
@@ -438,6 +465,30 @@ document.addEventListener('DOMContentLoaded', function() {
             setaDireita.style.opacity = '0.5';
             setaEsquerda.style.pointerEvents = 'auto';
             setaDireita.style.pointerEvents = 'none';
+            
+            // Atualizar elementos mobile
+            if (setaEsquerdaMobile) {
+                const imgEsq = setaEsquerdaMobile.querySelector('img');
+                const spanEsq = setaEsquerdaMobile.querySelector('span');
+                if (imgEsq) {
+                    imgEsq.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
+                    imgEsq.style.opacity = '1';
+                }
+                if (spanEsq) spanEsq.style.opacity = '1';
+                setaEsquerdaMobile.style.pointerEvents = 'auto';
+            }
+            
+            if (setaDireitaMobile) {
+                const imgDir = setaDireitaMobile.querySelector('img');
+                const spanDir = setaDireitaMobile.querySelector('span');
+                if (imgDir) {
+                    imgDir.src = 'assets/arquivos_gerais_semanas/seta-direita-desativa.svg';
+                    imgDir.style.opacity = '0.5';
+                }
+                if (spanDir) spanDir.style.opacity = '0.5';
+                setaDireitaMobile.style.pointerEvents = 'none';
+            }
+            
         } else {
             setaEsquerda.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
             setaDireita.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
@@ -445,6 +496,29 @@ document.addEventListener('DOMContentLoaded', function() {
             setaDireita.style.opacity = '1';
             setaEsquerda.style.pointerEvents = 'auto';
             setaDireita.style.pointerEvents = 'auto';
+            
+            // Atualizar elementos mobile
+            if (setaEsquerdaMobile) {
+                const imgEsq = setaEsquerdaMobile.querySelector('img');
+                const spanEsq = setaEsquerdaMobile.querySelector('span');
+                if (imgEsq) {
+                    imgEsq.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
+                    imgEsq.style.opacity = '1';
+                }
+                if (spanEsq) spanEsq.style.opacity = '1';
+                setaEsquerdaMobile.style.pointerEvents = 'auto';
+            }
+            
+            if (setaDireitaMobile) {
+                const imgDir = setaDireitaMobile.querySelector('img');
+                const spanDir = setaDireitaMobile.querySelector('span');
+                if (imgDir) {
+                    imgDir.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
+                    imgDir.style.opacity = '1';
+                }
+                if (spanDir) spanDir.style.opacity = '1';
+                setaDireitaMobile.style.pointerEvents = 'auto';
+            }
         }
     }
   
@@ -567,6 +641,25 @@ document.addEventListener('DOMContentLoaded', function() {
         setaDireita.setAttribute('role', 'button');
         setaDireita.setAttribute('tabindex', '0');
         setaDireita.setAttribute('aria-label', 'Próxima casa');
+    }
+
+    // Eventos dos containers mobile
+    if (setaEsquerdaMobile) {
+        setaEsquerdaMobile.addEventListener('click', function() {
+            casaAnterior();
+        });
+        setaEsquerdaMobile.setAttribute('role', 'button');
+        setaEsquerdaMobile.setAttribute('tabindex', '0');
+        setaEsquerdaMobile.setAttribute('aria-label', 'Casa anterior');
+    }
+
+    if (setaDireitaMobile) {
+        setaDireitaMobile.addEventListener('click', function() {
+            proximaCasa();
+        });
+        setaDireitaMobile.setAttribute('role', 'button');
+        setaDireitaMobile.setAttribute('tabindex', '0');
+        setaDireitaMobile.setAttribute('aria-label', 'Próxima casa');
     }
   
     // Suporte para teclado
