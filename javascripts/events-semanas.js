@@ -234,17 +234,87 @@ document.addEventListener('DOMContentLoaded', function() {
             bulletsContainer.style.display = 'flex';
         }
         
-        if (setasContainer) {
-            setasContainer.style.display = 'flex';
+        // IMPORTANTE: Mostrar as setas corretas baseado no tamanho da tela
+        const isMobile = window.innerWidth <= 575;
+        const setasContainerDesktop = document.querySelector('.arrows-container');
+        const setasContainerMobile = document.querySelector('#arrows-container-mobile');
+        
+        if (setasContainerDesktop) {
+            setasContainerDesktop.style.display = isMobile ? 'none' : 'flex';
+        }
+        
+        if (setasContainerMobile) {
+            setasContainerMobile.style.display = isMobile ? 'flex' : 'none';
+        }
+        
+        // Resetar os estilos das setas (opacidade, pointer-events)
+        const caminhoSetasAtivas = `assets/Semana${numeroSemana}/`;
+        const setaEsquerda = document.querySelector('.arrows-container img:first-child');
+        const setaDireita = document.querySelector('.arrows-container img:last-child');
+        const setaEsquerdaMobile = document.querySelector('#arrows-container-mobile .arrow-left-container');
+        const setaDireitaMobile = document.querySelector('#arrows-container-mobile .arrow-right-container');
+        
+        if (setaEsquerda && setaDireita) {
+            if (casaAtual === 0) {
+                setaEsquerda.src = 'assets/arquivos_gerais_semanas/seta-esquerda-desativa.svg';
+                setaDireita.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
+            } else if (casaAtual === casas.length - 1) {
+                setaEsquerda.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
+                setaDireita.src = 'assets/arquivos_gerais_semanas/seta-direita-desativa.svg';
+            } else {
+                setaEsquerda.src = `${caminhoSetasAtivas}seta-esquerda-ativa.svg`;
+                setaDireita.src = `${caminhoSetasAtivas}seta-direita-ativa.svg`;
+            }
         }
         
         modoConclusaoAtivo = false;
+        
+        // Atualizar a visibilidade das setas novamente (garantia)
+        atualizarVisibilidadeSetas();
     }
+
+    function atualizarVisibilidadeSetas() {
+        const setasContainerDesktop = document.querySelector('.arrows-container');
+        const setasContainerMobile = document.querySelector('#arrows-container-mobile');
+        const ultimaTela = document.querySelector('.casa6-ultima-tela');
+        
+        // Verifica se a última tela está visível
+        let ultimaTelaVisivel = false;
+        if (ultimaTela) {
+            const estilo = window.getComputedStyle(ultimaTela);
+            ultimaTelaVisivel = estilo.display !== 'none';
+        }
+        
+        // Se estiver na tela de conclusão, esconde TODAS as setas
+        if (ultimaTelaVisivel) {
+            if (setasContainerDesktop) setasContainerDesktop.style.display = 'none';
+            if (setasContainerMobile) setasContainerMobile.style.display = 'none';
+            return;
+        }
+        
+        // Se NÃO estiver na tela de conclusão, mostra o container correto baseado no tamanho da tela
+        const isMobile = window.innerWidth <= 575;
+        
+        if (setasContainerDesktop) {
+            setasContainerDesktop.style.display = isMobile ? 'none' : 'flex';
+        }
+        
+        if (setasContainerMobile) {
+            setasContainerMobile.style.display = isMobile ? 'flex' : 'none';
+        }
+    }
+
+    window.addEventListener('resize', function() {
+        // Só atualiza se não estiver no modo conclusão
+        if (!modoConclusaoAtivo) {
+            atualizarVisibilidadeSetas();
+        }
+    });
   
     // Função para ativar o modo de conclusão
     function ativarModoConclusao() {
         salvarDadosUsuario();
-
+    
         // Marcar semana como concluída dentro do objeto de dados
         const dadosSalvos = localStorage.getItem(`${semanaId}Dados`);
         if (dadosSalvos) {
@@ -253,15 +323,15 @@ document.addEventListener('DOMContentLoaded', function() {
             dados.dataConclusao = new Date().toISOString();
             localStorage.setItem(`${semanaId}Dados`, JSON.stringify(dados));
         }
-
+    
         semanaConcluida = true;
-
+    
         // Se for a semana 7, redirecionar para encerramento.html
         if (numeroSemana === 7) {
             window.location.href = 'encerramento.html';
             return;
         }
-
+    
         casas.forEach((casa, i) => {
             casa.style.display = 'none';
         });
@@ -279,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
-              });
+            });
         } 
         
         if (passaporteContainer) {
@@ -298,9 +368,8 @@ document.addEventListener('DOMContentLoaded', function() {
             bulletsContainer.style.display = 'none';
         }
         
-        if (setasContainer) {
-            setasContainer.style.display = 'none';
-        }
+        // Adicione esta linha para esconder as setas
+        atualizarVisibilidadeSetas();
         
         modoConclusaoAtivo = true;
     }
@@ -414,6 +483,9 @@ document.addEventListener('DOMContentLoaded', function() {
         atualizarBotaoCarimbo();
         atualizarBotaoConclusao(index);
         atualizarSetas(index);
+        
+        // garante que as setas estejam visíveis (a menos que esteja na tela de conclusão)
+        atualizarVisibilidadeSetas();
         
         casaAtual = index;
     }

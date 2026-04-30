@@ -185,3 +185,9 @@ ol {
     color: var(--cor-branca) !important;
   }
 }
+
+@media (max-width: 575px) {
+  .semana-titulo > span {
+    font-size: 16px;
+  }
+}
