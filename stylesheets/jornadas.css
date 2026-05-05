@@ -298,4 +298,9 @@ body {
   .secao p {
     font-size: 14px;
   }
+
+  .icone-check {
+    width: 40px;
+    right: -9px;
+  }
 }

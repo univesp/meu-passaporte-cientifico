@@ -191,3 +191,14 @@ ol {
     font-size: 16px;
   }
 }
+
+@media (max-width: 460px) {
+  .semana2-imagens-container-casa3 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .semana2-imagens-container-casa3 > div {
+    width: 65%;
+  }
+}
