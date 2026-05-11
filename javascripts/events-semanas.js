@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Função para salvar dados do usuário
-    function salvarDadosUsuario() {
+    function salvarDadosUsuario(concluida, temCarimbo) {
         try {
             const dadosExistentes = localStorage.getItem(`${semanaId}Dados`);
             let dados = dadosExistentes ? JSON.parse(dadosExistentes) : {};
@@ -178,10 +178,57 @@ document.addEventListener('DOMContentLoaded', function() {
             dados.reflexoes = document.getElementById('registroReflexoes')?.value || '';
             dados.dataSalvamento = new Date().toISOString();
             
+            // Se recebeu parâmetros, atualiza
+            if (concluida !== undefined) dados.concluida = concluida;
+            if (temCarimbo !== undefined) dados.hasCarimbo = temCarimbo;
+            
             localStorage.setItem(`${semanaId}Dados`, JSON.stringify(dados));
         } catch(e) {
             console.error('Erro ao salvar:', e);
         }
+    }
+
+     // Função para enviar dados ao banco
+     function enviarParaBanco(concluida, temCarimbo) {
+        if (!window.PassaporteCientifico?.isLogado()) return;
+        
+        const userData = window.PassaporteCientifico?.getUserData();
+        if (!userData?.email || !userData?.codigoLogin) return;
+        
+        // Pega os dados atuais do formulário
+        const dados = {
+            nomeAluno: document.getElementById('nomeAluno')?.value || '',
+            local: document.getElementById('localVisita')?.value || '',
+            dataCheckIn: document.querySelector('.data-checkIn')?.textContent || '',
+            descricaoLocal: document.getElementById('descricaoLocal')?.value || '',
+            atividade: document.getElementById('registroAtividade')?.value || '',
+            aprendizado: document.getElementById('registroAprendizado')?.value || '',
+            reflexoes: document.getElementById('registroReflexoes')?.value || '',
+            hasCarimbo: temCarimbo !== undefined ? temCarimbo : (carimbosRecebidos[numeroSemana - 1] || false),
+            concluida: concluida !== undefined ? concluida : (semanaConcluida || false)
+        };
+        
+        const numeroSemana = semanaId.replace('semana', '');
+        const body = {
+            [`semana${numeroSemana}Dados`]: dados
+        };
+        
+        console.log('📤 Enviando para API:', body);
+        
+        fetch('https://apps.univesp.br/recurso-educacional-aberto/passaporte-cientifico/diario/salvar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'email': userData.email,
+                'codigoLogin': userData.codigoLogin
+            },
+            body: JSON.stringify(body)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('✅ Dados salvos no banco:', data);
+        })
+        .catch(error => console.error('Erro:', error));
     }
         
     // Função para carregar dados do usuário
@@ -313,25 +360,27 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Função para ativar o modo de conclusão
     function ativarModoConclusao() {
-        salvarDadosUsuario();
-    
-        // Marcar semana como concluída dentro do objeto de dados
-        const dadosSalvos = localStorage.getItem(`${semanaId}Dados`);
-        if (dadosSalvos) {
-            const dados = JSON.parse(dadosSalvos);
-            dados.concluida = true;
-            dados.dataConclusao = new Date().toISOString();
-            localStorage.setItem(`${semanaId}Dados`, JSON.stringify(dados));
-        }
-    
+        // Atualiza as variáveis
         semanaConcluida = true;
-    
-        // Se for a semana 7, redirecionar para encerramento.html
+        carimbosRecebidos[numeroSemana - 1] = true;
+        
+        // Mostra carimbo visual
+        if (carimbos[numeroSemana - 1]) {
+            carimbos[numeroSemana - 1].style.display = 'block';
+        }
+        
+        // Salva no localStorage
+        salvarDadosUsuario(true, true);
+        
+        // Envia para o banco com concluida = true e hasCarimbo = true
+        enviarParaBanco(true, true);
+        
         if (numeroSemana === 7) {
             window.location.href = 'encerramento.html';
             return;
         }
-    
+        
+        // Resto do código...
         casas.forEach((casa, i) => {
             casa.style.display = 'none';
         });
@@ -346,31 +395,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (botaoCarimbo) botaoCarimbo.style.display = 'none';
         if (ultimaTelaCasa6) {
             ultimaTelaCasa6.style.display = 'flex';
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         } 
         
-        if (passaporteContainer) {
-            passaporteContainer.style.display = 'none';
-        }
+        if (passaporteContainer) passaporteContainer.style.display = 'none';
+        if (botaoConclusao) botaoConclusao.style.display = 'none';
+        if (botoesConclusaoContainer) botoesConclusaoContainer.style.display = 'flex';
+        if (bulletsContainer) bulletsContainer.style.display = 'none';
         
-        if (botaoConclusao) {
-            botaoConclusao.style.display = 'none';
-        }
-        
-        if (botoesConclusaoContainer) {
-            botoesConclusaoContainer.style.display = 'flex';
-        }
-        
-        if (bulletsContainer) {
-            bulletsContainer.style.display = 'none';
-        }
-        
-        // Adicione esta linha para esconder as setas
         atualizarVisibilidadeSetas();
-        
         modoConclusaoAtivo = true;
     }
   
@@ -623,16 +656,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!carimbosRecebidos[indiceCarimbo]) {
                     carimbosRecebidos[indiceCarimbo] = true;
                     salvarCarimbosStorage();
+                    salvarDadosUsuario(semanaConcluida, true);
+                    
+                    // Envia para o banco com hasCarimbo = true
+                    enviarParaBanco(semanaConcluida, true);
                     
                     if (carimbos[indiceCarimbo]) {
                         carimbos[indiceCarimbo].style.display = 'block';
-                        
                         botaoCarimbo.style.backgroundColor = '#818181'; 
                         botaoCarimbo.style.cursor = 'default';
                         botaoCarimbo.style.pointerEvents = 'none';
                         botaoCarimbo.disabled = true;
                         botaoCarimbo.textContent = 'Carimbo recebido';
-                        
                         atualizarBotaoConclusao(casaAtual);
                     }
                 }
@@ -661,8 +696,29 @@ document.addEventListener('DOMContentLoaded', function() {
     if (botaoRecomecar) {
         botaoRecomecar.addEventListener('click', function() {
             if (numeroSemana >= 1 && numeroSemana <= 7) {
-                // Remover os dados da semana atual
-                localStorage.removeItem(`${semanaId}Dados`);
+                // Limpa o formulário
+                document.getElementById('nomeAluno') && (document.getElementById('nomeAluno').value = '');
+                document.getElementById('localVisita') && (document.getElementById('localVisita').value = '');
+                document.getElementById('descricaoLocal') && (document.getElementById('descricaoLocal').value = '');
+                document.getElementById('registroAtividade') && (document.getElementById('registroAtividade').value = '');
+                document.getElementById('registroAprendizado') && (document.getElementById('registroAprendizado').value = '');
+                document.getElementById('registroReflexoes') && (document.getElementById('registroReflexoes').value = '');
+                
+                // Atualiza variáveis
+                semanaConcluida = false;
+                carimbosRecebidos[numeroSemana - 1] = false;
+                
+                // Salva no localStorage (vazio)
+                salvarDadosUsuario(false, false);
+                
+                // Envia para o banco (tudo vazio, false, false)
+                enviarParaBanco(false, false);
+                
+                // Esconde carimbo
+                if (carimbos[numeroSemana - 1]) {
+                    carimbos[numeroSemana - 1].style.display = 'none';
+                }
+                
                 // Recarregar a página
                 location.reload();
             }

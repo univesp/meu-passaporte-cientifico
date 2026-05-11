@@ -4,49 +4,49 @@ document.addEventListener('DOMContentLoaded', function() {
   const semanaDados = [
       {
           "semana": 1,
-          "background": "url('../assets/Semana1/biblioteca.jpg')",
+          "background": "url('assets/Semana1/biblioteca.jpg')",
           "titulo": "A Ciência como Construção Humana",
           "subtitulo": "Microexpedição de Conceitos",
           "cor": "#A33E40"
       },
       {
           "semana": 2,
-          "background": "url('../assets/Semana2/bg_2.jpg')",
+          "background": "url('assets/Semana2/bg_2.jpg')",
           "titulo": "História da Astronomia e Mudanças Paradigmáticas",
           "subtitulo": "Viagem pelas Estrelas e Ideias",
           "cor": "#013475"
       },
       {
           "semana": 3,
-          "background": "url('../assets/Semana3/bg_3.jpg')",
+          "background": "url('assets/Semana3/bg_3.jpg')",
           "titulo": "Ciência e Religião: Paradigmas em Confronto",
           "subtitulo": "Rotas do Diálogo e do Conflito",
           "cor": "#026949"
       },
       {
           "semana": 4,
-          "background": "url('../assets/Semana4/bg_4.jpg')",
+          "background": "url('assets/Semana4/bg_4.jpg')",
           "titulo": "Ciência na Terra e Dinâmica Planetária",
           "subtitulo": "Trilhas da Terra em Movimento",
           "cor": "#3D6317"
       },
       {
           "semana": 5,
-          "background": "url('../assets/Semana5/bg_5.jpg')",
+          "background": "url('assets/Semana5/bg_5.jpg')",
           "titulo": "O ambiente e a relação com a ciência e a tecnologia",
           "subtitulo": "Missão Sustentabilidade em Ação",
           "cor": "#33675B"
       },
       {
           "semana": 6,
-          "background": "url('../assets/Semana6/bg_6.jpg')",
+          "background": "url('assets/Semana6/bg_6.jpg')",
           "titulo": "Vida microscópica e Biologia molecular",
           "subtitulo": "Jornada pelo Mundo Microscópico",
           "cor": "#3F2850"
       },
       {
           "semana": 7,
-          "background": "url('../assets/Semana7/bg_7.jpg')",
+          "background": "url('assets/Semana7/bg_7.jpg')",
           "titulo": "Bioética e Biotecnologia Moderna",
           "subtitulo": "Desafios Éticos da Biotecnologia",
           "cor": "#114B52"
