@@ -171,18 +171,29 @@ document.addEventListener('DOMContentLoaded', function() {
             
             dados.nomeAluno = document.getElementById('nomeAluno')?.value || '';
             dados.local = document.getElementById('localVisita')?.value || '';
-            dados.dataCheckIn = document.querySelector('.data-checkIn')?.textContent || '';
+            
+            // ⭐ LÓGICA CORRIGIDA PARA DATA ⭐
+            if (concluida === false && temCarimbo === false) {
+                // Reset: salva data vazia no banco (mas NÃO altera a tela)
+                dados.dataCheckIn = '';
+            } else {
+                // Normal: salva a data atual da tela
+                dados.dataCheckIn = document.querySelector('.data-checkIn')?.textContent || '';
+            }
+            
             dados.descricaoLocal = document.getElementById('descricaoLocal')?.value || '';
             dados.atividade = document.getElementById('registroAtividade')?.value || '';
             dados.aprendizado = document.getElementById('registroAprendizado')?.value || '';
             dados.reflexoes = document.getElementById('registroReflexoes')?.value || '';
             dados.dataSalvamento = new Date().toISOString();
             
-            // Se recebeu parâmetros, atualiza
             if (concluida !== undefined) dados.concluida = concluida;
             if (temCarimbo !== undefined) dados.hasCarimbo = temCarimbo;
             
             localStorage.setItem(`${semanaId}Dados`, JSON.stringify(dados));
+            
+            // NÃO atualiza a tela com a data vazia 
+            // Mantém a data atual que já está na tela
         } catch(e) {
             console.error('Erro ao salvar:', e);
         }
@@ -194,12 +205,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const userData = window.PassaporteCientifico?.getUserData();
         if (!userData?.email || !userData?.codigoLogin) return;
+
+        // SE FOR RESET, DATA VAZIA
+        let dataCheckIn;
+        if (concluida === false && temCarimbo === false) {
+            dataCheckIn = '';
+        } else {
+            dataCheckIn = document.querySelector('.data-checkIn')?.textContent || '';
+        }
         
         // Pega os dados atuais do formulário
         const dados = {
             nomeAluno: document.getElementById('nomeAluno')?.value || '',
             local: document.getElementById('localVisita')?.value || '',
-            dataCheckIn: document.querySelector('.data-checkIn')?.textContent || '',
+            dataCheckIn: dataCheckIn,
             descricaoLocal: document.getElementById('descricaoLocal')?.value || '',
             atividade: document.getElementById('registroAtividade')?.value || '',
             aprendizado: document.getElementById('registroAprendizado')?.value || '',
@@ -213,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
             [`semana${numeroSemana}Dados`]: dados
         };
         
-        console.log('📤 Enviando para API:', body);
+        console.log('Enviando para API:', body);
         
         fetch('https://apps.univesp.br/recurso-educacional-aberto/passaporte-cientifico/diario/salvar', {
             method: 'POST',
@@ -230,12 +249,26 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Erro:', error));
     }
+
+    function atualizarDataAtual() {
+        const dataCheckInElement = document.querySelector('.data-checkIn');
+        if (dataCheckInElement) {
+            const hoje = new Date();
+            const dia = String(hoje.getDate()).padStart(2, '0');
+            const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+            const ano = hoje.getFullYear();
+            dataCheckInElement.textContent = `${dia}/${mes}/${ano}`;
+        }
+    }
         
     // Função para carregar dados do usuário
     function carregarDadosUsuario() {
         try {
             const dadosSalvos = localStorage.getItem(`${semanaId}Dados`);
-            if (!dadosSalvos) return;
+            if (!dadosSalvos) {
+                atualizarDataAtual();
+                return;
+            } 
             
             const dados = JSON.parse(dadosSalvos);
             
@@ -245,6 +278,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('registroAtividade') && (document.getElementById('registroAtividade').value = dados.atividade || '');
             document.getElementById('registroAprendizado') && (document.getElementById('registroAprendizado').value = dados.aprendizado || '');
             document.getElementById('registroReflexoes') && (document.getElementById('registroReflexoes').value = dados.reflexoes || '');
+
+            atualizarDataAtual();
             
             // Carregar o status de conclusão
             if (dados.concluida !== undefined) {
@@ -252,6 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch(e) {
             console.error('Erro ao carregar:', e);
+            atualizarDataAtual();
         }
     }
   
@@ -360,6 +396,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Função para ativar o modo de conclusão
     function ativarModoConclusao() {
+        // Atualiza a data atual antes de salvar
+        atualizarDataAtual();
+
         // Atualiza as variáveis
         semanaConcluida = true;
         carimbosRecebidos[numeroSemana - 1] = true;
@@ -692,10 +731,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Evento para o botão "Recomeçar trilha"
+    // Evento para o botão "Recomeçar trilha"
     const botaoRecomecar = document.querySelector('.buttons-conclusao-container button:first-child');
     if (botaoRecomecar) {
         botaoRecomecar.addEventListener('click', function() {
             if (numeroSemana >= 1 && numeroSemana <= 7) {
+                // NÃO limpa a data da tela 
+                
                 // Limpa o formulário
                 document.getElementById('nomeAluno') && (document.getElementById('nomeAluno').value = '');
                 document.getElementById('localVisita') && (document.getElementById('localVisita').value = '');
@@ -707,11 +749,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Atualiza variáveis
                 semanaConcluida = false;
                 carimbosRecebidos[numeroSemana - 1] = false;
+
+                 // SALVA O ARRAY DE CARIMBOS ATUALIZADO NO LOCALSTORAGE
+                salvarCarimbosStorage();
                 
-                // Salva no localStorage (vazio)
+                // Salva no localStorage (data vazia no BD, mas tela continua com data atual)
                 salvarDadosUsuario(false, false);
                 
-                // Envia para o banco (tudo vazio, false, false)
+                // Envia para o banco (data vazia)
                 enviarParaBanco(false, false);
                 
                 // Esconde carimbo
@@ -719,7 +764,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     carimbos[numeroSemana - 1].style.display = 'none';
                 }
                 
-                // Recarregar a página
+                // Recarregar a página (a tela vai manter a data atual via atualizarDataAtual)
                 location.reload();
             }
         });
@@ -858,15 +903,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   });
   
-  // Atualizar data do check-in
-  const dataCheckIn = document.querySelector('.data-checkIn');
-  if (dataCheckIn) {
-      const hoje = new Date();
-      const dia = String(hoje.getDate()).padStart(2, '0');
-      const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-      const ano = hoje.getFullYear();
-      dataCheckIn.textContent = `${dia}/${mes}/${ano}`;
-  }
+  
   
   // Upload de imagem para a div .foto-local
   const fotoLocal = document.querySelector('.foto-local');
