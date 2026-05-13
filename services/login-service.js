@@ -72,7 +72,6 @@ async function verificarLoginPassaporte(email, codigo) {
     console.log('📥 Resposta da API - Status:', response.status);
     
     if (!response.ok) {
-      // Tratamento de erros específicos
       if (response.status === 401) {
         const lowerText = responseText.toLowerCase();
         if (lowerText.includes('expirado')) {
@@ -87,7 +86,6 @@ async function verificarLoginPassaporte(email, codigo) {
       throw new Error(`Erro na verificação (${response.status}): ${responseText}`);
     }
     
-    // Tenta fazer o parse do JSON
     let alunoData;
     try {
       alunoData = JSON.parse(responseText);
@@ -95,7 +93,6 @@ async function verificarLoginPassaporte(email, codigo) {
       throw new Error('Resposta da API não é um JSON válido');
     }
     
-    // Salva os dados do usuário
     const saved = saveUserData(alunoData);
     
     if (saved) {
@@ -114,24 +111,6 @@ async function verificarLoginPassaporte(email, codigo) {
   }
 }
 
-// Verifica se o usuário já está logado
-function isUserLoggedIn() {
-  const logado = localStorage.getItem('aluno_logado') === 'true';
-  const userData = localStorage.getItem('aluno_passaporte_cientifico');
-  
-  if (logado && userData) {
-    try {
-      const parsed = JSON.parse(userData);
-      console.log('👤 Usuário já logado:', parsed.email || parsed.nome || 'Usuário');
-      return true;
-    } catch (e) {
-      console.warn('⚠️ Dados do usuário corrompidos');
-      return false;
-    }
-  }
-  return false;
-}
-
 // Obtém dados do usuário logado
 function getUserData() {
   const userData = localStorage.getItem('aluno_passaporte_cientifico');
@@ -145,9 +124,97 @@ function getUserData() {
   return null;
 }
 
+// Verifica se o usuário já está logado
+function isUserLoggedIn() {
+  const logado = localStorage.getItem('aluno_logado') === 'true';
+  const userData = getUserData();
+  
+  if (logado && userData) {
+    try {
+      console.log('👤 Usuário já logado:', userData.email || userData.nome || 'Usuário');
+      return true;
+    } catch (e) {
+      console.warn('⚠️ Dados do usuário corrompidos');
+      return false;
+    }
+  }
+  return false;
+}
+
+// ==========================================
+// VERIFICAÇÃO PERIÓDICA DO LOGIN
+// ==========================================
+
+let verificacaoInterval = null;
+
+// Função para validar se o login atual ainda é válido
+async function validarLoginAtual() {
+  const userData = getUserData();
+  if (!userData || !userData.email || !userData.codigoLogin) {
+    console.log('❌ Nenhum dado de usuário encontrado para validar');
+    return false;
+  }
+  
+  console.log('🔍 Validando login atual com backend...', userData.email);
+  
+  try {
+    const verifyUrl = API_VERIFY(userData.email, userData.codigoLogin);
+    const response = await fetch(verifyUrl);
+    
+    console.log('📥 Resposta da validação - Status:', response.status);
+    
+    if (response.ok) {
+      console.log('✅ Login ainda é válido');
+      return true;
+    } else {
+      console.log('❌ Login expirado ou inválido');
+      return false;
+    }
+  } catch (error) {
+    console.error('❌ Erro ao validar login:', error);
+    return true;
+  }
+}
+
+// Função para forçar logout e recarregar
+function forcarLogoutERecarregar() {
+  console.log('🔄 Forçando logout e recarregando página...');
+  
+  localStorage.removeItem('aluno_passaporte_cientifico');
+  localStorage.removeItem('aluno_logado');
+  localStorage.removeItem('login_timestamp');
+  
+  if (verificacaoInterval) {
+    clearInterval(verificacaoInterval);
+    verificacaoInterval = null;
+  }
+  
+  window.location.reload();
+}
+
+// Inicia a verificação periódica
+function iniciarVerificacaoPeriodica() {
+  if (verificacaoInterval) {
+    clearInterval(verificacaoInterval);
+  }
+  
+  verificacaoInterval = setInterval(async () => {
+    if (isUserLoggedIn()) {
+      const isValid = await validarLoginAtual();
+      if (!isValid) {
+        forcarLogoutERecarregar();
+      }
+    }
+  }, 30000);
+}
+
 // Faz logout (limpa dados do localStorage)
 function logout() {
   console.log('👋 Realizando logout...');
+  if (verificacaoInterval) {
+    clearInterval(verificacaoInterval);
+    verificacaoInterval = null;
+  }
   localStorage.removeItem('aluno_passaporte_cientifico');
   localStorage.removeItem('aluno_logado');
   localStorage.removeItem('login_timestamp');
@@ -158,7 +225,6 @@ function logout() {
 // INICIALIZAÇÃO AUTOMÁTICA
 // ==========================================
 
-// Função que verifica automaticamente se há retorno de login na URL
 async function autoCheckLoginReturn() {
   const urlParams = new URLSearchParams(window.location.search);
   const email = urlParams.get('email');
@@ -167,29 +233,20 @@ async function autoCheckLoginReturn() {
   
   console.log('🔍 Verificando parâmetros na URL:', { email: email || 'null', codigo: codigo ? '***' : 'null', tipoAluno: tipoAluno || 'null' });
   
-  // Se tem email e código na URL, é retorno de login
   if (email && codigo) {
     console.log('📨 Detectado retorno de login na URL');
     
-    // Se for o tipo correto, processa
     if (!tipoAluno || tipoAluno === TIPO_ALUNO) {
       mostrarLoadingLogin();
-      
-      // Verifica o login
       const result = await verificarLoginPassaporte(email, codigo);
-      
-      // Remove os parâmetros da URL independente do resultado
       clearUrlParams();
       
       if (result.success) {
-        // Login bem sucedido - recarrega a página para mostrar estado logado
         console.log('✅ Login confirmado, recarregando página...');
         window.location.reload();
       } else {
-        // Login falhou - mostra erro e não recarrega para o usuário ver o erro
         console.error('❌ Falha no login:', result.error);
         mostrarErroLogin(result.error);
-        // Remove os parâmetros da URL mas não recarrega
       }
     } else {
       console.warn('⚠️ Tipo de aluno incorreto:', tipoAluno);
@@ -202,7 +259,6 @@ async function autoCheckLoginReturn() {
 
 // Funções de UI
 function mostrarLoadingLogin() {
-  // Remove loading existente se houver
   const loadingExistente = document.getElementById('loading-login');
   if (loadingExistente) loadingExistente.remove();
   
@@ -253,7 +309,6 @@ function removerLoadingLogin() {
 function mostrarErroLogin(mensagem) {
   removerLoadingLogin();
   
-  // Remove erro existente se houver
   const erroExistente = document.getElementById('error-login');
   if (erroExistente) erroExistente.remove();
   
@@ -294,7 +349,6 @@ function mostrarErroLogin(mensagem) {
   `;
   document.body.appendChild(errorDiv);
   
-  // Remove após 5 segundos
   setTimeout(() => {
     const error = document.getElementById('error-login');
     if (error) error.remove();
@@ -315,21 +369,31 @@ console.log('================================================');
 // EXPORTA FUNÇÕES PARA USO GLOBAL
 // ==========================================
 
-// Torna as funções disponíveis globalmente
 window.PassaporteCientifico = {
   iniciarLogin: iniciarLoginPassaporte,
   verificarLogin: verificarLoginPassaporte,
   isLogado: isUserLoggedIn,
   getUserData: getUserData,
-  logout: logout
+  logout: logout,
+  validarLogin: validarLoginAtual
 };
 
-// Inicializa verificação automática quando a página carregar
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', autoCheckLoginReturn);
+  document.addEventListener('DOMContentLoaded', () => {
+    autoCheckLoginReturn();
+    if (isUserLoggedIn()) {
+      iniciarVerificacaoPeriodica();
+    }
+  });
 } else {
-  // DOM já está carregado
   autoCheckLoginReturn();
+  if (isUserLoggedIn()) {
+    iniciarVerificacaoPeriodica();
+  }
 }
 
 console.log('✅ Login Service carregado com sucesso!');
