@@ -261,32 +261,167 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
         
-    // Função para carregar dados do usuário
-    function carregarDadosUsuario() {
-        try {
-            const dadosSalvos = localStorage.getItem(`${semanaId}Dados`);
-            if (!dadosSalvos) {
-                atualizarDataAtual();
-                return;
-            } 
-            
-            const dados = JSON.parse(dadosSalvos);
-            
-            document.getElementById('nomeAluno') && (document.getElementById('nomeAluno').value = dados.nomeAluno || '');
-            document.getElementById('localVisita') && (document.getElementById('localVisita').value = dados.local || '');
-            document.getElementById('descricaoLocal') && (document.getElementById('descricaoLocal').value = dados.descricaoLocal || '');
-            document.getElementById('registroAtividade') && (document.getElementById('registroAtividade').value = dados.atividade || '');
-            document.getElementById('registroAprendizado') && (document.getElementById('registroAprendizado').value = dados.aprendizado || '');
-            document.getElementById('registroReflexoes') && (document.getElementById('registroReflexoes').value = dados.reflexoes || '');
+    // FUNÇÃO MODIFICADA: Verifica se usuário está logado pelo localStorage
+    function isUsuarioLogado() {
+        // Verifica se existe a chave 'aluno_logado' no localStorage
+        const alunoLogado = localStorage.getItem('aluno_logado');
+        return alunoLogado === 'true';
+    }
 
-            atualizarDataAtual();
+    // FUNÇÃO MODIFICADA: Buscar dados do banco
+    async function buscarDadosDoBanco() {
+        // Verifica se usuário está logado via localStorage
+        if (!isUsuarioLogado()) {
+            console.log('Usuário não logado (aluno_logado = false), usando apenas localStorage');
+            return null;
+        }
+        
+        // Tenta recuperar os dados do usuário do localStorage (provavelmente setado pelo login-service)
+        const userData = window.PassaporteCientifico?.getUserData();
+        
+        // Fallback: tenta buscar do localStorage caso o objeto global não exista
+        let email = userData?.email;
+        let codigoLogin = userData?.codigoLogin;
+        
+        if (!email || !codigoLogin) {
+            // Tenta buscar do localStorage caso tenha sido salvo separadamente
+            email = localStorage.getItem('aluno_email');
+            codigoLogin = localStorage.getItem('aluno_codigo');
             
-            // Carregar o status de conclusão
-            if (dados.concluida !== undefined) {
-                semanaConcluida = dados.concluida;
+            if (!email || !codigoLogin) {
+                console.log('Dados de usuário (email/codigo) não encontrados');
+                return null;
             }
+        }
+        
+        try {
+            console.log('Buscando dados do banco para o usuário logado...');
+            const response = await fetch('https://apps.univesp.br/recurso-educacional-aberto/passaporte-cientifico/diario/buscar', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'email': email,
+                    'codigoLogin': codigoLogin
+                }
+            });
+            
+            if (!response.ok) {
+                console.error('Erro na resposta do servidor:', response.status);
+                return null;
+            }
+            
+            const data = await response.json();
+            console.log('Dados recebidos do banco:', data);
+            return data;
+            
+        } catch (error) {
+            console.error('Erro ao buscar dados do banco:', error);
+            return null;
+        }
+    }
+
+    // FUNÇÃO PARA SINCRONIZAR DADOS DO BANCO COM LOCALSTORAGE
+    function sincronizarComBanco(dadosBanco, semanaId) {
+        if (!dadosBanco) return false;
+        
+        const chaveSemana = `${semanaId}Dados`;
+        const dadosDaSemana = dadosBanco[chaveSemana];
+        
+        if (!dadosDaSemana) return false;
+        
+        console.log(`Sincronizando ${semanaId} com banco:`, dadosDaSemana);
+        
+        // Salva no localStorage com os dados do banco
+        localStorage.setItem(`${semanaId}Dados`, JSON.stringify(dadosDaSemana));
+        
+        // Atualiza os carimbos globais
+        const carimbosStorage = carregarCarimbosStorage();
+        const numeroSemana = parseInt(semanaId.replace('semana', ''));
+        
+        if (dadosDaSemana.hasCarimbo === true) {
+            carimbosStorage[numeroSemana - 1] = true;
+        } else if (dadosDaSemana.hasCarimbo === false) {
+            carimbosStorage[numeroSemana - 1] = false;
+        }
+        
+        // Salva o array de carimbos atualizado
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(carimbosStorage));
+        
+        // Atualiza as variáveis globais
+        carimbosRecebidos = carimbosStorage;
+        
+        return true;
+    }
+
+    // FUNÇÃO MODIFICADA: Carregar dados do usuário
+    async function carregarDadosUsuario() {
+        try {
+            // Verifica se o usuário está logado
+            const logado = isUsuarioLogado();
+            console.log(`Status de login: ${logado ? 'Logado' : 'Não logado'}`);
+            
+            if (logado) {
+                // Tenta buscar dados do banco
+                const dadosBanco = await buscarDadosDoBanco();
+                
+                if (dadosBanco) {
+                    // Se conseguiu dados do banco, sincroniza com localStorage
+                    sincronizarComBanco(dadosBanco, semanaId);
+                    console.log('Dados sincronizados com o banco com sucesso');
+                } else {
+                    console.log('Não foi possível buscar dados do banco, usando apenas localStorage');
+                }
+            }
+            
+            // Agora carrega do localStorage (já atualizado com dados do banco, se disponível)
+            const dadosSalvos = localStorage.getItem(`${semanaId}Dados`);
+            
+            if (dadosSalvos) {
+                const dados = JSON.parse(dadosSalvos);
+                
+                // Preenche os campos do formulário
+                document.getElementById('nomeAluno') && (document.getElementById('nomeAluno').value = dados.nomeAluno || '');
+                document.getElementById('localVisita') && (document.getElementById('localVisita').value = dados.local || '');
+                document.getElementById('descricaoLocal') && (document.getElementById('descricaoLocal').value = dados.descricaoLocal || '');
+                document.getElementById('registroAtividade') && (document.getElementById('registroAtividade').value = dados.atividade || '');
+                document.getElementById('registroAprendizado') && (document.getElementById('registroAprendizado').value = dados.aprendizado || '');
+                document.getElementById('registroReflexoes') && (document.getElementById('registroReflexoes').value = dados.reflexoes || '');
+                
+                // ATUALIZA A DATA NA TELA
+                if (dados.dataCheckIn && dados.dataCheckIn !== '') {
+                    const dataCheckInElement = document.querySelector('.data-checkIn');
+                    if (dataCheckInElement) {
+                        dataCheckInElement.textContent = dados.dataCheckIn;
+                    }
+                } else {
+                    // Se não tem data no banco, usa a data atual
+                    atualizarDataAtual();
+                }
+                
+                // Carregar o status de conclusão e carimbo
+                if (dados.concluida !== undefined) {
+                    semanaConcluida = dados.concluida;
+                }
+                
+                if (dados.hasCarimbo !== undefined) {
+                    carimbosRecebidos[numeroSemana - 1] = dados.hasCarimbo;
+                }
+                
+                console.log(`Dados carregados para ${semanaId}:`, {
+                    concluida: semanaConcluida,
+                    hasCarimbo: carimbosRecebidos[numeroSemana - 1],
+                    dataCheckIn: dados.dataCheckIn,
+                    logado: logado
+                });
+                
+            } else {
+                // Se não tem dados salvos, apenas atualiza a data atual
+                atualizarDataAtual();
+                console.log(`Nenhum dado salvo para ${semanaId}, usando data atual`);
+            }
+            
         } catch(e) {
-            console.error('Erro ao carregar:', e);
+            console.error('Erro ao carregar dados do usuário:', e);
             atualizarDataAtual();
         }
     }
@@ -875,31 +1010,61 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
   
-    carregarDadosUsuario();
-    inicializarCarimbos();
-    atualizarCarimbos();
+    // ===== CARREGAMENTO SEQUENCIAL COM AWAIT =====
+    (async function() {
+        // 1. Primeiro, carrega os dados do banco (se logado)
+        console.log('Iniciando carregamento de dados...');
+        await carregarDadosUsuario();
+        console.log('Dados carregados. semanaConcluida =', semanaConcluida);
+        
+        // 2. Inicializa os carimbos
+        inicializarCarimbos();
+        atualizarCarimbos();
+        
+        // 3. Configura containers
+        if (passaporteContainer) {
+            passaporteContainer.style.display = 'none';
+        }
+        
+        if (botaoConclusao) {
+            botaoConclusao.style.display = 'none';
+        }
+        
+        if (botoesConclusaoContainer) {
+            botoesConclusaoContainer.style.display = 'none';
+        }
+        
+        if (ultimaTelaCasa6) {
+            ultimaTelaCasa6.style.display = 'none';
+        }
+        
+        // 4. Decide qual tela mostrar baseado nos dados carregados
+        if (semanaConcluida) {
+            console.log('Semana já concluída, ativando modo conclusão');
+            ativarModoConclusao();
+        } else {
+            console.log('Semana não concluída, mostrando casa 1');
+            mostrarCasa(0);
+        }
+    })();
     
-    if (passaporteContainer) {
-        passaporteContainer.style.display = 'none';
-    }
-    
-    if (botaoConclusao) {
-        botaoConclusao.style.display = 'none';
-    }
-    
-    if (botoesConclusaoContainer) {
-        botoesConclusaoContainer.style.display = 'none';
-    }
-    
-    if (ultimaTelaCasa6) {
-        ultimaTelaCasa6.style.display = 'none';
-    }
-    
-    if (semanaConcluida) {
-        ativarModoConclusao();
-    } else {
-        mostrarCasa(0);
-    }
+    // Listener para quando o login ocorrer (se o login-service disparar um evento)
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'aluno_logado' && e.newValue === 'true') {
+            console.log('Login detectado, recarregando dados...');
+            carregarDadosUsuario().then(() => {
+                // Atualiza a interface após carregar os dados
+                inicializarCarimbos();
+                atualizarCarimbos();
+                
+                if (semanaConcluida) {
+                    ativarModoConclusao();
+                } else {
+                    mostrarCasa(casaAtual);
+                }
+            });
+        }
+    });
   
   });
   
