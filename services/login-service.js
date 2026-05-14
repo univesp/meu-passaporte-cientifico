@@ -147,8 +147,8 @@ function isUserLoggedIn() {
 
 let verificacaoInterval = null;
 
-// Função para validar se o login atual ainda é válido
-async function validarLoginAtual() {
+// Função para validar se o login atual ainda é válido (com opção de não recarregar)
+async function validarLoginAtual(skipReload = false) {
   const userData = getUserData();
   if (!userData || !userData.email || !userData.codigoLogin) {
     console.log('❌ Nenhum dado de usuário encontrado para validar');
@@ -168,6 +168,9 @@ async function validarLoginAtual() {
       return true;
     } else {
       console.log('❌ Login expirado ou inválido');
+      if (!skipReload) {
+        forcarLogoutERecarregar();
+      }
       return false;
     }
   } catch (error) {
@@ -177,8 +180,8 @@ async function validarLoginAtual() {
 }
 
 // Função para forçar logout e recarregar
-function forcarLogoutERecarregar() {
-  console.log('🔄 Forçando logout e recarregando página...');
+function forcarLogoutERecarregar(shouldReload = true) {
+  console.log('🔄 Forçando logout...');
   
   localStorage.removeItem('aluno_passaporte_cientifico');
   localStorage.removeItem('aluno_logado');
@@ -189,20 +192,42 @@ function forcarLogoutERecarregar() {
     verificacaoInterval = null;
   }
   
-  window.location.reload();
+  if (shouldReload) {
+    console.log('🔄 Recarregando página...');
+    window.location.reload();
+  }
 }
 
-// Inicia a verificação periódica
-function iniciarVerificacaoPeriodica() {
+// Inicia a verificação periódica (primeiro verifica imediatamente)
+async function iniciarVerificacaoPeriodica() {
+  // Para o intervalo anterior se existir
   if (verificacaoInterval) {
     clearInterval(verificacaoInterval);
+    verificacaoInterval = null;
   }
   
+  // PRIMEIRO: Verifica imediatamente ao entrar na página
+  console.log('🔍 Executando verificação imediata de login...');
+  const isValid = await validarLoginAtual(true); // true = não recarregar ainda
+  
+  if (!isValid) {
+    console.log('⚠️ Login inválido na verificação inicial, forçando logout...');
+    forcarLogoutERecarregar();
+    return;
+  }
+  
+  console.log('✅ Verificação inicial OK, iniciando verificação periódica a cada 30 segundos');
+
+  // DEPOIS: Inicia o intervalo de 30 segundos
   verificacaoInterval = setInterval(async () => {
     if (isUserLoggedIn()) {
-      const isValid = await validarLoginAtual();
-      if (!isValid) {
-        forcarLogoutERecarregar();
+      const isValidPeriodico = await validarLoginAtual();
+      if (!isValidPeriodico) {
+        // O forcarLogoutERecarregar já é chamado dentro do validarLoginAtual
+        if (verificacaoInterval) {
+          clearInterval(verificacaoInterval);
+          verificacaoInterval = null;
+        }
       }
     }
   }, 30000);
@@ -383,17 +408,19 @@ window.PassaporteCientifico = {
 // ==========================================
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    autoCheckLoginReturn();
+  document.addEventListener('DOMContentLoaded', async () => {
+    await autoCheckLoginReturn();
     if (isUserLoggedIn()) {
-      iniciarVerificacaoPeriodica();
+      await iniciarVerificacaoPeriodica(); // Agora é async e já faz a verificação imediata
     }
   });
 } else {
-  autoCheckLoginReturn();
-  if (isUserLoggedIn()) {
-    iniciarVerificacaoPeriodica();
-  }
+  (async () => {
+    await autoCheckLoginReturn();
+    if (isUserLoggedIn()) {
+      await iniciarVerificacaoPeriodica();
+    }
+  })();
 }
 
 console.log('✅ Login Service carregado com sucesso!');
