@@ -416,7 +416,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .sua-missao-cards-item > p {
   font-size: 18px;
-  padding: 0 50px;
+  padding: 0 37px;
 }
 
 
@@ -492,6 +492,12 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 0 #942C52;
 }
 
+p.box-info-texto-final {
+  margin-top: 20px; 
+  text-align: center; 
+  width: 50%;
+}
+
 
 /* MEDIA QUERYS */
 @media (max-width: 1199px) {
@@ -501,5 +507,362 @@ h1, h2, h3, h4, h5, h6 {
 
   #introducao-bemVindo {
     height: 1440px;
+  }
+}
+
+@media (max-width: 991px) {
+  #introducao-inicio,
+  .box-info {
+    height: auto;
+  }
+
+  .introducao-inicio__content > img {
+    width: 75%;
+  }
+
+  #introducao-bemVindo {
+    height: 1640px;
+  }
+
+  .botoes-inicio {
+    margin-left: 100px;
+  }
+  
+  .box-info > h2 {
+    font-size: 32px;
+  }
+
+  .box-info > p {
+    width: 100%;
+  }
+
+  .box-info:nth-child(1) {
+    margin-top: 150px;
+  }
+
+  .box-explicativo {
+    width: auto;
+  }
+
+  .box-explicativo > .lumi-ilustra {
+    width: 170px;
+    height: auto;
+  }
+
+  p.box-info-texto-final {
+    width: 65%;
+  }
+
+  .ilustra-pensante {
+    display: none;
+  }
+
+  .section-content-produzir {
+    margin-top: 100px;
+  }
+
+  .section-content-produzir > h2, .section-content-produzir > p {
+    margin-left: 3% !important;
+    width: 85%;
+  }
+
+  #box-1, #box-2 {
+    margin-left: 0;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .criterios > h2 {
+    width: 60%;
+  }
+
+  .icone-box {
+    left: 0;
+    bottom: 292px;
+  }
+
+  .criterios-cards-item {
+    width: 75%;
+    max-width: 991px;
+    height: 260px;
+  }
+
+  #introducao-suaMissao {
+    height: 2000px;
+  }
+
+  .sua-missao-cards-container {
+    flex-direction: column;
+    gap: 80px 0;
+    align-items: center;
+  }
+
+  .sua-missao-cards-item {
+    height: 150px;
+    width: 80%;
+  }
+
+  .sua-missao-content-final-container > p {
+    width: 45%;
+  }
+
+  .sua-missao-content-final-container > img {
+    width: 30%;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .introducao-inicio__content > img, .botoes-inicio {
+    margin-left: 30px;
+  }
+
+  .box-explicativo {
+    width: 500px;
+    height: auto;
+  }
+
+  .box-explicativo:nth-child(2) {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .box-explicativo > .lumi-ilustra {
+    width: 130px;
+  }
+
+  .box-info > h2 {
+    width: 500px;
+    text-align: center;
+  }
+
+  .box-info > p {
+    width: 450px;
+  }
+
+  .lista-bemVindo {
+    margin-left: 0;
+  }
+
+  p.box-info-texto-final {
+    width: 100% !important;
+  }
+
+  .box-info:nth-child(1) {
+    margin-top: 460px;
+  }
+
+  .section-content-produzir {
+    margin-top: 320px;
+  }
+
+  .criterios > h2 {
+    width: 65%;
+  }
+
+  .criterios > p {
+    width: 75%;
+  }
+
+  #box-1 {
+    height: auto;
+  }
+
+  .icone-box {
+    left: -10px;
+    bottom: 292px;
+  }
+
+  .criterios-cards-item {
+    padding: 45px 50px;
+    width: 80%;
+    height: 225px;
+  }
+
+  .sua-missao-header-column2 > img {
+    width: 90%;
+    margin-top: -20px;
+  }
+
+  .sua-missao-content-final-container {
+    flex-direction: column;
+    gap: 10% 0;
+  }
+
+  .sua-missao-content-final-container > p {
+    width: 80%;
+  }
+
+  .sua-missao-content-final-container > img {
+    width: 50%;
+  }
+
+  .botao-final-container {
+    margin-top: 110px;
+  }
+
+  .botao-final-container > button {
+    font-size: 25px;
+  }
+
+  .botao-final-container > img {
+    display: none;
+  }
+}
+
+@media (max-width: 609px) {
+  .criterios > p {
+    width: 80%;
+  }
+}
+
+@media (max-width: 575px) {
+  .criterios > p {
+    width: 95%;
+  }
+
+  .criterios > h2 {
+    width: 70%;
+  }
+
+  .criterios-cards-item {
+    width: 90%;
+  }
+
+  .icone-olho {
+    width: 15%;
+  }
+
+  .sua-missao-cards-item {
+    height: auto;
+  }
+}
+
+@media (max-width: 514px) {
+  .introducao-inicio__content > img, .botoes-inicio {
+    margin-left: 10px;
+  }
+
+  .introducao-inicio__content > img {
+    width: 100%;
+  }
+
+  .box-explicativo {
+    width: 450px;
+  }
+
+  p.box-info-texto-final {
+    width: 350px !important;
+  }
+
+  .section-content > h2 {
+    font-size: 38px;
+  }
+
+  .section-content > p {
+    font-size: 18px;
+  }
+
+  .section-content > .box-explicativo > ul > li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  .criterios > h2 {
+    width: 75%;
+  }
+}
+
+@media (max-width: 469px) {
+  .botao-login-box > button {
+    font-size: 20px;
+    width: 355px;
+    margin-left: 4%;
+  }
+
+  .botoes-inicio > button {
+    font-size: 20px;
+    width: 330px;
+    height: 65px;
+  }
+
+  .box-explicativo {
+    width: 375px;
+  }
+
+  .box-explicativo > .texto-lumi-intro {
+    font-size: 18px;
+    width: 330px;
+    height: auto;
+  }
+
+  .box-info > h2 {
+    width: 375px;
+  }
+
+  .box-info > p {
+    width: 350px;
+  } 
+
+  .lista-bemVindo {
+    font-size: 18px;
+  }
+
+  .section-content > h2 {
+    font-size: 32px;
+  }
+
+  .section-content > .box-explicativo > ul > li {
+    font-size: 18px;
+  }
+
+  #box-2 > p {
+    font-size: 18px;
+  }
+
+  .criterios-cards-container {
+    margin-top: -70px;
+  }
+
+  .criterios-cards-item {
+    width: 90%;
+    height: auto;
+    padding: 45px 20px;
+  }
+
+  .criterios-cards-item > h3 {
+    width: 300px;
+    font-size: 24px;
+  }
+
+  .criterios > h2 {
+    width: 80%;
+  } 
+
+  .icone-box {
+    bottom: 318px;
+  }
+
+  .criterios > h2 {
+    font-size: 31px;
+  }
+
+  #introducao-suaMissao {
+    height: 2080px;
+  }
+
+  .sua-missao-content-final-container > img {
+    width: 65%;
+  }
+
+  .botao-final-container {
+    margin-top: 75px;
+  }
+
+  .botao-final-container > button {
+    font-size: 20px;
   }
 }
