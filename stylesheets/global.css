@@ -170,3 +170,137 @@ h1, h2, h3, h4, h5, h6 {
   
   
 }
+
+
+/* ==========================================
+   MODAL AVISO DE USUÁRIO DESLOGADO
+   ========================================== */
+   .modal-deslogado {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .modal-deslogado-conteudo {
+    background-color: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 750px;
+    padding: 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.3s ease-out;
+  }
+  
+  .modal-deslogado-header {
+    background-color: #DD3A76;
+    color: white;
+    padding: 20px 24px 5px 24px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-deslogado-header h3 {
+    font-family: 'KG-Happy', sans-serif;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+  .modal-deslogado-fechar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: opacity 0.2s;
+  }
+  
+  .modal-deslogado-fechar:hover {
+    opacity: 0.8;
+  }
+  
+  .modal-deslogado-body {
+    padding: 24px;
+    background-color: #DD3A76;
+    border-radius: 0 0 16px 16px;
+  }
+  
+  .modal-deslogado-body p {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #FFF;
+    width: 90%;
+    margin: 0 auto 30px auto;
+  }
+  
+  .modal-deslogado-botoes {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn-modal {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .btn-modal-login, .btn-modal-jornadas {
+    background-color: #FFF;
+    color: #DD3A76;
+    flex: 1;
+    min-width: 180px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-modal-login:hover, .btn-modal-jornadas:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(221, 58, 118, 0.2);
+    border-color: #c22e65;
+  }
+  
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .modal-deslogado-body p {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modal-deslogado-botoes {
+      flex-direction: column;
+    }
+    
+    .btn-modal {
+      width: 100%;
+    }
+  }

@@ -40,6 +40,7 @@
   <!-- <link rel="stylesheet" href="../common/rea-geral-2.1.css">   -->
   <link rel="stylesheet" href="stylesheets/nav_footer.css">
   <link rel="stylesheet" href="stylesheets/main.css">
+  <link rel="stylesheet" href="stylesheets/global.css">
 
 </head>
 
@@ -95,7 +96,7 @@
             </button>
           </div>
           <button id="buttonIntroducao">Introdução</button>
-          <button id="buttonJornadas" onclick="vaiParaTelaJornadas()">Ir Para as Jornadas</button>
+          <button id="buttonJornadas" onclick="verificarEAcessarJornadas()">Ir Para as Jornadas</button>
         </div>
       </div>
     </section>
@@ -221,10 +222,31 @@
 
       <div class="botao-final-container">
         <img src="assets/introducao/seta.png" alt="">
-         <button id="botaoFinalIntroducao">Ir para as jornadas</button> 
+         <button id="botaoFinalIntroducao" onclick="verificarEAcessarJornadas()">Ir para as jornadas</button> 
         <img src="assets/introducao/seta.png" alt="">
       </div>
     </section>
+
+    <!-- MODAL PARA USUÁRIOS DESLOGADOS -->
+    <div id="modalAvisoDeslogado" class="modal-deslogado">
+      <div class="modal-deslogado-conteudo">
+        <div class="modal-deslogado-header">
+          <h3>Aviso</h3>
+          <button class="modal-deslogado-fechar" onclick="fecharModalAviso()">&times;</button>
+        </div>
+        <div class="modal-deslogado-body">
+          <p>Você está deslogado. Seus dados serão salvos somente localmente. Para salvar sua progressão e conseguir visualizar seus registros, carimbos e portfólio em qualquer dispositivo, entre com sua conta.</p>
+          <div class="modal-deslogado-botoes">
+            <button class="btn-modal btn-modal-login" onclick="fazerLoginPeloModal()">
+              Entrar com conta UNIVESP
+            </button>
+            <button class="btn-modal btn-modal-jornadas" onclick="continuarParaJornadas()">
+              Ir para as Jornadas
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </main>
 

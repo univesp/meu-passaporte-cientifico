@@ -381,6 +381,167 @@ function mostrarErroLogin(mensagem) {
 }
 
 // ==========================================
+// FUNÇÕES DO MODAL PARA USUÁRIOS DESLOGADOS
+// ==========================================
+
+let modalCallback = null;
+
+// Mostra o modal de aviso para usuário deslogado
+function mostrarModalAvisoDeslogado(callback) {
+  console.log('🔔 Mostrando modal de aviso para usuário deslogado');
+  
+  const modal = document.getElementById('modalAvisoDeslogado');
+  if (!modal) {
+    console.error('❌ Modal não encontrado no DOM');
+    // Se o modal não existir, redireciona direto (fallback)
+    if (callback) callback();
+    return;
+  }
+  
+  // Salva o callback para executar depois (opcional, para flexibilidade)
+  modalCallback = callback || null;
+  
+  // Mostra o modal
+  modal.style.display = 'flex';
+  
+  // Garante que o conteúdo está restaurado (caso tenha sido modificado)
+  restaurarConteudoModal();
+  
+  // Reabilita os botões (caso tenha sido desabilitado)
+  const botoes = document.querySelectorAll('#modalAvisoDeslogado .btn-modal');
+  botoes.forEach(botao => {
+    botao.disabled = false;
+    botao.style.opacity = '1';
+    botao.style.cursor = 'pointer';
+  });
+}
+
+// Fecha o modal
+function fecharModalAviso() {
+  const modal = document.getElementById('modalAvisoDeslogado');
+  if (modal) {
+    modal.style.display = 'none';
+    modalCallback = null;
+    // Restaura o conteúdo original ao fechar
+    restaurarConteudoModal();
+  }
+}
+
+// Mostra loading dentro do modal
+function mostrarLoadingModal() {
+  const botaoLogin = document.querySelector('#modalAvisoDeslogado .btn-modal-login');
+  if (!botaoLogin) return;
+  
+  // Salva o texto original do botão
+  const textoOriginal = botaoLogin.innerHTML;
+  botaoLogin.setAttribute('data-texto-original', textoOriginal);
+  
+  // Muda o texto do botão e desabilita
+  botaoLogin.innerHTML = `
+    <span style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <span style="
+        width: 16px;
+        height: 16px;
+        border: 2px solid #fff;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        display: inline-block;
+      "></span>
+      Redirecionando para login...
+    </span>
+  `;
+  botaoLogin.disabled = true;
+  botaoLogin.style.opacity = '0.7';
+  botaoLogin.style.cursor = 'wait';
+  
+  // Também desabilita o outro botão
+  const botaoJornadas = document.querySelector('#modalAvisoDeslogado .btn-modal-jornadas');
+  if (botaoJornadas) {
+    botaoJornadas.disabled = true;
+    botaoJornadas.style.opacity = '0.5';
+    botaoJornadas.style.cursor = 'not-allowed';
+  }
+}
+
+// Restaura o conteúdo original do modal
+function restaurarConteudoModal() {
+  const botaoLogin = document.querySelector('#modalAvisoDeslogado .btn-modal-login');
+  if (!botaoLogin) return;
+  
+  // Restaura o texto original do botão
+  const textoOriginal = botaoLogin.getAttribute('data-texto-original');
+  if (textoOriginal) {
+    botaoLogin.innerHTML = textoOriginal;
+    botaoLogin.removeAttribute('data-texto-original');
+  }
+  
+  // Reabilita o botão
+  botaoLogin.disabled = false;
+  botaoLogin.style.opacity = '1';
+  botaoLogin.style.cursor = 'pointer';
+  
+  // Reabilita o outro botão
+  const botaoJornadas = document.querySelector('#modalAvisoDeslogado .btn-modal-jornadas');
+  if (botaoJornadas) {
+    botaoJornadas.disabled = false;
+    botaoJornadas.style.opacity = '1';
+    botaoJornadas.style.cursor = 'pointer';
+  }
+}
+
+// Função chamada ao clicar em "Entrar com conta UNIVESP"
+function fazerLoginPeloModal() {
+  console.log('🔐 Iniciando login a partir do modal');
+  
+  // Mostra loading apenas no botão (sem mudar todo o conteúdo)
+  mostrarLoadingModal();
+  
+  // Delay curto para mostrar o efeito de loading, depois redireciona
+  setTimeout(() => {
+    iniciarLoginPassaporte();
+  }, 500);
+}
+
+// Função para continuar para as jornadas mesmo deslogado
+function continuarParaJornadas() {
+  console.log('🚀 Continuando para jornadas mesmo deslogado');
+  fecharModalAviso();
+  
+  // Redireciona diretamente para as jornadas
+  window.location.href = 'jornadas.html';
+}
+
+// Função principal para verificar login antes de ir para jornadas
+async function verificarEAcessarJornadas() {
+  console.log('🔍 Verificando login antes de acessar jornadas...');
+  
+  // Verifica se está logado
+  if (isUserLoggedIn()) {
+    console.log('✅ Usuário logado, redirecionando para jornadas.html');
+    window.location.href = 'jornadas.html';
+  } else {
+    console.log('⚠️ Usuário não está logado, mostrando modal de aviso');
+    // Mostra o modal - sem redirecionamento automático
+    mostrarModalAvisoDeslogado();
+  }
+}
+
+// Fecha o modal se clicar fora do conteúdo (no overlay)
+function configurarFecharModalFora() {
+  const modal = document.getElementById('modalAvisoDeslogado');
+  if (!modal) return;
+  
+  // Adiciona evento de clique no overlay
+  modal.addEventListener('click', function(e) {
+    // Se o clique foi diretamente no overlay (e não no conteúdo do modal)
+    if (e.target === modal) {
+      fecharModalAviso();
+    }
+  });
+}
+
+// ==========================================
 // INFORMAÇÕES DE CONFIGURAÇÃO (DEBUG)
 // ==========================================
 
@@ -400,12 +561,26 @@ window.PassaporteCientifico = {
   isLogado: isUserLoggedIn,
   getUserData: getUserData,
   logout: logout,
-  validarLogin: validarLoginAtual
+  validarLogin: validarLoginAtual,
+  verificarEAcessarJornadas: verificarEAcessarJornadas,
+  mostrarModalAvisoDeslogado: mostrarModalAvisoDeslogado,
+  fecharModalAviso: fecharModalAviso,
+  fazerLoginPeloModal: fazerLoginPeloModal,
+  continuarParaJornadas: continuarParaJornadas
 };
+
+// Disponibiliza funções globalmente também para facilitar
+window.verificarEAcessarJornadas = verificarEAcessarJornadas;
+window.fecharModalAviso = fecharModalAviso;
+window.fazerLoginPeloModal = fazerLoginPeloModal;
+window.continuarParaJornadas = continuarParaJornadas;
 
 // ==========================================
 // INICIALIZAÇÃO
 // ==========================================
+
+// Configura o modal para fechar ao clicar fora
+configurarFecharModalFora();
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', async () => {
