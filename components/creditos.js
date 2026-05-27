@@ -18,6 +18,7 @@ let creditosContent = `
       <p><span class="funcao">Roteirização</span>Willian José Ferreira e Juliana Quitério Lopez Salvaia</p>
       <p><span class="funcao">Arte</span>Alex Fernandes</p>
       <p><span class="funcao">Programação</span>Gabriel Henrique Gallo da Silva, Debora Lais Vieira T. do Nascimento e Jose Roberto Candido da Silva</p>
+      <p><span class="funcao">Entusiasta da Iniciativa</span>José Adriano Silva de Oliveira</p>
 
     </div>
     <div class="modal-footer">
