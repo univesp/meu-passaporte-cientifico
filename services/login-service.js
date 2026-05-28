@@ -49,27 +49,27 @@ function saveUserData(alunoData) {
 
 // Inicia o fluxo de login (redireciona para SAML)
 function iniciarLoginPassaporte() {
-  console.log('🚀 Iniciando fluxo de login Passaporte Científico...');
+  //console.log('Iniciando fluxo de login Passaporte Científico...');
   
   const returnUrl = encodeURIComponent(getCurrentReturnUrl());
   const redirectUrl = `${SAML_BRIDGE_START_URL}?returnUrl=${returnUrl}&tipoAluno=${encodeURIComponent(TIPO_ALUNO)}`;
   
-  console.log('📍 Redirecionando para:', redirectUrl);
+  //console.log('Redirecionando para:', redirectUrl);
   window.location.href = redirectUrl;
 }
 
 // Verifica o login após retorno da SAML
 async function verificarLoginPassaporte(email, codigo) {
-  console.log('🔍 Verificando login para:', email);
+  //console.log('Verificando login para:', email);
   
   const verifyUrl = API_VERIFY(email, codigo);
-  console.log('📡 Chamando API:', verifyUrl);
+  //console.log('Chamando API:', verifyUrl);
   
   try {
     const response = await fetch(verifyUrl);
     const responseText = await response.text();
     
-    console.log('📥 Resposta da API - Status:', response.status);
+    //console.log('Resposta da API - Status:', response.status);
     
     if (!response.ok) {
       if (response.status === 401) {
@@ -96,7 +96,7 @@ async function verificarLoginPassaporte(email, codigo) {
     const saved = saveUserData(alunoData);
     
     if (saved) {
-      console.log('🎉 Login realizado com sucesso!');
+      //console.log('Login realizado com sucesso!');
       return { success: true, data: alunoData };
     } else {
       throw new Error('Não foi possível salvar os dados localmente');
@@ -131,7 +131,7 @@ function isUserLoggedIn() {
   
   if (logado && userData) {
     try {
-      console.log('👤 Usuário já logado:', userData.email || userData.nome || 'Usuário');
+      //console.log('Usuário já logado:', userData.email || userData.nome || 'Usuário');
       return true;
     } catch (e) {
       console.warn('⚠️ Dados do usuário corrompidos');
@@ -151,17 +151,17 @@ let verificacaoInterval = null;
 async function validarLoginAtual(skipReload = false) {
   const userData = getUserData();
   if (!userData || !userData.email || !userData.codigoLogin) {
-    console.log('❌ Nenhum dado de usuário encontrado para validar');
+    //console.log('Nenhum dado de usuário encontrado para validar');
     return false;
   }
   
-  console.log('🔍 Validando login atual com backend...', userData.email);
+  //console.log('Validando login atual com backend...', userData.email);
   
   try {
     const verifyUrl = API_VERIFY(userData.email, userData.codigoLogin);
     const response = await fetch(verifyUrl);
     
-    console.log('📥 Resposta da validação - Status:', response.status);
+    console.log('Resposta da validação - Status:', response.status);
     
     if (response.ok) {
       console.log('✅ Login ainda é válido');
@@ -179,9 +179,27 @@ async function validarLoginAtual(skipReload = false) {
   }
 }
 
+// Coloque isso LOGO APÓS as funções auxiliares (depois de isUserLoggedIn)
+
+// ==========================================
+// FUNÇÃO GLOBAL DE VERIFICAÇÃO (DEFINIDA PRECOCEMENTE)
+// ==========================================
+
+window.verificarEAcessarJornadas = function() {
+  //console.log('Verificando login antes de acessar jornadas...');
+  
+  if (isUserLoggedIn()) {
+    //console.log('Usuário logado, redirecionando para jornadas.html');
+    window.location.href = 'jornadas.html';
+  } else {
+    //console.log('Usuário não está logado, mostrando modal de aviso');
+    mostrarModalAvisoDeslogado();
+  }
+};
+
 // Função para forçar logout e recarregar
 function forcarLogoutERecarregar(shouldReload = true) {
-  console.log('🔄 Forçando logout...');
+  //console.log('Forçando logout...');
   
   localStorage.removeItem('aluno_passaporte_cientifico');
   localStorage.removeItem('aluno_logado');
@@ -193,7 +211,7 @@ function forcarLogoutERecarregar(shouldReload = true) {
   }
   
   if (shouldReload) {
-    console.log('🔄 Recarregando página...');
+    //console.log('Recarregando página...');
     window.location.reload();
   }
 }
@@ -207,16 +225,16 @@ async function iniciarVerificacaoPeriodica() {
   }
   
   // PRIMEIRO: Verifica imediatamente ao entrar na página
-  console.log('🔍 Executando verificação imediata de login...');
+  //console.log('Executando verificação imediata de login...');
   const isValid = await validarLoginAtual(true); // true = não recarregar ainda
   
   if (!isValid) {
-    console.log('⚠️ Login inválido na verificação inicial, forçando logout...');
+    //console.log('Login inválido na verificação inicial, forçando logout...');
     forcarLogoutERecarregar();
     return;
   }
   
-  console.log('✅ Verificação inicial OK, iniciando verificação periódica a cada 30 segundos');
+  //console.log('Verificação inicial OK, iniciando verificação periódica a cada 30 segundos');
 
   // DEPOIS: Inicia o intervalo de 30 segundos
   verificacaoInterval = setInterval(async () => {
@@ -235,7 +253,7 @@ async function iniciarVerificacaoPeriodica() {
 
 // Faz logout (limpa dados do localStorage)
 function logout() {
-  console.log('👋 Realizando logout...');
+  //console.log('Realizando logout...');
   if (verificacaoInterval) {
     clearInterval(verificacaoInterval);
     verificacaoInterval = null;
@@ -243,7 +261,7 @@ function logout() {
   localStorage.removeItem('aluno_passaporte_cientifico');
   localStorage.removeItem('aluno_logado');
   localStorage.removeItem('login_timestamp');
-  console.log('✅ Logout realizado com sucesso');
+  //console.log('Logout realizado com sucesso');
 }
 
 // ==========================================
@@ -256,10 +274,10 @@ async function autoCheckLoginReturn() {
   const codigo = urlParams.get('codigo');
   const tipoAluno = urlParams.get('tipoAluno');
   
-  console.log('🔍 Verificando parâmetros na URL:', { email: email || 'null', codigo: codigo ? '***' : 'null', tipoAluno: tipoAluno || 'null' });
+  //console.log('Verificando parâmetros na URL:', { email: email || 'null', codigo: codigo ? '***' : 'null', tipoAluno: tipoAluno || 'null' });
   
   if (email && codigo) {
-    console.log('📨 Detectado retorno de login na URL');
+    //console.log('Detectado retorno de login na URL');
     
     if (!tipoAluno || tipoAluno === TIPO_ALUNO) {
       mostrarLoadingLogin();
@@ -267,7 +285,7 @@ async function autoCheckLoginReturn() {
       clearUrlParams();
       
       if (result.success) {
-        console.log('✅ Login confirmado, recarregando página...');
+        //console.log('Login confirmado, recarregando página...');
         window.location.reload();
       } else {
         console.error('❌ Falha no login:', result.error);
@@ -278,7 +296,7 @@ async function autoCheckLoginReturn() {
       clearUrlParams();
     }
   } else {
-    console.log('ℹ️ Nenhum parâmetro de login encontrado na URL');
+    //console.log('Nenhum parâmetro de login encontrado na URL');
   }
 }
 
@@ -388,7 +406,21 @@ let modalCallback = null;
 
 // Mostra o modal de aviso para usuário deslogado
 function mostrarModalAvisoDeslogado(callback) {
-  console.log('🔔 Mostrando modal de aviso para usuário deslogado');
+  //console.log('Verificando se deve mostrar modal de aviso...');
+  
+  // Verifica se o usuário desabilitou o modal
+  if (isModalAvisoDesabilitado()) {
+    //console.log('Modal desabilitado pelo usuário, redirecionando direto...');
+    if (callback) {
+      callback();
+    } else {
+      // Se não tem callback, redireciona para jornadas
+      window.location.href = 'jornadas.html';
+    }
+    return;
+  }
+  
+  //console.log('Mostrando modal de aviso para usuário deslogado');
   
   const modal = document.getElementById('modalAvisoDeslogado');
   if (!modal) {
@@ -396,6 +428,12 @@ function mostrarModalAvisoDeslogado(callback) {
     // Se o modal não existir, redireciona direto (fallback)
     if (callback) callback();
     return;
+  }
+  
+  // Reseta o estado da checkbox ao abrir o modal
+  const checkbox = document.getElementById('naoMostrarNovamente');
+  if (checkbox) {
+    checkbox.checked = false;
   }
   
   // Salva o callback para executar depois (opcional, para flexibilidade)
@@ -492,7 +530,13 @@ function restaurarConteudoModal() {
 
 // Função chamada ao clicar em "Entrar com conta UNIVESP"
 function fazerLoginPeloModal() {
-  console.log('🔐 Iniciando login a partir do modal');
+  //console.log('Iniciando login a partir do modal');
+  
+  // Verifica se o usuário marcou a checkbox
+  const checkbox = document.getElementById('naoMostrarNovamente');
+  if (checkbox && checkbox.checked) {
+    salvarPreferenciaNaoMostrarModal(true);
+  }
   
   // Mostra loading apenas no botão (sem mudar todo o conteúdo)
   mostrarLoadingModal();
@@ -505,26 +549,18 @@ function fazerLoginPeloModal() {
 
 // Função para continuar para as jornadas mesmo deslogado
 function continuarParaJornadas() {
-  console.log('🚀 Continuando para jornadas mesmo deslogado');
+  //console.log('Continuando para jornadas mesmo deslogado');
+  
+  // Verifica se o usuário marcou a checkbox
+  const checkbox = document.getElementById('naoMostrarNovamente');
+  if (checkbox && checkbox.checked) {
+    salvarPreferenciaNaoMostrarModal(true);
+  }
+  
   fecharModalAviso();
   
   // Redireciona diretamente para as jornadas
   window.location.href = 'jornadas.html';
-}
-
-// Função principal para verificar login antes de ir para jornadas
-async function verificarEAcessarJornadas() {
-  console.log('🔍 Verificando login antes de acessar jornadas...');
-  
-  // Verifica se está logado
-  if (isUserLoggedIn()) {
-    console.log('✅ Usuário logado, redirecionando para jornadas.html');
-    window.location.href = 'jornadas.html';
-  } else {
-    console.log('⚠️ Usuário não está logado, mostrando modal de aviso');
-    // Mostra o modal - sem redirecionamento automático
-    mostrarModalAvisoDeslogado();
-  }
 }
 
 // Fecha o modal se clicar fora do conteúdo (no overlay)
@@ -542,14 +578,34 @@ function configurarFecharModalFora() {
 }
 
 // ==========================================
-// INFORMAÇÕES DE CONFIGURAÇÃO (DEBUG)
+// CONFIGURAÇÃO DO "NÃO MOSTRAR NOVAMENTE"
 // ==========================================
 
-console.log('=== CONFIGURAÇÃO DO LOGIN SERVICE (PRODUÇÃO) ===');
-console.log('API_BASE:', API_BASE);
-console.log('Tipo aluno:', TIPO_ALUNO);
-console.log('SAML URL:', SAML_BRIDGE_START_URL);
-console.log('================================================');
+const STORAGE_NAO_MOSTRAR_MODAL = "nao_mostrar_modal_aviso";
+
+// Verifica se o usuário optou por não mostrar o modal novamente
+function isModalAvisoDesabilitado() {
+  const desabilitado = localStorage.getItem(STORAGE_NAO_MOSTRAR_MODAL) === 'true';
+  if (desabilitado) {
+    //console.log('Modal de aviso desabilitado pelo usuário');
+  }
+  return desabilitado;
+}
+
+// Salva a preferência do usuário
+function salvarPreferenciaNaoMostrarModal(valor) {
+  if (valor) {
+    localStorage.setItem(STORAGE_NAO_MOSTRAR_MODAL, 'true');
+  } else {
+    localStorage.removeItem(STORAGE_NAO_MOSTRAR_MODAL);
+  }
+}
+
+// Reseta a preferência (útil para debug ou botão de reset)
+function resetarPreferenciaModal() {
+  localStorage.removeItem(STORAGE_NAO_MOSTRAR_MODAL);
+  //console.log('Preferência do modal resetada');
+}
 
 // ==========================================
 // EXPORTA FUNÇÕES PARA USO GLOBAL
@@ -566,7 +622,9 @@ window.PassaporteCientifico = {
   mostrarModalAvisoDeslogado: mostrarModalAvisoDeslogado,
   fecharModalAviso: fecharModalAviso,
   fazerLoginPeloModal: fazerLoginPeloModal,
-  continuarParaJornadas: continuarParaJornadas
+  continuarParaJornadas: continuarParaJornadas,
+  resetarPreferenciaModal: resetarPreferenciaModal,
+  isModalAvisoDesabilitado: isModalAvisoDesabilitado
 };
 
 // Disponibiliza funções globalmente também para facilitar
@@ -574,6 +632,7 @@ window.verificarEAcessarJornadas = verificarEAcessarJornadas;
 window.fecharModalAviso = fecharModalAviso;
 window.fazerLoginPeloModal = fazerLoginPeloModal;
 window.continuarParaJornadas = continuarParaJornadas;
+window.resetarPreferenciaModal = resetarPreferenciaModal;
 
 // ==========================================
 // INICIALIZAÇÃO
@@ -597,5 +656,3 @@ if (document.readyState === 'loading') {
     }
   })();
 }
-
-console.log('✅ Login Service carregado com sucesso!');
