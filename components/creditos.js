@@ -8,7 +8,7 @@ let creditosContent = `
 
       <h6>UNIVERSIDADE VIRTUAL DO ESTADO DE SÃO PAULO – UNIVESP</h6>
       <p><span class="funcao">Presidente</span>Marcos Augusto Francisco Borges</p>
-      <p><span class="funcao">Diretora Acadêmica</span>Romero Tori</p>
+      <p><span class="funcao">Diretor Acadêmico</span>Romero Tori</p>
 
       <h6>Equipe</h6>
       <p><span class="funcao">Docente responsável</span>Willian José Ferreira</p>
@@ -17,7 +17,7 @@ let creditosContent = `
       <p><span class="funcao">Designer Instrucional</span>Juliana Quitério Lopez Salvaia</p>
       <p><span class="funcao">Roteirização</span>Willian José Ferreira e Juliana Quitério Lopez Salvaia</p>
       <p><span class="funcao">Arte</span>Alex Fernandes</p>
-      <p><span class="funcao">Programação</span>Gabriel Henrique Gallo da Silva, Debora Lais Vieira T. do Nascimento e Jose Roberto Candido da Silva</p>
+      <p><span class="funcao">Programação</span>Gabriel Henrique Gallo da Silva, Debora Lais Vieira T. do Nascimento e José Roberto Candido da Silva</p>
       <p><span class="funcao">Entusiasta da Iniciativa</span>José Adriano Silva de Oliveira</p>
 
     </div>

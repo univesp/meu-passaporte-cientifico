@@ -498,6 +498,10 @@ p.box-info-texto-final {
   width: 50%;
 }
 
+.icone-box-mobile, .missao-header-img-mobile {
+  display: none;
+}
+
 
 /* MEDIA QUERYS */
 @media (max-width: 1199px) {
@@ -660,8 +664,17 @@ p.box-info-texto-final {
     margin-top: 320px;
   }
 
+  .criterios {
+    margin: 0 auto 175px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .criterios > h2 {
-    width: 65%;
+    width: 100%;
+    text-align: center;
   }
 
   .criterios > p {
@@ -673,8 +686,18 @@ p.box-info-texto-final {
   }
 
   .icone-box {
-    left: -10px;
-    bottom: 292px;
+    display: none;
+  }
+
+  .icone-box-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  #introducao-criterios {
+    padding-top: 0;
   }
 
   .criterios-cards-item {
@@ -712,33 +735,58 @@ p.box-info-texto-final {
   .botao-final-container > img {
     display: none;
   }
-}
 
-@media (max-width: 609px) {
-  .criterios > p {
+  .section-content > .box-explicativo > ul {
     width: 80%;
+    padding: 30px 0 20px 0;
   }
 }
 
 @media (max-width: 575px) {
-  .criterios > p {
-    width: 95%;
+  .botao-login-box > button {
+    font-size: 20px;
+    width: 355px;
+    margin-left: 4%;
   }
 
-  .criterios > h2 {
-    width: 70%;
+  .botoes-inicio > button {
+    font-size: 20px;
+    width: 330px;
+    height: 65px;
   }
 
   .criterios-cards-item {
     width: 90%;
   }
 
-  .icone-olho {
-    width: 15%;
-  }
-
   .sua-missao-cards-item {
     height: auto;
+  }
+
+  .section-content > .box-explicativo > ul {
+    padding: 30px 0 10px 0;
+  }
+
+  #box-2 {
+    flex-direction: column;
+    padding: 30px 0 30px 0;
+  }
+
+  .sua-missao-header {
+    margin-top: 20px;
+  }
+
+  .sua-missao-header-column2 {
+    display: none;
+  }
+
+  .sua-missao-header-column1 {
+    margin: 0 auto;
+  }
+
+  .missao-header-img-mobile {
+    width: 100%;
+    display: block;
   }
 }
 
@@ -770,23 +818,20 @@ p.box-info-texto-final {
   .section-content > .box-explicativo > ul > li:not(:last-child) {
     margin-bottom: 10px;
   }
-
-  .criterios > h2 {
-    width: 75%;
-  }
 }
 
 @media (max-width: 469px) {
   .botao-login-box > button {
-    font-size: 20px;
-    width: 355px;
+    font-size: 19px;
+    width: 325px;
     margin-left: 4%;
   }
 
   .botoes-inicio > button {
     font-size: 20px;
-    width: 330px;
+    width: 285px;
     height: 65px;
+    margin: 0 auto;
   }
 
   .box-explicativo {
@@ -836,15 +881,7 @@ p.box-info-texto-final {
   .criterios-cards-item > h3 {
     width: 300px;
     font-size: 24px;
-  }
-
-  .criterios > h2 {
-    width: 80%;
   } 
-
-  .icone-box {
-    bottom: 318px;
-  }
 
   .criterios > h2 {
     font-size: 31px;
@@ -864,5 +901,9 @@ p.box-info-texto-final {
 
   .botao-final-container > button {
     font-size: 20px;
+  }
+
+  .criterios {
+    margin: 0 auto 100px 0;
   }
 }
